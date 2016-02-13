@@ -1,0 +1,316 @@
+﻿.darkblue {
+		background-color: #285e8e;
+	}
+
+.bs-example {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px 4px 0 0;
+	box-shadow: none;
+	padding: 20px 10px 0px;
+}
+
+.modal-header {
+	color: #fff;
+}
+
+.side_header {
+	padding: 5px 5px 10px;
+	border-bottom: 1px solid #CCC;
+}
+
+.side_content {
+	min-height: 300px;
+	word-wrap: break-word;
+	margin: 10px 1px;
+}
+
+.side_footer {
+	font-style: italic;
+	color: #CCC;
+}
+
+.side_footer .btn-group {
+	border-top: 1px solid #CCC;
+	padding: 10px 5px;
+}
+
+.side_footer .btn-group .cancel {
+	padding: 10px;
+	text-align: center;
+	font-style: normal;
+	color: #000;
+}
+	
+.user-bar {
+    margin: 25px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.user-bar .status-tab {
+    padding:10px 0px;
+    margin-left:5px;
+    text-align:center;
+    cursor:pointer;
+}
+.status-tab.active {
+    background-color:#f2f2f2;
+    cursor:default;
+}
+.btn-group .btn+.btn {
+    margin-left:0px;
+}
+#settingModal .tab-content {
+	border: none;
+    border-left:1px solid #b3b3b3;
+}
+#settingModal .sidebar-content {
+    border:none;
+}
+.practice-tab {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.bootstrap-select > .selectpicker.btn {
+    background-image: none;
+}
+.recent-patient .content {
+    border: none;
+}
+.recent-patient .sidebar {
+    border-right:1px solid #ccc;
+}
+
+
+.insurance-tab >.row {
+	padding: 10px 0;
+}
+
+.insurance-tab .bs-example .row {
+	margin: 15px 0px 0px;
+}
+
+.insurance-tab .side_footer .btn {
+	padding: 5px;
+}
+
+
+.insurance-tab ul {
+	margin: 10px 0 20px;
+}
+
+.insurance-tab ul li {
+	font-weight: bold;
+}
+
+.insurance-tab li.child {
+	border-bottom: 1px solid #CCC;
+	margin-bottom: 20px;
+}
+
+.insurance-tab .label1 {
+	color: #5bc0de;
+}
+
+.insurance-tab .label2 {
+	background-color: #CCC;
+}
+
+.insurance-tab .label3 {
+	font-style: italic;
+	color: #CCC;
+}
+
+.insurance-tab h4 {
+	border-bottom: 1px solid #CCC;
+	padding-bottom: 10px;
+	font-weight: bold;
+}
+
+.insurance-tab h4, h5 {
+	font-weight: bold !important;
+}
+
+.insurance-tab .panel-body .control-label {
+	font-size: 10px;
+	color: #CCC;
+} 
+
+.insurance-tab .panel-body p {
+	/*font-size: 10px;
+	margin-top: 2px;*/
+} 
+
+.insurance-tab .panel {
+	margin-right: 15px;
+}
+
+.insurance-tab .panel-active {
+	border: 1px solid #a94442;
+}
+
+.insurance-tab .panel-normal {
+	border: none;
+}
+
+.insurance-tab .panel-heading {
+	border: none;
+	border-bottom: 1px solid #CCC;
+	color: #CCC;
+	font-weight: bold;
+	background-color: transparent;
+}
+.btn.cgreen.add-patient {
+    padding: 0px 8px;
+    font-size: 13px;
+}
+.centeraltab .nav-tabs>li.active>a {
+    background-color: #999999;
+}
+.recent-patient .sidebar .list-group-item {
+    cursor: pointer;
+}
+
+@media (min-width: 992px){
+  .page-content.menu2 {
+      padding-top: 44px;
+  }
+  .page-content.menu2 > .row {
+      position: fixed;
+      top: 52px;
+      z-index: 9000;
+  } 
+}
+
+.form-control {
+    font-weight: normal;
+    color: black;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+   -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.clickable {
+    cursor: pointer;
+}
+.td_practive_disabled {
+            background: #f5f5f5;
+        }
+    .td_practive_disabled:hover {
+        cursor: default;
+    }
+.fa-search, .fa-filter {
+    position: absolute;
+    top: 10px;
+    margin-left: 10px;
+}
+
+.fred {
+    color: #c7254e;
+}
+
+.fblue {
+    color: #39b3d7;
+}
+
+.bs-example {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px 4px 0 0;
+    box-shadow: none;
+    padding: 20px 10px 0px;
+}
+
+.modal-header {
+    color: #fff;
+}
+
+.side_header {
+    padding: 5px 5px 10px;
+    border-bottom: 1px solid #CCC;
+}
+
+.side_content {
+    min-height: 300px;
+    word-wrap: break-word;
+    margin: 10px 1px;
+}
+
+.side_footer {
+    font-style: italic;
+    color: #CCC;
+}
+
+.side_footer .btn-group {
+    border-top: 1px solid #CCC;
+    padding: 10px 5px;
+}
+
+.side_footer .btn-group .cancel {
+    padding: 10px;
+    text-align: center;
+    font-style: normal;
+    color: #000;
+}
+
+.search {
+
+    padding-left: 30px;
+
+}
+tr.selected td {
+    background-color: #f5f5f5;
+}
+.btn .filter-option {
+    font-size: 14px;
+}
+.form-body {
+    padding: 25px 20px;
+    padding-bottom: 5px;
+}
+td.favorite {
+    vertical-align: middle;
+    text-align: center;
+}
+
+td.favorite:hover {
+    background-color: #999999;
+}
+
+.insurance-tab ul.child {
+    border-bottom: 1px solid #CCC;
+    margin: 0px;
+    padding: 10px 0px 20px 40px;
+}
+i.favorite {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 16px;
+    height: 15px;
+    background: transparent url('images/glyphicons-halflings.png') no-repeat -119px -71px;
+
+}
+i.edit {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 16px;
+    height: 15px;
+    background: transparent url('images/glyphicons-halflings.png') no-repeat -95px -71px;
+}
+i.order {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 13px;
+    height: 15px;
+}
+i.order.up {
+      background: transparent url('images/glyphicons-halflings.png') no-repeat -289px -96px;
+}
+i.order.down {
+    background: transparent url('images/glyphicons-halflings.png') no-repeat -312px -96px;
+}

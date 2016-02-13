@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FBB3C3F3-F6A0-4871-8AE2-51DDD4CF5FE6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HippoBilling.Processor</RootNamespace>
+    <AssemblyName>HippoBilling.Processor</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\Accounts\ActiveUsersCommand.cs" />
+    <Compile Include="Commands\Accounts\ChangePasswordCommand.cs" />
+    <Compile Include="Commands\Accounts\CreateUserCommand.cs" />
+    <Compile Include="Commands\Accounts\SaveUserCommand.cs" />
+    <Compile Include="Commands\Accounts\SaveUserPermissionCommand.cs" />
+    <Compile Include="Commands\Accounts\SendVerificationCommand.cs" />
+    <Compile Include="Commands\Authorizations\SaveAuthorizationCommand.cs" />
+    <Compile Include="Commands\Insurances\FavoritePayerCommand.cs" />
+    <Compile Include="Commands\Insurances\TransposeInsuranceCommand.cs" />
+    <Compile Include="Commands\Insurances\SaveInsuranceCommand.cs" />
+    <Compile Include="Commands\Insurances\SavePayerCommand.cs" />
+    <Compile Include="Commands\Patients\FavoritePhysicianCommand.cs" />
+    <Compile Include="Commands\Patients\SavePatientCommand.cs" />
+    <Compile Include="Commands\Patients\SavePatientNoteCommand.cs" />
+    <Compile Include="Commands\Patients\ViewPatientCommand.cs" />
+    <Compile Include="Commands\Practices\AddPracticeTabCommand.cs" />
+    <Compile Include="Commands\Practices\RemovePracticeTabCommand.cs" />
+    <Compile Include="Commands\Practices\SaveLocationCommand.cs" />
+    <Compile Include="Commands\Practices\SavePracticeCommand.cs" />
+    <Compile Include="Commands\Practices\SaveProviderCommand.cs" />
+    <Compile Include="Events\Accounts\SendVerificationEvent.cs" />
+    <Compile Include="Handlers\Accounts\ActiveUsersCommandHandler.cs" />
+    <Compile Include="Handlers\Accounts\ChangePasswordCommandHandler.cs" />
+    <Compile Include="Handlers\Accounts\CreateUserCommandHandler.cs" />
+    <Compile Include="Handlers\Accounts\SaveUserCommandHandler.cs" />
+    <Compile Include="Handlers\Accounts\SaveUserPermissionCommandHandler.cs" />
+    <Compile Include="Handlers\Accounts\SendVerificationCommandHandler.cs" />
+    <Compile Include="Handlers\Authorizations\SaveAuthorizationCommandHandler.cs" />
+    <Compile Include="Handlers\CommandHandlerBase.cs" />
+    <Compile Include="Handlers\Insurances\FavoritePayerCommandHandler.cs" />
+    <Compile Include="Handlers\Insurances\SaveInsuranceCommandHandler.cs" />
+    <Compile Include="Handlers\Insurances\SavePayerCommandHandler.cs" />
+    <Compile Include="Handlers\Insurances\TransposeInsuranceCommandHandler.cs" />
+    <Compile Include="Handlers\Patients\FavoritePhysicianCommandHandler.cs" />
+    <Compile Include="Handlers\Patients\SavePatientCommandHandler.cs" />
+    <Compile Include="Handlers\Patients\SavePatientNoteCommandHandler.cs" />
+    <Compile Include="Handlers\Patients\ViewPatientCommandHandler.cs" />
+    <Compile Include="Handlers\Practices\AddPracticeTabCommandHandler.cs" />
+    <Compile Include="Handlers\Practices\RemovePracticeTabCommandHandler.cs" />
+    <Compile Include="Handlers\Practices\SaveLocationCommandHandler.cs" />
+    <Compile Include="Handlers\Practices\SavePracticeCommandHandler.cs" />
+    <Compile Include="Handlers\Practices\SaveProviderCommandHandler.cs" />
+    <Compile Include="Installer.cs" />
+    <Compile Include="Notifications\Email\EmailNotification.cs" />
+    <Compile Include="Notifications\Email\EmailProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\HippoBilling.Core\HippoBilling.Core.csproj">
+      <Project>{07a70496-d4c7-439a-b506-be768bc1150f}</Project>
+      <Name>HippoBilling.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HippoBilling.Data\HippoBilling.Data.csproj">
+      <Project>{67282b1e-32de-4a46-9c03-22e6c4926c26}</Project>
+      <Name>HippoBilling.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HippoBilling.Domain\HippoBilling.Domain.csproj">
+      <Project>{cd563a28-aac9-4b97-af36-2ba536a6878f}</Project>
+      <Name>HippoBilling.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

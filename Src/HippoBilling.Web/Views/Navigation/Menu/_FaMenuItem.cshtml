@@ -1,0 +1,8 @@
+﻿@model HippoBilling.Web.Models.Navigation.FaMenuItem
+<li @(Model.Active ? "class=active" : "")>
+    <a href="@Url.Action(Model.Action, Model.Controller, Model.RouteValues)">
+        <i class="fa fa-@Model.Suffix"></i>
+        @Model.Title
+    </a>
+</li>
+

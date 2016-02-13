@@ -1,0 +1,188 @@
+﻿<div id="userList">
+    <h1>User Accounts</h1>
+    <div class="row user-bar">
+        <div data-ng-class="{'col-md-1':true,'status-tab':true,'active':active}" data-ng-click="swithList(1)">
+            Active
+        </div>
+        <div data-ng-class="{'col-md-1':true,'status-tab':true,'active':!active}" data-ng-click="swithList(0)">
+            Inactive
+        </div>
+    </div>
+    <div class="row content" data-ng-show="active">
+        <div class="col-md-12 content-bar">
+            <div class="col-md-4">
+                <button type="button" class="btn cgreen" id="createUser" data-ng-click="createUser()" >Add New User Account<img src="@Url.Content("~/assets/img/add-icon.png")"></button>
+            </div>
+            <div class="col-md-8 pull-right">
+                <div class="col-md-5">
+                    <input type="text" class="form-control search" data-ng-model="activeKeyword" placeholder="Search user accounts...">
+                    <i class="fa fa-search"></i>
+                </div>
+                <label class="col-md-4"><i class="fa fa-question"></i> Help Archives</label>
+                <label class="bar col-md-3">{{activeUserCount}} Results</label>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <table class="table table-hover" id="activeUsersList">
+                <thead>
+                    <tr class="active tr-border">
+                        <th>Name <i class="fa fa-angle-down"></i></th>
+                        <th width="45%">Login Email <i class="fa fa-angle-down"></i></th>
+                        <th>Permissions <i class="fa fa-angle-down"></i></th>
+                    </tr>
+                </thead>
+                <tbody class="no-border">
+                    <tr data-ng-repeat="user in activeUsersList" data-ng-click="editUser(user)">
+                        <td>{{user.Name}}</td>
+                        <td>{{user.Email}}</td>
+                        <td>{{user.Role}}</td>
+                    </tr>
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row content" data-ng-show="!active">
+        <div class="col-md-12 content-bar">
+            <div class="col-md-4">
+                <button type="button" class="btn cgreen" data-ng-disabled="pendingActiveIds.length<=0" data-ng-click="activeUsers()">Active Selected Accoun</button>
+            </div>
+            <div class="col-md-8 pull-right">
+                <div class="col-md-5">
+                    <input type="text" class="form-control search" data-ng-model="inactiveKeyword" placeholder="Search user accounts...">
+                    <i class="fa fa-search"></i>
+                </div>
+                <label class="col-md-4"><i class="fa fa-question"></i> Help Archives</label>
+                <label class="bar col-md-3">{{inactiveUserCount}} Results</label>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="active tr-border">
+                        <th></th>
+                        <th>Name <i class="fa fa-angle-down"></i></th>
+                        <th width="45%">Login Email <i class="fa fa-angle-down"></i></th>
+                        <th>Permissions <i class="fa fa-angle-down"></i></th>
+                    </tr>
+                </thead>
+                <tbody class="no-border">
+                    <tr data-ng-repeat="user in inactiveUsersList" data-ng-click="inactiveUserChange(user)">
+                        <td>
+                            <label><input type="checkbox" data-ng-model="user.Active" /></label>
+                        </td>
+                        <td>{{user.Name}}</td>
+                        <td>{{user.Email}}</td>
+                        <td>Custom</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<!-- User Detail -->
+<div id="userDetail" style="display: none;">
+    <h1>User Accounts</h1>
+    <div class="row user-bar">
+        <div class="col-md-1 status-tab">
+            <a href="#" class="backlink" data-ng-click="back()">
+                <i class="fa fa-angle-left"></i>&nbsp;&nbsp;Back
+            </a>
+        </div>
+        <div data-ng-class="{'col-md-1':true,'status-tab':true,'active':inDetail}" data-ng-click="swithDetail(1)">
+            Details
+        </div>
+        <div data-ng-class="{'col-md-1':true,'status-tab':true,'active':!inDetail}" data-ng-click="swithDetail(0)" data-ng-show="selectedUser.Id!=undefined">
+            Privileges
+        </div>
+    </div>
+    <div class="col-md-12" data-ng-show="inDetail">
+        <div class="alert alert-success" data-ng-show="commandResult.Success">Saved successfully.</div>
+        <div class="alert alert-danger has-error" data-ng-show="commandResult.Success===false" style="margin-bottom: 0px;">
+            <span class="help-block" data-ng-repeat="e in commandResult.Errors">{{e.Error}}</span>
+        </div>
+        <form class="form-horizontal row" role="form" name="userForm" novalidate>
+            <div data-ng-class="{'form-group':true, 'has-error': userForm.email.$invalid }">
+                <label class="col-md-2 control-label">Login Details:</label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" data-ng-required="true" name="email" data-ng-model="selectedUser.Email" data-ng-pattern='@String.Copy(@"/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/")' placeholder="billnicholas@me.com">
+                    <span data-ng-show="userForm.email.$error.required" class="help-block">The email is required.</span>
+                    <span data-ng-show="userForm.email.$error.pattern" class="help-block">Please enter a valid email address.</span>
+
+                </div>
+            </div>
+            <div data-ng-class="{'form-group':true, 'has-error': userForm.name.$invalid }">
+                <label class="col-md-2 control-label">Fulll Name:</label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" name="name" data-ng-required="true" placeholder="Bill Nicholas" data-ng-model="selectedUser.Name">
+                    <span data-ng-show="userForm.name.$error.required" class="help-block">The full name is required.</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Active:</label>
+                <div class="col-md-5">
+                    <label><input type="checkbox" data-ng-model="selectedUser.Active"></label>
+                </div>
+            </div>
+            <div class="col-md-10 col-md-offset-2">
+                <button type="button" class="btn cgreen" data-ng-disabled="userForm.$invalid" data-ng-click="saveUser()">Save Changes<img src="@Url.Content("~/assets/img/submit-icon.png")"></button> or
+                <span class="btnCancel cancelUser" data-ng-click="back()">Cancel</span>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-12" id="privilege" data-ng-show="!inDetail && selectedUser.Id!=undefined">
+
+        <div style="margin:0px 25px;">
+            <div class="alert alert-success" data-ng-show="commandResult.Success" style="margin-bottom: 0px;">Saved successfully.</div>
+            <div class="alert alert-danger has-error" data-ng-show="commandResult.Success===false" style="margin-bottom: 0px;">
+                <span class="help-block" data-ng-repeat="e in commandResult.Errors">{{e.Error}}</span>
+            </div>
+
+            <div class="col-md-9 update-notify">
+                Last modified on by User on 12/12/2014
+            </div>
+            <div class="col-md-2" data-ng-click="savePermissions()" style="cursor:pointer;">
+                <i class="fa fa-save"></i> Save Privileges
+            </div>
+            <div class="col-md-1 cancelUser" data-ng-click="back()" style="cursor:pointer;">
+                Cancel
+            </div>
+        </div>
+        <div class="row content">
+            <div class="col-md-12 content-bar">
+                <div class="col-md-10">
+                    <h2>User - {{selectedUser.Name}}</h2>
+                </div>
+                @*<label class="bar col-md-2">3 Results</label>*@
+            </div>
+            <div class="col-md-12">
+                <table class="table table-custom">
+                    <thead>
+                        <tr class="active tr-border">
+                            <th>Item</th>
+                            <th width="15%">Full Control</th>
+                            <th width="15%">View</th>
+                            <th width="15%">Edit</th>
+                            <th width="15%">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-class="{'main':p.Level<=1}" class="main" data-ng-repeat="p in permissions">
+                            <td>{{p.Name}}</td>
+                            <td data-ng-click="setPermission(p,'FullControl')"><i data-ng-show="p.FullControl" class="fa fa-check"></i></td>
+                            <td data-ng-click="setPermission(p,'View')"><i data-ng-show="p.View" class="fa fa-check"></i></td>
+                            <td data-ng-click="setPermission(p,'Edit')"><i data-ng-show="p.Edit" class="fa fa-check"></i></td>
+                            <td data-ng-click="setPermission(p,'Delete')"><i data-ng-show="p.Delete" class="fa fa-check"></i></td>
+  
+                        </tr>
+                      
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

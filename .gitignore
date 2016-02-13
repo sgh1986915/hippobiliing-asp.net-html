@@ -1,0 +1,17 @@
+/Src/packages
+/Src/*.suo
+/Src/HippoBilling.Web/bin
+/Src/HippoBilling.Web/obj
+/Src/HippoBilling.Core/bin
+/Src/HippoBilling.Core/obj
+/Src/HippoBilling.Data/obj
+/Src/HippoBilling.Data/bin
+/Src/HippoBilling.Domain/bin
+/Src/HippoBilling.Domain/obj
+/Src/HippoBilling.Mvc/obj
+/Src/HippoBilling.Mvc/bin
+/Src/HippoBilling.Processor/obj
+/Src/HippoBilling.Processor/bin
+/Src/HippoBilling.Service/bin
+/Src/HippoBilling.Service/obj
+/Src/HippoBilling.Web/*.user

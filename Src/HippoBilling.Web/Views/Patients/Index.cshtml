@@ -1,0 +1,1670 @@
+﻿
+@{
+    ViewBag.Title = "Patients";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model HippoBilling.Web.Models.Patients.PatientOptionsViewModel
+<link href="@Url.Content("~/assets/plugins/bootstrap-datepicker/css/datepicker.css")" rel="stylesheet" type="text/css" />
+
+<div data-ng-controller="patientController">
+
+    <div class="tabs">
+        <div class="account">
+            <ul class="nav nav-tabs nav-justified">
+                <li class="active" data-ng-class="{'active':selectedIndex==-1}" data-ng-click="switchTab(-1)">
+                    <a href="#">View Patients</a>
+                </li>
+                <li data-ng-class="{'active':selectedIndex==$index}" data-ng-click="switchTab($index)" data-ng-repeat="p in selectedPatients">
+                    <a href="#">
+                        <img src="/assets/img/sidebar-search-close-light.png" class="clickable" data-ng-click="removeTab($index)" />{{p.Name}}
+                    </a>
+                </li>
+                <li>
+                    <button type="button" class="btn cgreen add-patient" data-ng-disabled="!tab" data-ng-click="create()">Add New Patient<img src="/assets/img/add-icon.png" style="margin-left: 10px;" /></button>
+
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade in row recent-patient active" data-ng-class="{'tab-pane fade in row recent-patient':true,'active':selectedIndex==-1}" id="tab_list">
+                    <div class="col-md-2 sidebar">
+                        <h5>Recently Viewed Patients</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item" data-ng-repeat="v in viewedPatients" data-ng-click="view(v)">
+                                <i class="fa fa-user pull-right"></i>
+                                {{v.Name}}
+                            </li>
+
+                        </ul>
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+
+                        <h5>Recently Created Patients</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item" data-ng-repeat="c in createdPatients" data-ng-click="view(c)">
+                                <i class="fa fa-user pull-right"></i>
+                                {{c.Name}}
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-10 content">
+                        <div class="row content-bar">
+                            <div class="col-md-3">
+                                <input type="text" class="form-control search" data-ng-model="keyword" placeholder="Search by first/last name or DOB...">
+                                <i class="fa fa-search"></i>
+                            </div>
+                            <div class="col-md-1 result pull-right">
+                                <span class="fgrey">{{patients.length}} Results</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="active tr-border">
+                                        <th>ID <i class="fa fa-angle-down"></i></th>
+                                        <th>Name <i class="fa fa-angle-down"></i></th>
+                                        <th>DOB <i class="fa fa-angle-down"></i></th>
+                                        <th>Last Visit <i class="fa fa-angle-down"></i></th>
+                                        <th>Patient Balance <i class="fa fa-angle-down"></i></th>
+                                        <th>Insurance Balance <i class="fa fa-angle-down"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-ng-repeat="m in patients" data-ng-click="view(m)">
+                                        <td>{{m.PatientNo}}</td>
+                                        <td>{{m.Name}}</td>
+                                        <td>{{m.DateOfBirth}}</td>
+                                        <td>{{m.LastVisitDate}}</td>
+                                        <td>${{m.PatientBalance}}</td>
+                                        <td>${{m.InsuranceBalance}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="tab-pane fade in" data-ng-class="{'tab-pane fade in':true,'active':selectedIndex>-1}" id="tab_patient">
+                        <div class="patient clearfix" id="facesheetHeader"  data-ng-show="currentRelation.currentTab.key=='facesheet'" style="border-bottom: 1px solid #b3b3b3;">
+                       
+                            <div class="col-md-3">
+                                <span>{{currentPatient.Name}}</span> <span data-ng-show="currentPatient.hasOwnProperty('PatientNo')">- Acct# {{currentPatient.PatientNo}}</span>
+                            </div>
+                            <form name="balanceForm" novalidate>
+                           
+                                <div class="col-md-3 form-group form-horizontal" style="padding-top:0px;border:none;color:black;">
+                                    <label class="col-md-5 control-label">Patient Balance:</label>                            
+                                    <div class="col-md-7" style="padding-top:7px;border:none;" data-ng-class="{'has-error':balanceForm.patientBalance.$error.pattern}">
+                                        <input type="text" data-ng-pattern="/^\d{1,8}(.\d{1,4})?$/" name="patientBalance" data-ng-model="currentPatient.PatientBalance" class="form-control"/>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-3 form-group form-horizontal">
+                                    <label class="col-md-5 control-label">Insurance Balance:</label>                            
+                                    <div class="col-md-7" style="padding-top:7px;border:none;" data-ng-class="{'has-error':balanceForm.insuranceBalance.$error.pattern}">
+                                        <input type="text" class="form-control" name="insuranceBalance" data-ng-pattern="/^\d{1,8}(.\d{1,4})?$/" data-ng-model="currentPatient.InsuranceBalance"/>
+                                    </div>
+                                </div>
+                         
+                            </form>
+                       
+                            <div class="col-md-1" data-ng-show="currentPatient.hasOwnProperty('PatientNo')">
+                                <a href="#" data-toggle="modal" data-ng-click="viewNotes()"  data-target="#myModal"><i class="fa fa-bars"></i>View Notes</a>
+                            </div>
+
+                            <div class="col-md-1" data-ng-show="currentPatient.hasOwnProperty('PatientNo')">
+                                <i class="fa fa-print"></i>Print Statement
+                            </div>
+
+                            <div class="col-md-1" data-ng-show="currentPatient.hasOwnProperty('PatientNo')">
+                                <span><i class="fa fa-compress"></i>Merge Patient</span>
+                            </div>
+                       
+                    </div>
+                        <div class="clearfix" id="financialsHeader" data-ng-show="currentRelation.currentTab.key=='financials'" style="border-bottom: 1px solid #b3b3b3;padding:15px;" >
+                            <div class="row panel-bar" id="financial-list-bar">
+                                <div class="col-md-2 border-bar">
+                                    <h4>Financial Information</h4>
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="custom-control">
+                                        <i class="fa fa-filter"></i>
+                                        <select class="form-control">
+                                            <option value="">All Dates</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group form-horizontal">
+                                        <label class="col-md-3 control-label">Show from</label>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" value="09/10/12">
+                                        </div>
+                                        <label class="col-md-1 control-label">Until</label>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" value="09/10/12">
+                                        </div>
+                                    </div>
+                                </div>
+                                <label class="col-md-1 result">8 Results</label>
+                            </div>
+                            <div class="row panel-bar" id="financial-detail-bar" style="display: none;">
+                                <div class="col-md-2 border-bar">
+                                    <h4>View Change Detail</h4>
+                                </div>
+                                <div class="col-md-3" style="margin-top: 7px;">
+                                    <a href="#" id="backlink">
+                                        <i class="fa fa-angle-left"></i>&nbsp;&nbsp;Back to Financials
+                                    </a>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="custom-control">
+                                        <i class="fa fa-filter"></i>
+                                        <select class="form-control">
+                                            <option value="">All Dates</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" style="padding: 7px 0;">
+                                    <span class="itemlink"><i class="fa fa-tasks"></i>Audit Log</span>
+                                    <span class="itemlink"><i class="fa fa-print"></i>Print Superbil</span>
+                                    <span class="itemlink"><i class="fa fa-rotate-left"></i>Resubmit</span>
+                                </div>
+                                <div class="col-md-1 result">
+                                    <span class="fgrey">4 Results</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class=" clearfix" id="superbillsHeader" data-ng-show="currentRelation.currentTab.key=='superbills'" style="border-bottom: 1px solid #b3b3b3;padding:15px;">
+                            <div class="col-md-2 border-bar">
+                                <h4>Superbill Information</h4>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn cgreen" onclick="window.location.href = '/superbills/new';">New Superbill<img src="/assets/img/add-icon.png" style="margin-left: 10px;" height="30px" /></button>
+                            </div>
+                        </div>
+                        <div class=" clearfix" id="documentsHeader" data-ng-show="currentRelation.currentTab.key=='documents'" style="border-bottom: 1px solid #b3b3b3;padding:15px;">
+                            <div class="col-md-2 border-bar">
+                                <h4>Documents</h4>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="btn-group" id="btnUpload">
+                                    <button type="button" class="btn btn-success">Upload Files</button>
+                                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-angle-down"></i>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-1 result pull-right">
+                                <span class="fgrey">8 Results</span>
+                            </div>
+                        </div>
+                        <div class="clearfix" id="statementsHeader" data-ng-show="currentRelation.currentTab.key=='statements'" style="border-bottom: 1px solid #b3b3b3;padding:15px;">
+                            <div class="col-md-2 border-bar">
+                                <h4>Statements History</h4>
+                            </div>
+                            <div class="col-md-1 result pull-right">
+                                <span class="fgrey">8 Results</span>
+                            </div>
+                        </div>
+
+                    <!-- END TAB MENU-->
+                    <!-- BEGIN CONTENT TAB ROW-->
+                    <div class="row">
+                        <!-- BEGIN SIDEBAR MENU-->
+                        <div class="col-md-2 sidebar-content ">
+                            <ul class="ver-inline-menu tabbable margin-bottom-25">
+                                <li data-ng-class="{'active':currentRelation.currentTab.key=='facesheet'}">
+                                    <a href="#facesheet" data-ng-click="switchPatientTab('facesheet')" data-toggle="tab">Facesheet<i class="fa fa-angle-right pull-right"></i></a>
+                                </li>
+                                <li data-ng-class="{'active':currentRelation.currentTab.key=='financials'}" data-ng-show="currentPatient.hasOwnProperty('PatientNo')">
+                                    <a href="#financials" data-ng-click="switchPatientTab('financials')" data-toggle="tab">Financials<i class="fa fa-angle-right pull-right"></i></a>
+                                </li>
+                                <li data-ng-class="{'active':currentRelation.currentTab.key=='superbills'}" data-ng-show="currentPatient.hasOwnProperty('PatientNo')">
+                                    <a href="#superbills" data-ng-click="switchPatientTab('superbills')" data-toggle="tab">Superbills<i class="fa fa-angle-right pull-right"></i></a>
+                                </li>
+                                <li data-ng-class="{'active':currentRelation.currentTab.key=='documents'}" data-ng-show="currentPatient.hasOwnProperty('PatientNo')">
+                                    <a href="#documents" data-ng-click="switchPatientTab('documents')" data-toggle="tab">Documents<i class="fa fa-angle-right pull-right"></i></a>
+                                </li>
+                                <li data-ng-class="{'active':currentRelation.currentTab.key=='statements'}" data-ng-show="currentPatient.hasOwnProperty('PatientNo')">
+                                    <a href="#statements" data-ng-click="switchPatientTab('statements')" data-toggle="tab">Statements<i class="fa fa-angle-right pull-right"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- END SIDEBAR MENU-->
+                        <!--Facesheet-->
+                        <div class="col-md-10">
+                            <div class="centeraltab" id="facesheet" data-ng-show="currentRelation.currentTab.key=='facesheet'">
+                                <!-- BEGIN DEMOGRAPHICS INSURANCE TABS-->
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#tab_patient_0" id="tab_patient_trigger_0" data-ng-click="switchPatientSubTab(0)" data-toggle="tab">Demographics</a></li>
+                                    <li class="" ><a href="#tab_patient_1" id="tab_patient_trigger_1" data-ng-click="switchPatientSubTab(1)" data-toggle="tab" data-ng-show="currentPatient.hasOwnProperty('PatientNo')">Insurance</a></li>
+                                </ul>
+
+                                <div class="tab-content" >
+                                    <div class="tab-pane fade in active" id="tab_patient_0">
+                                        <div class="alert alert-success col-md-12" data-ng-show="currentRelation.commandResult.Success" style="margin-top: 15px;">Saved successfully.</div>
+                                        <div class="alert alert-danger has-error col-md-12" data-ng-show="currentRelation.commandResult.Success===false" style="margin-top: 15px;">
+                                            <span class="help-block" data-ng-repeat="e in currentRelation.commandResult.Errors">{{e.Error}}</span>
+                                        </div>
+                                        <!-- END DEMOGRAPHICS INSURANCE TABS-->
+                                        <form class="row demographics form-body" name="patientForm" novalidate>
+                                            <div class="col-md-12">
+                                                <a href="#" data-toggle="modal" data-target="#lookupModal" data-ng-click="">
+                                                    <i class="fa fa-eye"></i>&nbsp;&nbsp;Patient Lookup
+                                                </a>
+                                            </div>
+                                            <!-- BEGIN DEMOGRAPHICS CONTENT TABS-->
+                                            <!-- BEGIN FORM-->
+                                            <!-- BEGIN FIRST COLUMN-->
+                                            <div class="clearfix">
+                                                <div class="col-md-6">
+                                                    <!-- NAME-->
+                                                    <div class="form-group form-horizontal" data-ng-class="{'has-error':patientForm.patientName.$invalid}">
+                                                        <label class="col-md-3 control-label">Name:</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" class="form-control" data-ng-model="currentPatient.Name" name="patientName" data-ng-required="true" data-ng-pattern="/^[a-zA-Z]{1,10},\s?[a-zA-Z]{1,10}(\s[a-zA-Z]{1,10})?$/" placeholder="Last name, first name middle initial">
+                                                            <span class="help-block" data-ng-show="patientForm.patientName.$error.required">The Name is required.</span>
+                                                            <span class="help-block" data-ng-show="patientForm.patientName.$error.pattern">The Name should be last name,first name middle initial.</span>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <!-- DATE OF BIRTH-->
+                                                    <div class="form-group form-horizontal">
+                                                        <label class="col-md-3 control-label">Date of Birth:</label>
+                                                        <div class="col-md-4" data-ng-class="{'has-error':patientForm.dob.$invalid}">
+                                                            <input type="text" class="form-control datepicker" id="dob" data-ng-date name="dob" data-ng-required="true" data-ng-model="currentPatient.DateOfBirth">
+                                                            <span class="help-block" data-ng-show="patientForm.dob.$error.required">The Date of Birth is required.</span>
+                                                        </div>
+                                                        <label class="col-md-2 control-label">Gender:</label>
+                                                        <div class="col-md-3">
+                                                            <select class="form-control selectpicker" data-ng-select-change data-ng-model="currentPatient.Sex">
+                                                                <option value="0">Male</option>
+                                                                <option value="1">Female</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <!-- SSN-->
+                                                    <div class="form-group form-horizontal">
+                                                        <label class="col-md-3 control-label">SSN:</label>
+                                                        <div class="col-md-9" data-ng-class="{'has-error':patientForm.ssn.$error.pattern}">
+                                                            <input type="text" class="form-control" placeholder="xxx-xx-xxxx" data-ng-model="currentPatient.SSN" name="ssn" data-ng-required="false" data-ng-pattern="/^([0-9]{9})|([0-9]{3}-[0-9]{2}-[0-9]{4})$/">
+                                                            <span class="help-block" data-ng-show="patientForm.ssn.$error.pattern">The SSN format must be xxxxxxxxx or xxx-xx-xxxx.</span>
+
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <!-- Address 1-->
+                                                    <div class="form-group form-horizontal">
+                                                        <label class="col-md-3 control-label">Adress 1:</label>
+                                                        <div class="col-md-9" data-ng-class="{'has-error':patientForm.address1.$invalid}">
+                                                            <input type="text" class="form-control" name="address1" data-ng-required="true" data-ng-model="currentPatient.Address1">
+                                                            <span class="help-block" data-ng-show="patientForm.address1.$error.required">The Address1 is required.</span>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <!-- Address 2-->
+                                                    <div class="form-group form-horizontal">
+                                                        <label class="col-md-3 control-label">Adress 2:</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" class="form-control" data-ng-model="currentPatient.Address2">
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <!-- City-->
+                                                    <div class="form-group form-horizontal">
+                                                        <label class="col-md-3 control-label">City</label>
+                                                        <div class="col-md-9" data-ng-class="{'has-error':patientForm.city.$invalid}">
+                                                            <input type="text" class="form-control" name="city" data-ng-required="true" data-ng-model="currentPatient.City">
+                                                            <span class="help-block" data-ng-show="patientForm.city.$error.required">The City is required.</span>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <!-- State-->
+                                                    <div class="form-group form-horizontal">
+                                                        <label class="col-md-3 control-label">State</label>
+                                                        <div class="col-md-9" data-ng-class="{'has-error':patientForm.state.$invalid}">
+                                                            <select class="form-control selectpicker" data-size="30" data-ng-select-change name="state" data-ng-required="true" data-ng-model="currentPatient.State">
+                                                                <option></option>
+                                                                @foreach (var item in Model.StateOptions)
+                                                            {
+                                                                <option value="@item.Value">@item.Text</option>
+                                                                }
+                                                            </select>
+                                                            <span class="help-block" data-ng-show="patientForm.state.$error.required">The State is required.</span>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <!-- Zip-->
+                                                    <div class="form-group form-horizontal">
+                                                        <label class="col-md-3 control-label">Zip</label>
+                                                        <div class="col-md-9" data-ng-class="{'has-error':patientForm.zipCode.$invalid}">
+                                                            <input type="text" class="form-control" data-ng-model="currentPatient.ZipCode" name="zipCode" data-ng-pattern="/^([0-9]{9})|([0-9]{5}-[0-9]{4})$/" data-ng-required="true" placeholder="xxxxx-xxxx">
+                                                            <span data-ng-show="patientForm.zipCode.$error.required" class="help-block">Zip is required.</span>
+                                                            <span data-ng-show="patientForm.zipCode.$error.pattern" class="help-block">Zip must be 9 numbers with format xxxxxxxxx or xxxxx-xxxx.</span>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <!-- END FIRST COLUMN-->
+                                                </div>
+
+                                                <!-- CHART NUMBER-->
+                                                <!-- Beginning of the second column-->
+                                                <div class="col-md-6">
+
+                                                    <!-- Primary Phone-->
+                                                    <div class="form-group form-horizontal">
+                                                        <label class="col-md-3 control-label">Primary Phone</label>
+                                                        <div class="col-md-9" data-ng-class="{'has-error':patientForm.primaryPhone.$invalid}">
+                                                            <input type="text" class="form-control" data-ng-model="currentPatient.PrimaryPhone" data-ng-required="true" name="primaryPhone" data-ng-pattern="/^([0-9]{10})|([0-9]{3}-[0-9]{3}-[0-9]{4})$/" data-ng-change="phoneNoChange(practice.PhoneNo)" placeholder="xxx-xxx-xxxx">
+                                                            <span data-ng-show="patientForm.primaryPhone.$error.required" class="help-block">The Phone No is required.</span>
+                                                            <span data-ng-show="patientForm.primaryPhone.$error.pattern" class="help-block">The Phone No must be 10 numbers with the format xxxxxxxxxx or xxx-xxx-xxxx.</span>
+                                                        </div>
+
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <!-- Secondary Phone-->
+                                                    <div class="form-group form-horizontal">
+                                                        <label class="col-md-3 control-label">Secondary Phone</label>
+                                                        <div class="col-md-9" data-ng-class="{'has-error':patientForm.secondaryPhone.$error.pattern}">
+                                                            <input type="text" class="form-control" data-ng-model="currentPatient.SecondaryPhone" data-ng-required="false" name="secondaryPhone" data-ng-pattern="/^([0-9]{10})|([0-9]{3}-[0-9]{3}-[0-9]{4})$/" data-ng-change="phoneNoChange(practice.PhoneNo)" placeholder="xxx-xxx-xxxx">
+                                                            <span data-ng-show="patientForm.secondaryPhone.$error.pattern" class="help-block">The Phone No must be 10 numbers with the format xxxxxxxxxx or xxx-xxx-xxxx.</span>
+                                                        </div>
+
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <!-- Primary Provider-->
+                                                    <div class="form-group form-horizontal">
+                                                        <label class="col-md-3 control-label">Primary Provider</label>
+                                                        <div class="col-md-9" data-ng-class="{'has-error':patientForm.primaryProvider.$invalid}">
+
+                                                            <select class="form-control selectpicker" data-ng-select-change data-ng-model="currentPatient.PrimaryProvider" name="primaryProvider" data-ng-required="true">
+                                                                <option></option>
+                                                                @foreach (var item in Model.ProviderOptions)
+                                                                {
+                                                                <option value="@item.Value">@item.Text</option>
+                                                                }
+                                                            </select>
+                                                            <span data-ng-show="patientForm.primaryProvider.$error.required" class="help-block">The Primary Provider is required.</span>
+
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <!-- Referring Physican-->
+                                                    <div class="form-group form-horizontal">
+                                                        <label class="col-md-3 control-label">
+                                                            Referring Physician
+                                                        <a href="#" data-toggle="modal" data-ng-click="lookupPhysician()" data-target="#plModal">
+                                                            <i class="fa fa-search-plus"></i>
+                                                        </a>
+                                                        </label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" class="form-control" readonly="readonly" data-ng-model="currentPatient.ReferringPhysicanName">
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <!-- Patient Status-->
+                                                    <div class="form-group form-horizontal">
+                                                        <label class="col-md-3 control-label">Patient Status</label>
+                                                        <div class="col-md-9">
+                                                            <select class="form-control selectpicker" data-ng-select-change data-ng-model="currentPatient.Status" name="status">
+                                                                <option value="0"></option>
+                                                                @foreach (var item in Model.PatientStatusOptions)
+                                                            {
+                                                                <option value="@item.Value">@item.Text</option>
+                                                                }
+                                                            </select>
+
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <!-- Statement Method-->
+                                                    <div class="form-group form-horizontal">
+                                                        <label class="col-md-3 control-label">Statement Method</label>
+                                                        <div class="col-md-9">
+                                                            <div class="btn-group" data-toggle="buttons">
+                                                                <label class="btn btn-default  col-md-6" data-ng-click="changeMethod(0)" data-ng-class="{'active':currentPatient.StatementMethod==0}">
+                                                                    <input type="radio" class="toggle">
+                                                                    Paper
+                                                                </label>
+                                                                <label class="btn btn-default col-md-6" data-ng-click="changeMethod(1)" data-ng-class="{'active':currentPatient.StatementMethod==1}">
+                                                                    <input type="radio" class="toggle ">
+                                                                    Electronic
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <!-- Statement Hold-->
+                                                    <div class="form-group form-horizontal">
+                                                        <label class="col-md-3 control-label">Statement Hold</label>
+                                                        <div class="col-md-9">
+                                                            <label>
+                                                                <input type="checkbox" data-ng-model="currentPatient.StatementHold">
+                                                            </label>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <!-- Statement Hold-->
+                                                    <div class="form-group form-horizontal">
+                                                        <label class="col-md-3 control-label">Active</label>
+                                                        <div class="col-md-9">
+                                                            <label>
+                                                                <input type="checkbox" data-ng-model="currentPatient.Active">
+                                                            </label>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+
+                                                    <!-- End of the second column-->
+                                                </div>
+                                            </div>
+                                            <!-- BEGIN SUBMIT BUTTON-->
+                                            <div class="row submit-buttons">
+                                                <div class="row col-md-6 clearfix">
+                                                    <div class="col-md-3"></div>
+                                                    <button type="button" class="btn cgreen  col-md-2" data-ng-disabled="patientForm.$invalid||balanceForm.$invalid" data-ng-click="save()">Save<img src="/assets/img/submit-icon.png"></button>
+                                                    <button type="button" class="btn cgreen  col-md-3" data-ng-disabled="patientForm.$invalid||balanceForm.$invalid" data-ng-click="saveNew()" style="margin-left: 10px;">Save & New<img src="/assets/img/submit-icon.png"></button>
+                                                    <div class="col-md-3 cancel-button">
+                                                        <span>Or</span> <span class="cancel btnCancel" data-ng-click="removeTab(selectedIndex)" style="margin: 0px;">Cancel</span>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- END DEMOGRAPHICS CONTENT TABS-->
+
+                                        </form>
+                                    </div>
+
+                                    <div class="tab-pane fade insurance-tab" id="tab_patient_1">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="bs-example">
+                                                    <div class="side_header1">
+                                                        <p>Insurance Profile</p>
+                                                    </div>
+                                                    <div class="row">
+                                                        <ul class="list-unstyled tabbable">
+
+                                                    
+                                                            <li data-ng-repeat="g in currentRelation.patientInsurance.groups" style="margin-bottom:10px;">
+                                                                <a href="#itab_1" data-ng-click="selectGroup(g)" data-toggle="tab">{{g.GroupName}}</a> 
+                                                                <ul class="child tabbable">
+                                                                    <li>Responsible Party</li>
+                                                                    <li  data-ng-repeat="i in g.Insurances">
+                                                                       <a href="#itab_0" class="label1" data-toggle="tab" data-ng-click="editInsurance(i)"><span data-ng-show="i.Order<=3">({{i.Order==1?"P":i.Order==2?"S":"T" }})</span> {{i.Payer.Name}}</a>&nbsp;<i data-ng-show="$index>0" data-ng-click="transposeInsurance($index,$index-1,g)" title="Move up" class="order up clickable"></i><i class="order clickable down" title="Move down" data-ng-click="transposeInsurance($index,$index+1,g)" data-ng-show="$index<g.Insurances.length-1"></i>
+                                                                    </li>                                                                
+                                                                    <li><a href="#itab_0" data-toggle="tab"  class="label3" data-ng-click="createInsurance(g)">Add New Policy</a></li>
+                                                                </ul>
+                                                            </li>
+                                                      
+                                                        </ul>
+                                                    </div>
+                                                    <div class="row" style="margin-bottom: 15px;">
+                                                        <button type="button" class="btn btn-success col-md-12"  data-toggle="tab" data-target="#itab_0" data-ng-click="createInsurance()" style="margin-bottom: 10px;">
+                                                            New Insurance Profile
+                                                        <img src="/assets/img/add-icon.png" style="margin-left: 10px; margin-top: -3px;" height="30px">
+                                                        </button>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="tab-content">
+                                                    <div class="tab-pane fade" id="itab_0">
+                                                             <div class="alert alert-success col-md-12" data-ng-show="currentRelation.patientInsurance.currentInsurance.commandResult.Success" style="margin-top: 15px;">Saved successfully.</div>
+                                        <div class="alert alert-danger has-error col-md-12" data-ng-show="currentRelation.patientInsurance.currentInsurance.commandResult.Success===false" style="margin-top: 15px;">
+                                            <span class="help-block" data-ng-repeat="e in currentRelation.patientInsurance.currentInsurance.commandResult.Errors">{{e.Error}}</span>
+                                        </div>
+                                                        <form class="row demographics form-body" style="padding: 5px 20px;" name="insuranceForm" novalidate>
+                                                            <p data-ng-show="currentRelation.patientInsurance.currentInsurance.hasOwnProperty('Id')">
+                                                                <strong data-ng-class="{'text-success':currentRelation.patientInsurance.currentInsurance.Active,'text-danger':!currentRelation.patientInsurance.currentInsurance.Active}" class="text-success" style="font-size: 20px;">{{currentRelation.patientInsurance.currentInsurance.Active?"Active":"Inactive"}}</strong> -
+                                                                <label style="font-style: italic; color: #CCC;">last updated by: {{currentRelation.patientInsurance.currentInsurance.LastUpdatedBy}} on {{currentRelation.patientInsurance.currentInsurance.LastUpdatedDate}}</label>
+                                                            </p>
+                                                            <h4 data-ng-show="currentRelation.patientInsurance.currentInsurance.hasOwnProperty('Id')">{{currentRelation.patientInsurance.currentInsurance.PolicyTypeString}} <span data-ng-show="currentRelation.patientInsurance.currentInsurance.Order<=3">({{currentRelation.patientInsurance.currentInsurance.Order==1?"Primary":currentRelation.patientInsurance.currentInsurance.Order==2?"Secondary":"Tertiary" }} Insurance)</span></h4>
+                                                            <div class="row">
+                                                                <div class="col-md-7">
+                                                                    <div class="form-group form-horizontal">
+                                                                        <label class="col-md-5 control-label">Protype</label>
+                                                                        <div class="col-md-7" data-ng-class="{'has-error':insuranceForm.protype.$invalid}">
+                                                                            <select class="form-control selectpicker" data-ng-select-change name="protype" required data-ng-model="currentRelation.patientInsurance.currentInsurance.PolicyType">
+                                                                                <option></option>
+                                                                                @foreach (var item in Model.PolicyTypeOptions)
+                                                                                {
+                                                                                    <option value="@item.Value">@item.Text</option>
+                                                                                }
+                                                                            </select>
+                                                                            <span class="help-block" data-ng-show="insuranceForm.protype.$error.required">The Protype is required.</span>
+                                                                        </div>
+                                                                        <div class="clearfix"></div>
+                                                                    </div>
+                                                                    <div class="form-group form-horizontal">
+                                                                        <label class="col-md-5 control-label">Member Number</label>
+                                                                        <div class="col-md-7" data-ng-class="{'has-error':insuranceForm.memberNumber.$invalid}">
+                                                                            <input type="text" class="form-control" name="memberNumber" required data-ng-model="currentRelation.patientInsurance.currentInsurance.MemberNumber">
+                                                                            <span class="help-block" data-ng-show="insuranceForm.memberNumber.$error.required">The Member Number is required.</span>
+                                                                        </div>
+                                                                        <div class="clearfix"></div>
+                                                                    </div>
+                                                                    <div class="form-group form-horizontal">
+                                                                        <label class="col-md-5 control-label">Group Number</label>
+                                                                        <div class="col-md-7">
+                                                                            <input type="text" class="form-control" name="groupNumber" data-ng-model="currentRelation.patientInsurance.currentInsurance.GroupNumber">
+                                                                        </div>
+                                                                        <div class="clearfix"></div>
+                                                                    </div>
+                                                                    <div class="form-group form-horizontal">
+                                                                        <label class="col-md-5 control-label">Group Name</label>
+                                                                        <div class="col-md-7">
+                                                                            <input type="text" class="form-control" name="groupName" data-ng-model="currentRelation.patientInsurance.currentInsurance.GroupName">
+                                                                        </div>
+                                                                        <div class="clearfix"></div>
+                                                                    </div>
+                                                                    <div class="form-group form-horizontal">
+                                                                        <label class="col-md-5 control-label">Effective From</label>
+                                                                        <div class="col-md-7"  data-ng-class="{'has-error':insuranceForm.effectiveFrom.$invalid}">
+                                                                            <input type="text" class="form-control datepicker" data-ng-date name="effectiveFrom" required data-ng-model="currentRelation.patientInsurance.currentInsurance.EffectiveFrom">
+                                                                            <span class="help-block" data-ng-show="insuranceForm.effectiveFrom.$error.required">The Effective From is required.</span>
+                                                                        
+                                                                        </div>
+                                                                        <div class="clearfix"></div>
+                                                                    </div>
+                                                                    <div class="form-group form-horizontal"  >
+                                                                        <label class="col-md-5 control-label">Effective To</label>
+                                                                        <div class="col-md-7" data-ng-class="{'has-error':insuranceForm.effectiveTo.$invalid}">
+                                                                            <input type="text" class="form-control datepicker" data-ng-date name="effectiveTo" required data-ng-model="currentRelation.patientInsurance.currentInsurance.EffectiveTo">
+                                                                            <span class="help-block" data-ng-show="insuranceForm.effectiveTo.$error.required">The Effective To is required.</span>
+                                                                        
+                                                                        </div>
+                                                                        <div class="clearfix"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-5" data-ng-class="{'has-error':!currentRelation.patientInsurance.currentInsurance.Payer.hasOwnProperty('Id')}">
+                                                                    <div class="panel panel-default">
+                                                                        <div class="panel-heading">
+                                                                            <span>Payer</span>
+                                                                            <a href="#" class="pull-right" data-toggle="modal" data-target="#payModal" data-ng-click="lookPayer()">Edit</a>
+                                                                        </div>
+                                                                        <div class="panel-body">
+                                                                            <div class="row">
+                                                                                <label class="col-sm-4 control-label">Payer Name</label>
+                                                                                <div class="col-sm-8">
+                                                                                   
+                                                                                    <p>{{currentRelation.patientInsurance.currentInsurance.Payer.Name}}</p>
+                                                                                   
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <label class="col-sm-4 control-label">Payer Address</label>
+                                                                                <div class="col-sm-8">
+                                                                                 
+                                                                                    <p>{{currentRelation.patientInsurance.currentInsurance.Payer.Address1}} {{currentRelation.patientInsurance.currentInsurance.Payer.Address2}}</p>
+                                                                                    <p>{{currentRelation.patientInsurance.currentInsurance.Payer.City}}, {{currentRelation.patientInsurance.currentInsurance.Payer.StateString}} {{currentRelation.patientInsurance.currentInsurance.Payer.ZipCode}}</p>
+                                                                                   
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <label class="col-sm-4 control-label">Payer Phone</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <p>{{currentRelation.patientInsurance.currentInsurance.Payer.Phone}}</p>
+                                                                                  
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <span class="help-block" data-ng-show="!currentRelation.patientInsurance.currentInsurance.Payer.hasOwnProperty('Id')">The Payer is required.</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <h4>Primary Insurance</h4>
+                                                            <div class="row">
+                                                                <div class="col-md-7">
+                                                                    <div class="form-group form-horizontal">
+                                                                        <label class="col-md-5 control-label">Paitent Relationship to Insert</label>
+                                                                        <div class="col-md-7">
+                                                                            <select class="form-control selectpicker" data-ng-select-change data-ng-model="currentRelation.patientInsurance.currentInsurance.Relationship">
+                                                                                <option value="0">Self</option>
+                                                                           
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="clearfix"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row submit-buttons">
+                                                                <div class="row col-md-8">
+                                                                    <div class="col-md-3"></div>
+                                                                    <button type="button" class="btn cgreen  col-md-5" data-ng-click="saveInsurance()">Save Changes<img src="/assets/img/submit-icon.png"></button>
+                                                                    <div class="col-md-4 cancel-button">
+                                                                        <span>Or</span> <span class="cancel clickable" data-ng-click="cancelInsurance()" data-target="#itab_1"  data-toggle="tab">Cancel</span>
+                                                                        <div class="clearfix"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+
+                                                    <div class="tab-pane fade active in" id="itab_1">
+                                                        <h5 data-ng-show="currentRelation.patientInsurance.currentGroup.hasOwnProperty('GroupId')">{{currentRelation.patientInsurance.currentGroup.GroupName}}</h5>
+                                                        <div class="panel" data-ng-show="currentRelation.patientInsurance.currentGroup.hasOwnProperty('GroupId')">
+                                                            <div class="panel-heading">Responsible Party (Self)</div>
+                                                            <div class="panel-body">
+                                                                <div class="row detail">
+                                                                    <div class="col-sm-3">Name</div>
+                                                                    <div class="col-sm-3">{{currentPatient.Name}}</div>
+                                                                    <div class="col-sm-3">Address Line1</div>
+                                                                    <div class="col-sm-3">{{currentPatient.Address1}}</div>
+                                                                </div>
+                                                                <div class="row detail">
+                                                                    <div class="col-sm-3">Date of Birth</div>
+                                                                    <div class="col-sm-3">{{currentPatient.DateOfBirth}}</div>
+                                                                    <div class="col-sm-3">Address Line2</div>
+                                                                    <div class="col-sm-3">{{currentPatient.Address2}}</div>
+                                                                </div>
+                                                                <div class="row detail">
+                                                                    <div class="col-sm-3">Gender</div>
+                                                                    <div class="col-sm-3">{{currentPatient.Gender==0?"Male":"Female"}}</div>
+                                                                    <div class="col-sm-3">City / State / Zip</div>
+                                                                    <div class="col-sm-3">{{currentPatient.City}}, {{currentPatient.StateString}}, {{currentPatient.ZipCode}}</div>
+                                                                </div>
+                                                                <div class="row detail">
+                                                                    <div class="col-sm-3">SSN</div>
+                                                                    <div class="col-sm-3">{{currentPatient.SSN}}</div>
+                                                                    <div class="col-sm-3">Primary Phone</div>
+                                                                    <div class="col-sm-3">{{currentPatient.PrimaryPhone}}</div>
+                                                                </div>
+                                                      
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel panel-normal" data-ng-repeat="i in currentRelation.patientInsurance.currentGroup.Insurances">
+                                                            <div class="panel-heading">{{i.Payer.Name}} <span data-ng-show="i.Order<=3">({{i.Order==1?"Primary":i.Order==2?"Secondary":"Tertiary" }} Insurance)</span></div>
+                                                            <div class="panel-body">
+                                                                <div class="row detail">
+                                                                    <div class="col-sm-3">Payer Name</div>
+                                                                    <div class="col-sm-3">{{i.Payer.Name}}</div>
+                                                                    <div class="col-sm-3">Address Line1</div>
+                                                                    <div class="col-sm-3">{{i.Payer.Address1}}</div>
+                                                                </div>
+                                                                <div class="row detail">
+                                                                    <div class="col-sm-3">Member Number</div>
+                                                                    <div class="col-sm-3">{{i.MemberNumber}}</div>
+                                                                    <div class="col-sm-3">Address Line2</div>
+                                                                    <div class="col-sm-3">{{i.Payer.Address2}}</div>
+                                                                </div>
+                                                                <div class="row detail">
+                                                                    <div class="col-sm-3">Policy Type</div>
+                                                                    <div class="col-sm-3">{{i.PolicyTypeString}}</div>
+                                                                    <div class="col-sm-3">City / State / Zip</div>
+                                                                    <div class="col-sm-3">{{i.Payer.City}}, {{i.Payer.StateString}}, {{i.Payer.ZipCode}}</div>
+
+                                                                </div>
+                                                                <div class="row detail">
+                                                                    <div class="col-sm-3">Group Name</div>
+                                                                    <div class="col-sm-3"></div>
+                                                                    <div class="col-sm-3">Phone</div>
+                                                                    <div class="col-sm-3">{{i.Payer.Phone}}</div>
+                                                                </div>
+                                                                <div class="row detail">
+                                                                    <div class="col-sm-3">Group Number</div>
+                                                                    <div class="col-sm-3">{{i.GroupNumber}}</div>
+                                                                    <div class="col-sm-3">Status</div>
+                                                                    <div class="col-sm-3">{{i.Active?"Active":"Inactive"}}</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <!--Financials-->
+                            <div id="financials" data-ng-show="currentRelation.currentTab.key=='financials'">
+                                <!-- BEGIN DEMOGRAPHICS INSURANCE TABS-->
+                                <div id="financial-list">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr class="active">
+                                                <th>Date <i class="fa fa-angle-down"></i></th>
+                                                <th>Description <i class="fa fa-angle-down"></i></th>
+                                                <th>Responsibility <i class="fa fa-angle-down"></i></th>
+                                                <th>Billed <i class="fa fa-angle-down"></i></th>
+                                                <th>Receipts <i class="fa fa-angle-down"></i></th>
+                                                <th>Adjustments <i class="fa fa-angle-down"></i></th>
+                                                <th>Balance <i class="fa fa-angle-down"></i></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="info">
+                                                <td>11/12/2014</td>
+                                                <td>This is a description of the information</td>
+                                                <td>Primary</td>
+                                                <td>$1235.35</td>
+                                                <td>0.00</td>
+                                                <td></td>
+                                                <td>0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>11/12/2014</td>
+                                                <td>This is a description of the information</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>31.30</td>
+                                                <td>0.00</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>11/12/2014</td>
+                                                <td>This is a description of the information</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>0.00</td>
+                                                <td>152.00</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>11/12/2014</td>
+                                                <td>This is a description of the information</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr class="info">
+                                                <td>11/12/2014</td>
+                                                <td>This is a description of the information</td>
+                                                <td>Secondary</td>
+                                                <td>$985.35</td>
+                                                <td>0.00</td>
+                                                <td></td>
+                                                <td>0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>11/12/2014</td>
+                                                <td>This is a description of the information</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div id="financial-detail" style="display: none;">
+                                    <div class="row">
+                                        <div class="col-md-4 detail-panel">
+                                            <div class="row">
+                                                <label class="col-md-5 fgrey">Produce</label>
+                                                <label class="col-md-7">GSM10, MSC DGER MCR, CONR MCM</label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-md-5 fgrey">Diagnoss/Modifier</label>
+                                                <label class="col-md-7">707, 15, 250, 135, 9, v34, 12</label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-md-5 fgrey">Provider</label>
+                                                <label class="col-md-7">DR, American, MDS, DOM</label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-md-5 fgrey">Location</label>
+                                                <label class="col-md-7">VICTORIA OFFICE</label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-md-5 fgrey">Status</label>
+                                                <label class="col-md-7">Closed</label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-md-5 fgrey">/Entered By</label>
+                                                <label class="col-md-7">Dearah L Olive on 04/10/2014</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 detail-panel">
+                                            <div class="row">
+                                                <label class="col-md-5 fgrey">Introduce Profile</label>
+                                                <label class="col-md-7">MEDICARE B/Memcached</label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-md-5 fgrey">Refreshing Physican</label>
+                                                <label class="col-md-7">DR SENJEV ASETEW</label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-md-5 fgrey">Authorization</label>
+                                                <label class="col-md-7"></label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-md-5 fgrey">Date of Service</label>
+                                                <label class="col-md-7">04/24/2013</label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-md-5 fgrey">Posting Date</label>
+                                                <label class="col-md-7">04/24/2013</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 detail-panel">
+                                            <div class="row">
+                                                <label class="col-md-5 fgrey">Units</label>
+                                                <label class="col-md-7">1</label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-md-5 fgrey">Amounts</label>
+                                                <label class="col-md-7">100.54</label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-md-5 fgrey">Payments</label>
+                                                <label class="col-md-7">37.45</label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-md-5 fgrey">Adjustments</label>
+                                                <label class="col-md-7">36.09</label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-md-5 fgrey">Balance</label>
+                                                <label class="col-md-7">(0.76)</label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-md-5 fgrey">Responsibility</label>
+                                                <label class="col-md-7">Secondary</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="col-md-4 pull-right" style="margin: 20px;">
+                                        <span class="itemlink" data-toggle="modal" data-target="#crModal"><i class="fa fa-random"></i>Change Responsibility</span>
+                                        <span class="itemlink" data-toggle="modal" data-target="#bpModal"><i class="fa fa-inbox"></i>Bill Paitent</span>
+                                    </div>
+                                    <table class="table">
+                                        <thead>
+                                            <tr class="active">
+                                                <th>Effective Date <i class="fa fa-angle-down"></i></th>
+                                                <th>Type <i class="fa fa-angle-down"></i></th>
+                                                <th>Description <i class="fa fa-angle-down"></i></th>
+                                                <th>Approved <i class="fa fa-angle-down"></i></th>
+                                                <th>Co-Insur <i class="fa fa-angle-down"></i></th>
+                                                <th>Co-pay <i class="fa fa-angle-down"></i></th>
+                                                <th>Withhold <i class="fa fa-angle-down"></i></th>
+                                                <th>Paid <i class="fa fa-angle-down"></i></th>
+                                                <th>Adjusted <i class="fa fa-angle-down"></i></th>
+                                                <th>Entered By <i class="fa fa-angle-down"></i></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>11/12/2014</td>
+                                                <td>Submit</td>
+                                                <td>This is comment...</td>
+                                                <td>10.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>Peter Koukounas</td>
+                                            </tr>
+                                            <tr>
+                                                <td>11/12/2014</td>
+                                                <td>Payment/Adjustment</td>
+                                                <td>This is comment...</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>Peter Koukounas</td>
+                                            </tr>
+                                            <tr>
+                                                <td>11/12/2014</td>
+                                                <td>Payment/Adjustment</td>
+                                                <td>This is comment...</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>Peter Koukounas</td>
+                                            </tr>
+                                            <tr>
+                                                <td>11/12/2014</td>
+                                                <td>Submit</td>
+                                                <td>This is comment...</td>
+                                                <td>10.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>Peter Koukounas</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- END CONTENT TAB ROW-->
+                            </div>
+
+                            <!--Superbills-->
+                            <div id="superbills"  data-ng-show="currentRelation.currentTab.key=='superbills'">
+                                <!-- BEGIN DEMOGRAPHICS INSURANCE TABS-->
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr class="active">
+                                            <th>Date of Service <i class="fa fa-angle-down"></i></th>
+                                            <th width="50%">Status <i class="fa fa-angle-down"></i></th>
+                                            <th>Prov <i class="fa fa-angle-down"></i></th>
+                                            <th>Loc <i class="fa fa-angle-down"></i></th>
+                                            <th>Amount <i class="fa fa-angle-down"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>11/12/2014</td>
+                                            <td>SUBMITED</td>
+                                            <td>AHUNT</td>
+                                            <td>AI0F</td>
+                                            <td>500.02</td>
+                                        </tr>
+                                        <tr>
+                                            <td>11/12/2014</td>
+                                            <td>SUBMITED</td>
+                                            <td>AHUNT</td>
+                                            <td>AI0F</td>
+                                            <td>500.02</td>
+                                        </tr>
+                                        <tr>
+                                            <td>11/12/2014</td>
+                                            <td>SUBMITED</td>
+                                            <td>AHUNT</td>
+                                            <td>AI0F</td>
+                                            <td>500.02</td>
+                                        </tr>
+                                        <tr>
+                                            <td>11/12/2014</td>
+                                            <td>SUBMITED</td>
+                                            <td>AHUNT</td>
+                                            <td>AI0F</td>
+                                            <td>500.02</td>
+                                        </tr>
+                                        <tr>
+                                            <td>11/12/2014</td>
+                                            <td>SUBMITED</td>
+                                            <td>AHUNT</td>
+                                            <td>AI0F</td>
+                                            <td>500.02</td>
+                                        </tr>
+                                        <tr>
+                                            <td>11/12/2014</td>
+                                            <td>SUBMITED</td>
+                                            <td>AHUNT</td>
+                                            <td>AI0F</td>
+                                            <td>500.02</td>
+                                        </tr>
+                                        <tr>
+                                            <td>11/12/2014</td>
+                                            <td>SUBMITED</td>
+                                            <td>AHUNT</td>
+                                            <td>AI0F</td>
+                                            <td>500.02</td>
+                                        </tr>
+                                        <tr>
+                                            <td>11/12/2014</td>
+                                            <td>SUBMITED</td>
+                                            <td>AHUNT</td>
+                                            <td>AI0F</td>
+                                            <td>500.02</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!-- END CONTENT TAB ROW-->
+                            </div>
+
+                            <!--documents-->
+                            <div id="documents" data-ng-show="currentRelation.currentTab.key=='documents'">
+                                <!-- BEGIN DEMOGRAPHICS INSURANCE TABS-->
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr class="active">
+                                            <th width="55%">Name <i class="fa fa-angle-down"></i></th>
+                                            <th>Type <i class="fa fa-angle-down"></i></th>
+                                            <th>Modified <i class="fa fa-angle-down"></i></th>
+                                            <th>Modified By <i class="fa fa-angle-down"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>PPG Memberistic Form.pdf</td>
+                                            <td>PDF</td>
+                                            <td>11/12/2014</td>
+                                            <td>Peter Koukounas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PPG Memberistic Form.pdf</td>
+                                            <td>PDF</td>
+                                            <td>11/12/2014</td>
+                                            <td>Peter Koukounas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PPG Memberistic Form.pdf</td>
+                                            <td>PDF</td>
+                                            <td>11/12/2014</td>
+                                            <td>Peter Koukounas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PPG Memberistic Form.pdf</td>
+                                            <td>PDF</td>
+                                            <td>11/12/2014</td>
+                                            <td>Peter Koukounas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PPG Memberistic Form.pdf</td>
+                                            <td>PDF</td>
+                                            <td>11/12/2014</td>
+                                            <td>Peter Koukounas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PPG Memberistic Form.pdf</td>
+                                            <td>PDF</td>
+                                            <td>11/12/2014</td>
+                                            <td>Peter Koukounas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PPG Memberistic Form.pdf</td>
+                                            <td>PDF</td>
+                                            <td>11/12/2014</td>
+                                            <td>Peter Koukounas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PPG Memberistic Form.pdf</td>
+                                            <td>PDF</td>
+                                            <td>11/12/2014</td>
+                                            <td>Peter Koukounas</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!-- END CONTENT TAB ROW-->
+                            </div>
+
+                            <!--Statements-->
+                            <div id="statements" data-ng-show="currentRelation.currentTab.key=='statements'">
+                                <!-- BEGIN DEMOGRAPHICS INSURANCE TABS-->
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr class="active">
+                                            <th>Statement Date <i class="fa fa-angle-down"></i></th>
+                                            <th width="70%">Status <i class="fa fa-angle-down"></i></th>
+                                            <th>Balance <i class="fa fa-angle-down"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>11/12/2014</td>
+                                            <td>SUBMITED</td>
+                                            <td>12.91</td>
+                                        </tr>
+                                        <tr>
+                                            <td>11/12/2014</td>
+                                            <td>SUBMITED</td>
+                                            <td>12.91</td>
+                                        </tr>
+                                        <tr>
+                                            <td>11/12/2014</td>
+                                            <td>SUBMITED</td>
+                                            <td>12.91</td>
+                                        </tr>
+                                        <tr>
+                                            <td>11/12/2014</td>
+                                            <td>SUBMITED</td>
+                                            <td>12.91</td>
+                                        </tr>
+                                        <tr>
+                                            <td>11/12/2014</td>
+                                            <td>SUBMITED</td>
+                                            <td>12.91</td>
+                                        </tr>
+                                        <tr>
+                                            <td>11/12/2014</td>
+                                            <td>SUBMITED</td>
+                                            <td>12.91</td>
+                                        </tr>
+                                        <tr>
+                                            <td>11/12/2014</td>
+                                            <td>SUBMITED</td>
+                                            <td>12.91</td>
+                                        </tr>
+                                        <tr>
+                                            <td>11/12/2014</td>
+                                            <td>SUBMITED</td>
+                                            <td>12.91</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr style="height: 200px;">
+                                            <td></td>
+                                            <td></td>
+                                            <td style="vertical-align: bottom;">103.28</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <!-- END CONTENT TAB ROW-->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-ng-controller="patientViewNoteController">
+        <div class="modal-dialog" style="width: 900px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <i class="fa fa-times-circle"></i>Notes&nbsp;&nbsp;|&nbsp;&nbsp;<span class="clickable" id="createNote" data-ng-click="create()"><i class="fa fa-file-o"></i> New Note</span> 
+                        <div class="pull-right">
+                            Save <i class="fa fa-angle-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span data-dismiss="modal" class="btnCancel">Cancel</span>
+                        </div>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input type="text" class="form-control search" data-ng-model="data.keyword" id="inputSuccess2">
+                            <i class="fa fa-search"></i>
+                        </div>
+                        <div class="col-md-4">
+                            <select class="form-control" style="padding-left: 25px;" data-ng-model="data.level">
+                                <option value="">Default select</option>
+                                <option value="0">Normal</option>
+                                <option value="1">Improtant</option>
+                            </select>
+                            <i class="fa fa-filter"></i>
+                        </div>
+                        <div class="col-md-2 pull-right">
+                            | {{data.notes.length}} Results
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="row">
+                        <div class="col-md-8" style="padding-right: 0px;">
+                            <table class="table">
+                                <thead>
+                                    <tr class="active">
+                                        <th>Date <i class="fa fa-angle-down"></i></th>
+                                        <th>Created By <i class="fa fa-angle-down"></i></th>
+                                        <th>Details <i class="fa fa-angle-down"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-ng-class="{'fred':n.Level==1,'selected':n.Id==data.current.Id}" data-ng-click="select(n)" data-ng-repeat="n in data.notes">
+                                        <td>{{n.CreatedDate}}</td>
+                                        <td>{{n.CreatedBy}}</td>
+                                        <td>{{n.Detail}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-4" style="padding-left: 0px;">
+                            <div class="bs-example">
+                                <div id="edit1" data-ng-show="!data.editing">
+                                    <p class="side_header" data-ng-show="data.current.hasOwnProperty('Id')">
+                                         <span data-ng-show="data.current.Level==0">NORMAL NOTICE</span>
+                                        <span class="fred" data-ng-show="data.current.Level==1"><i class="fa fa fa-exclamation"></i>IMPORTANT NOTICE</span>
+
+                                        <a href="#" class="pull-right" id="btn_edit" data-ng-click="edit(1)">Edit</a>
+                                    </p>
+                                    <p class="side_content">
+                                        {{data.current.Detail}}
+                                    </p>
+                                    <p class="side_footer">
+                                        {{data.current.CreatedBy}} {{data.current.CreatedDate}}
+
+                                    </p>
+                                </div>
+                                <div id="edit2" data-ng-show="data.editing">
+                                    <div class="side_header">
+                                        <p style="color: #CCC;">Mark As</p>
+                                        <div class="btn-group" data-toggle="buttons" style="width: 100%;">
+                                            <label class="btn btn-default col-md-6" data-ng-click="changeLevel(0)" data-ng-class="{'active':data.current.Level==0}">
+                                                <input type="radio" class="toggle">
+                                                NORMAL
+                                            </label>
+                                            <label class="btn btn-default col-md-6" data-ng-click="changeLevel(1)" data-ng-class="{'active':data.current.Level==1}">
+                                                <input type="radio" class="toggle ">
+                                                IMPORTANT
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <p class="side_content">
+                                       <textarea rows="13" class="form-control" data-ng-model="data.current.Detail"></textarea>
+                                    </p>
+                                    <div class="side_footer">
+                                        <div class="btn-group" style="width: 100%;">
+                                            <button type="button" class="btn btn-success col-md-6" data-ng-click="save()">Save Changes</button>
+                                            <a href="#" class="cancel col-md-6" id="btn_cancel" data-ng-click="edit(0)">Cancel</a>
+                                        </div>
+                                        {{data.current.CreatedBy}} {{data.current.CreatedDate}}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="lookupModal" tabindex="-1" role="dialog" aria-labelledby="lookupModalLabel" aria-hidden="true" data-ng-controller="patientLookupController">
+        <div class="modal-dialog" style="width: 900px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <i class="fa fa-times-circle"></i>Patient Lookup
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input type="text" class="form-control search" data-ng-model="data.name">
+                            <i class="fa fa-search"></i>
+                        </div>
+                        <div class="col-md-4">
+                           <input type="text" class="form-control datepicker" data-ng-date data-ng-model="data.dob">
+                        </div>
+                        <div class="col-md-2 pull-right">
+                            | {{data.patients.length}} Results
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="row">
+                        <div class="col-md-12" >
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="active">
+                                        <th>Name <i class="fa fa-angle-down"></i></th>
+                                        <th>Date of Birth <i class="fa fa-angle-down"></i></th>
+                                        <th>Address<i class="fa fa-angle-down"></i></th>
+                                        <th>Phone<i class="fa fa-angle-down"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-ng-click="populate(p)" data-ng-repeat="p in data.patients">
+                                        <td>{{p.Name}}</td>
+                                        <td>{{p.DateOfBirth}}</td>
+                                        <td>
+                                            {{p.Address1}} {{p.Address2}} 
+                                            <br/>
+                                            {{p.City}},{{p.StateString}} {{p.ZipCode}}
+                                        </td>
+                                        <td>
+                                            Primary: {{p.PrimaryPhone}}
+                                            <br/>
+                                            Second: {{p.SecondPhone}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="plModal" tabindex="-1" role="dialog" aria-labelledby="plModalLabel" aria-hidden="true" data-ng-controller="patientReferringPhysicianController">
+        <div class="modal-dialog" style="width: 900px;">
+            <div class="modal-content">
+                <div class="modal-header darkblue">
+                    <i class="fa fa-times-circle"></i>Physician Lookup
+                        <div class="pull-right">
+                            <a href="#" data-ng-class="{'active':!data.favorite}" data-ng-click="switch(0)" id="lib">LIBRARY</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" data-ng-class="{'active':data.favorite}"  data-ng-click="switch(1)" id="fav">FAVORITE</a>
+                        </div>
+                </div>
+                <div class="modal-body">
+                    <form class="form-inline" role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control search" id="inputSuccess2" data-ng-model="data.keyword">
+                            <i class="fa fa-search"></i>
+                        </div>
+                        <div class="form-group pull-right" style="position:relative;">
+                            <label class="label1">Search With</label>
+                            <i class="fa fa-filter"></i>
+                            <select class="form-control" name="state"  data-ng-model="data.state">
+                                @foreach (var item in Model.StateOptions)
+                                    {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            </select>
+          
+                        </div>
+                    </form>
+
+                    <br />
+
+                    <div class="row" id="liblist" data-ng-show="!data.favorite">
+                        <div class="col-md-12">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="active">
+                                        <th>Name <i class="fa fa-angle-down"></i></th>
+                                        <th>Organization <i class="fa fa-angle-down"></i></th>
+                                        <th>Speciality <i class="fa fa-angle-down"></i></th>
+                                        <th>Address <i class="fa fa-angle-down"></i></th>
+                                        <th>Phones <i class="fa fa-angle-down"></i></th>
+                                        <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-ng-repeat="p in data.libraryPhysicians">
+                                        <td data-ng-click="populate(p)">{{p.Name}}</td>
+                                        <td data-ng-click="populate(p)">{{p.OrganizationString}}</td>
+                                        <td data-ng-click="populate(p)">{{p.SpecialityString}}</td>
+                                        <td data-ng-click="populate(p)">{{p.Address1}} {{p.Address2}}
+                                            <br>
+                                            {{p.City}}, {{p.StateString}} {{p.ZipCode}}</td>
+                                        <td data-ng-click="populate(p)">Business:{{p.Phone}}
+                                            <br>
+                                            Fax:{{p.Fax}}</td>
+                                        <td style="vertical-align: middle;">
+                                            <i class="favorite" data-ng-click="favorite(p)" title="Favorite Physician"></i> 
+                                        </td>
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row" id="favlist" data-ng-show="data.favorite">
+                        <div class="col-md-12">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="active">
+                                        <th>Name <i class="fa fa-angle-down"></i></th>
+                                        <th>Organization <i class="fa fa-angle-down"></i></th>
+                                        <th>Speciality <i class="fa fa-angle-down"></i></th>
+                                        <th>Address <i class="fa fa-angle-down"></i></th>
+                                        <th>Phones <i class="fa fa-angle-down"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-ng-click="populate(p)" data-ng-repeat="p in data.favoritePhysicians">
+                                        <td>{{p.Name}}</td>
+                                        <td>{{p.OrganizationString}}</td>
+                                        <td>{{p.SpecialityString}}</td>
+                                        <td>{{p.Address1}} {{p.Address2}}
+                                            <br>
+                                            {{p.City}}, {{p.StateString}} {{p.ZipCode}}</td>
+                                        <td>Business:{{p.Phone}}
+                                            <br>
+                                            Fax:{{p.Fax}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="pull-left" style="color: #CCC;">
+                        {{data.favorite?data.favoritePhysicians.length:data.libraryPhysicians.length }} Result Shown
+                    </div>
+                    <span data-dismiss="modal" class="btnCancel">Cancel</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="payModalLabel" aria-hidden="true" data-ng-controller="insurancePayerController">
+        <div class="modal-dialog" style="width: 900px;">
+            <div class="modal-content">
+                <div class="modal-header darkblue">
+                    <i class="fa fa-times-circle"></i>Payer Lookup
+                        <div class="pull-right">
+                            <a href="#" data-ng-class="{'active':data.tab=='library'||data.tab=='payer'}" data-ng-click="switchPayerTab('library')" id="plib">LIBRARY</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" data-ng-class="{'active':data.tab=='favorite'}" data-ng-click="switchPayerTab('favorite')" id="pfav">FAVORITE</a>
+                        </div>
+                </div>
+                <div class="modal-body" id="pliblist" data-ng-show="data.tab=='library'">
+                    <form class="form-inline" role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control search" id="inputSuccess2" data-ng-model="data.libraryKeyword">
+                            <i class="fa fa-search"></i>
+                        </div>
+                        &nbsp;&nbsp;Or&nbsp;&nbsp;
+                            <div class="form-group">
+                                <button type="button" id="btnNewPayer" class="btn btn-success" data-ng-click="switchPayerTab('payer')">
+                                    Request New Payer
+                                    <img src="/assets/img/add-icon.png" style="margin-left: 10px; margin-top: -3px;" height="30px">
+                                </button>
+                            </div>
+                    </form>
+
+                    <br />
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="active">
+                                        <th>Name <i class="fa fa-angle-down"></i></th>
+                                        <th>Address <i class="fa fa-angle-down"></i></th>
+                                        <th>Phones <i class="fa fa-angle-down"></i></th>
+                                        <th>Payer ID <i class="fa fa-angle-down"></i></th>
+                                        <th>&nbsp;&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-ng-repeat="l in data.libraryPayers">
+                                        <td  data-ng-click="select(l)">{{l.Name}}</td>
+                                        <td  data-ng-click="select(l)">{{l.Address1}} {{l.Address2}}
+                                            <br />
+                                            {{l.City}}, {{l.StateString}} {{l.ZipCode}}</td>
+                                        <td  data-ng-click="select(l)">{{l.Phone}}</td>
+                                        <td  data-ng-click="select(l)">{{l.PayerId}}</td>
+                                        <td>@*<i class="edit" data-ng-click="edit(l)" title="Edit Payer"></i> &nbsp;&nbsp;*@ <i title="Favorite Payer" data-ng-click="favorite(l)" class="favorite"></i> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-body" id="plibfrm" data-ng-show="data.tab=='payer'">
+                    <div class="row-fluid">
+                        <a href="#" id="backlink" data-ng-click="switchPayerTab('library')">
+                            <i class="fa fa-angle-left"></i>&nbsp;&nbsp;Back to Payer Lookup
+                        </a>
+                    </div>
+                    <div class="alert alert-success col-md-12" data-ng-show="data.currentPayer.commandResult.Success" style="margin-top: 15px;">Saved successfully.</div>
+                    <div class="alert alert-danger has-error col-md-12" data-ng-show="data.currentPayer.commandResult.Success===false" style="margin-top: 15px;">
+                        <span class="help-block" data-ng-repeat="e in data.currentPayer.commandResult.Errors">{{e.Error}}</span>
+                    </div>
+                    <form class="form-horizontal" role="form" name="payerForm" novalidate>
+                        <div class="row frm-title">
+                            <h4 class="col-sm-3 control-label">New Payer</h4>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <label for="name" class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-6" data-ng-class="{'has-error': payerForm.name.$invalid}">
+                                <input type="text" data-ng-model="data.currentPayer.Name" data-ng-required="true" class="form-control" name="name" placeholder="Jonatan Backery">
+                                <span class="help-block" data-ng-show="payerForm.name.$error.required">The name is required.</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <label for="addr1" class="col-sm-2 control-label">Address1</label>
+                            <div class="col-sm-6" data-ng-class="{'has-error': payerForm.addr1.$invalid}">
+                                <input type="text" class="form-control" data-ng-model="data.currentPayer.Address1" name="addr1" required placeholder="#43452 Brookly St.">
+                                <span class="help-block" data-ng-show="payerForm.addr1.$error.required">The Address is required.</span>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <label for="addr2" class="col-sm-2 control-label">Address2</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" data-ng-model="data.currentPayer.Address2" name="addr2">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <label for="city" class="col-sm-2 control-label">City</label>
+                            <div class="col-sm-6" data-ng-class="{'has-error': payerForm.city.$invalid}">
+                                <input type="text" class="form-control" data-ng-model="data.currentPayer.City" required name="city">
+                                <span class="help-block" data-ng-show="payerForm.city.$error.required">The City is required.</span>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <label class="col-sm-2 control-label">State/Zip</label>
+                            <div class="col-sm-3" data-ng-class="{'has-error': payerForm.state.$invalid}">
+                                <select class="form-control"  data-ng-required="true" name="state" style="padding-left: 25px;" data-ng-model="data.currentPayer.State">
+                                    <option></option>
+                                    @foreach (var state in Model.StateOptions)
+                                    {
+                                        <option value="@state.Value">@state.Text</option>
+                                    }
+                                </select>
+                                <span class="help-block" data-ng-show="payerForm.state.$error.required">The State is required.</span>
+                            </div>
+                            <div class="col-sm-3" class="col-sm-3" data-ng-class="{'has-error': payerForm.zip.$invalid}">
+                                <input type="text" class="form-control" data-ng-model="data.currentPayer.ZipCode" name="zip" data-ng-pattern="/^([0-9]{9})|([0-9]{5}-[0-9]{4})$/" data-ng-required="true" placeholder="xxxxx-xxxx">
+                                <span data-ng-show="payerForm.zip.$error.required" class="help-block">Zip is required.</span>
+                                <span data-ng-show="payerForm.zip.$error.pattern" class="help-block">Zip must be 9 numbers with format xxxxxxxxx or xxxxx-xxxx.</span>
+
+                               
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <label class="col-sm-2 control-label">Phone</label>
+                            <div class="col-sm-6" data-ng-class="{'has-error': payerForm.phone.$invalid}">
+                            
+                                <input type="text" class="form-control" data-ng-model="data.currentPayer.Phone" data-ng-required="true" name="phone" data-ng-pattern="/^([0-9]{10})|([0-9]{3}-[0-9]{3}-[0-9]{4})$/" data-ng-change="phoneNoChange(practice.PhoneNo)" placeholder="xxx-xxx-xxxx">
+                                <span data-ng-show="payerForm.phone.$error.required" class="help-block">The Phone No is required.</span>
+                                <span data-ng-show="payerForm.phone.$error.pattern" class="help-block">The Phone No must be 10 numbers with the format xxxxxxxxxx or xxx-xxx-xxxx.</span>
+
+                            </div>
+                       
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <label for="fax" class="col-sm-2 control-label">Fax</label>
+                            <div class="col-sm-6" data-ng-class="{'has-error': payerForm.fax.$invalid}">
+                                <input type="text" class="form-control" data-ng-model="data.currentPayer.Fax" id="fax" data-ng-required="false" name="fax" data-ng-pattern="/^([0-9]{10})|([0-9]{3}-[0-9]{3}-[0-9]{4})$/" data-ng-change="phoneNoChange(practice.PhoneNo)" placeholder="xxx-xxx-xxxx">
+                                <span data-ng-show="payerForm.fax.$error.pattern" class="help-block">The Fax must be 10 numbers with the format xxxxxxxxxx or xxx-xxx-xxxx.</span>
+
+                            </div>
+                        </div>
+                        <div class="form-group" data-ng-class="{'has-error': payerForm.phone.$invalid}">
+                            <div class="col-sm-2"></div>
+                            <label for="payerid" class="col-sm-2 control-label">PayerID</label>
+                            <div class="col-sm-6" data-ng-class="{'has-error': payerForm.payerid.$error.required}">
+                                <input type="text" class="form-control" data-ng-model="data.currentPayer.PayerId" required name="payerid">
+                                 <span class="help-block" data-ng-show="payerForm.payerid.$error.required">The Payer ID is required.</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-body" id="pfavlist" data-ng-show="data.tab=='favorite'">
+                    <form class="form-inline" role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control search" id="inputSuccess2" data-ng-model="data.favoriteKeyword">
+                            <i class="fa fa-search"></i>
+                        </div>
+                    </form>
+
+                    <br />
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="active">
+                                        <th>Name <i class="fa fa-angle-down"></i></th>
+                                        <th>Address <i class="fa fa-angle-down"></i></th>
+                                        <th>Phones <i class="fa fa-angle-down"></i></th>
+                                        <th>Payer ID <i class="fa fa-angle-down"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-ng-repeat="f in data.favoritePayers" data-ng-click="select(f)">
+                                        <td>{{f.Name}}</td>
+                                        <td>{{f.Address1}} {{f.Address2}}
+                                            <br>
+                                            {{f.City}}, {{f.StateString}} {{f.ZipCode}}</td>
+                                        <td>{{f.Phone}}</td>
+                                        <td>{{f.PayerId}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="pull-left" style="color: #CCC;" data-ng-show="data.tab=='library'||data.tab=='favorite'">
+                        {{data.tab=='library'?data.libraryPayers.length:data.favoritePayers.length}} Result Shown
+                    </div>
+                    <div class="pull-right" data-ng-show="data.tab=='payer'" id="submitfrm">
+                        <button type="button" class="btn cgreen" data-ng-click="save()">Save Changes<img src="/assets/img/submit-icon.png"></button>
+                        or
+                            <span class="btnCancel" data-ng-click="switchPayerTab('library')" >Cancel</span>
+                    </div>
+                    <span class="btnCancel clickable" data-ng-show="data.tab=='library'||data.payerTab=='favorite'" data-dismiss="modal" id="btnCancel">Cancel</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script src="@Url.Content("~/scripts/app/services/patientService.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/scripts/app/controllers/patients/patientController.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/scripts/app/controllers/patients/patientViewNoteController.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/scripts/app/controllers/patients/patientReferringPhysicianController.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/scripts/app/controllers/patients/patientLookupController.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/scripts/app/controllers/patients/insurancePayerController.js")" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/scripts/pages/patient.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js")" type="text/javascript"></script>
+
+}

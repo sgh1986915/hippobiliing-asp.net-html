@@ -1,0 +1,186 @@
+﻿
+@{
+    ViewBag.Title = "Collections";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="tabs">
+    <div class="account">
+        <ul class="nav nav-tabs nav-justified">
+            <li>
+                <a href="#tab_1_1" data-toggle="tab">Collections Listings</a>
+            </li>
+            <li>
+                <a href="#tab_1_1" data-toggle="tab"><img src="assets/img/sidebar-search-close-light.png" />Patient - 1</a>
+            </li>
+            <li class="active">
+                <a href="#tab_1_1" data-toggle="tab"><img src="assets/img/sidebar-search-close-light.png" />Madison, Korinok</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade active in" id="tab_1_1">
+                <div class="col-md-12 default-content" style="border: none;">
+                    <div class="col-md-12 content-bar">
+                        <div class="col-md-2">
+                            <h3>Collections Listings</h3>
+                        </div>
+                        <span class="col-md-2 select-control">
+                            <i class="fa fa-filter"></i>
+                            <select class="form-control">
+                                <option value="">All Providers</option>
+                            </select>
+                        </span>
+                        <span class="col-md-2 select-control">
+                            <select class="form-control">
+                                <option value="">All Locations</option>
+                            </select>
+                        </span>
+                        <div class="col-md-5">
+                            <a href="#" class="col-md-4" data-toggle="modal" data-target="#sendModal"><i class="fa fa-legal"></i> Sent to Collections</a>
+                            <a href="#" class="col-md-4" data-toggle="modal" data-target="#resendModal"><i class="fa fa-inbox"></i> Resend Statement</a>
+                            <a href="#" class="col-md-4" data-toggle="modal" data-target="#writeModal"><i class="fa fa-check-circle"></i> Write-off Balance</a>
+                        </div>
+                        <div class="col-md-1 result pull-right">
+                            <span>8 Results</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12" id="completedView">
+                        <table class="table table-custom">
+                            <thead>
+                                <tr>
+                                    <th>?</th>
+                                    <th>Patient Name <i class="fa fa-angle-down"></i></th>
+                                    <th>Insurance Profile <i class="fa fa-angle-down"></i></th>
+                                    <th width="18%">Provider <i class="fa fa-angle-down"></i></th>
+                                    <th width="22%">Location <i class="fa fa-angle-down"></i></th>
+                                    <th>Balance <i class="fa fa-angle-down"></i></th>
+                                    <th width="15%"># of Statements sent <i class="fa fa-angle-down"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="active"><i class="fa fa-check"></i></td>
+                                    <td>Madison, Korinek</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>$0.00</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-check"></i></td>
+                                    <td>Madison, Korinek</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>$0.00</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-check"></i></td>
+                                    <td>Madison, Korinek</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>$0.00</td>
+                                    <td>4</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br><br><br><br><br>
+                        <br><br><br><br><br>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-- END TABS -->
+</div>
+
+@section footer{
+    <!-- Resend Statement Modal -->
+<div class="modal fade" id="resendModal" tabindex="-1" role="dialog" aria-labelledby="resendModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-warning">
+                <i class="fa fa-times-circle"></i> Resend Statement
+            </div>
+            <div class="modal-body">
+                <p>You have decided to resend a statement to the marked patient</p>
+                <p>Please confirm or deny your choice below</p>
+                <h5>What would  you like to do?</h5>
+                <br>
+                <div class="button-group">
+                    <button type="button" class="btn btn-warning"> Confirm </button> or <span class="cancel">Cancel</span>
+                </div>
+                <br><br>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Send to Collections Modal -->
+<div class="modal fade" id="sendModal" tabindex="-1" role="dialog" aria-labelledby="sendModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+                <i class="fa fa-times-circle"></i> Send to Collections
+            </div>
+            <div class="modal-body">
+                <p>You have decided to send this patient's account to collections</p>
+                <p>Please confirm or deny your choice below</p>
+                <h5>What would  you like to do?</h5>
+                <br>
+                <div class="button-group">
+                    <button type="button" class="btn btn-danger"> Confirm </button> or <span class="cancel">Cancel</span>
+                </div>
+                <br><br>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Write off Balance Modal -->
+<div class="modal fade" id="writeModal" tabindex="-1" role="dialog" aria-labelledby="writeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <i class="fa fa-times-circle"></i> Write-off Balance
+            </div>
+            <div class="modal-body">
+                <p>You have decided to write-off the balance on the patient's account</p>
+                <p>Please confirm or deny your choice below</p>
+                <h5>What would  you like to do?</h5>
+                <br>
+                <div class="button-group">
+                    <button type="button" class="btn btn-success"> Confirm </button> or <span class="cancel">Cancel</span>
+                </div>
+                <br><br>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+@section scripts{
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#superbill-list tr").click(function () {
+            document.location.href = "new.html";
+        });
+
+    });
+</script>
+}

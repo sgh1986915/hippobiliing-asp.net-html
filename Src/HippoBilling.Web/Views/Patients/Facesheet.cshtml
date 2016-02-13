@@ -1,0 +1,1100 @@
+﻿@{
+    ViewBag.Title = "Patient - Facesheet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- BEGIN TAB MENU-->
+<div class="tabs">
+    <div class="account">
+        <ul class="nav nav-tabs nav-justified">
+            <li>
+                <a href="#tab_1_1" data-toggle="tab">View Patients</a>
+            </li>
+            <li class="">
+                <a href="#tab_1_1" data-toggle="tab"><img src="/assets/img/sidebar-search-close-light.png" />Patient - 1</a>
+            </li>
+            <li class="active">
+                <a href="#tab_1_1" data-toggle="tab"><img src="/assets/img/sidebar-search-close-light.png" />Aarington, Sara</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade active in" id="tab_1_1" style="border-bottom: 1px solid #b3b3b3;">
+                <div class="row patient">
+                    <div class="col-md-4">
+                        <span>Aarington, Sara - Acct# 15578455</span>
+                    </div>
+
+                    <div class="col-md-2">
+                        <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-bars"></i>View Notes</a>
+                    </div>
+
+                    <div class="col-md-2">
+                        <i class="fa fa-print"></i>Print Report
+                    </div>
+
+                    <div class="col-md-2">
+                        <span><i class="fa fa-compress"></i>Merge Patient</span>
+                    </div>
+                    <div class="col-md-2">
+                        <span class="cancel">Cancel</span>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <!-- END TAB MENU-->
+            <!-- BEGIN CONTENT TAB ROW-->
+            <div class="row">
+                <!-- BEGIN SIDEBAR MENU-->
+                <div class="col-md-2 sidebar-content ">
+                    <ul class="ver-inline-menu tabbable margin-bottom-25">
+                        <li class="active">
+                            <a href="#">Facesheet<i class="fa fa-angle-right pull-right"></i></a>
+                            <span class="after">
+                            </span>
+                        </li>
+                        <li>
+                            <a href="financials">Financials<i class="fa fa-angle-right pull-right"></i></a>
+                        </li>
+                        <li>
+                            <a href="superbills">Superbills<i class="fa fa-angle-right pull-right"></i></a>
+                        </li>
+                        <li>
+                            <a href="documents">Documents<i class="fa fa-angle-right pull-right"></i></a>
+                        </li>
+                        <li>
+                            <a href="statements">Statements<i class="fa fa-angle-right pull-right"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END SIDEBAR MENU-->
+                <div class="col-md-10 centeraltab">
+                    <!-- BEGIN DEMOGRAPHICS INSURANCE TABS-->
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab_1" data-toggle="tab">Demographics</a></li>
+                        <li class=""><a href="#tab_2" data-toggle="tab">Insurance</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in" id="tab_1">
+                            <!-- END DEMOGRAPHICS INSURANCE TABS-->
+                            <form class="row demographics form-body">
+                                <!-- BEGIN DEMOGRAPHICS CONTENT TABS-->
+                                <!-- BEGIN FORM-->
+                                <!-- BEGIN FIRST COLUMN-->
+                                <div class="col-md-6">
+                                    <!-- NAME-->
+                                    <div class="form-group form-horizontal">
+                                        <label class="col-md-3 control-label">Name:</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!-- DATE OF BIRTH-->
+                                    <div class="form-group form-horizontal">
+                                        <label class="col-md-3 control-label">Date of Birth:</label>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <label class="col-md-2 control-label">Gender:</label>
+                                        <div class="col-md-3">
+                                            <select class="form-control ">
+                                                <option>Male</option>
+                                                <option>Female</option>
+                                            </select>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!-- SSN-->
+                                    <div class="form-group form-horizontal">
+                                        <label class="col-md-3 control-label">SSN:</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!-- Address 1-->
+                                    <div class="form-group form-horizontal">
+                                        <label class="col-md-3 control-label">Adress 1:</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!-- Address 2-->
+                                    <div class="form-group form-horizontal">
+                                        <label class="col-md-3 control-label">Adress 2:</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!-- City-->
+                                    <div class="form-group form-horizontal">
+                                        <label class="col-md-3 control-label">City</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!-- State-->
+                                    <div class="form-group form-horizontal">
+                                        <label class="col-md-3 control-label">State</label>
+                                        <div class="col-md-9">
+                                            <select class="form-control ">
+                                                <option>Texas</option>
+                                                <option>Arizona</option>
+                                            </select>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!-- Zip-->
+                                    <div class="form-group form-horizontal">
+                                        <label class="col-md-3 control-label">Zip</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!-- END FIRST COLUMN-->
+                                </div>
+
+                                <!-- CHART NUMBER-->
+                                <!-- Beginning of the second column-->
+                                <div class="col-md-6">
+                                    <!-- Zip-->
+                                    <div class="form-group form-horizontal">
+                                        <label class="col-md-3 control-label">Chart Number</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!-- Primary Phone-->
+                                    <div class="form-group form-horizontal">
+                                        <label class="col-md-3 control-label">Primary Phone</label>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select class="form-control ">
+                                                <option>Type</option>
+                                            </select>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!-- Secondary Phone-->
+                                    <div class="form-group form-horizontal">
+                                        <label class="col-md-3 control-label">Secondary Phone</label>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select class="form-control ">
+                                                <option>Type</option>
+                                            </select>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!-- Primary Provider-->
+                                    <div class="form-group form-horizontal">
+                                        <label class="col-md-3 control-label">Primary Provider</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!-- Referring Physican-->
+                                    <div class="form-group form-horizontal">
+                                        <label class="col-md-3 control-label">
+                                            Referring Physican
+                                            <a href="#" data-toggle="modal" data-target="#plModal">
+                                                <i class="fa fa-search-plus"></i>
+                                            </a>
+                                        </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!-- Patient Status-->
+                                    <div class="form-group form-horizontal">
+                                        <label class="col-md-3 control-label">Patient Status</label>
+                                        <div class="col-md-9">
+                                            <select class="form-control ">
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!-- Statement Method-->
+                                    <div class="form-group form-horizontal">
+                                        <label class="col-md-3 control-label">Statement Method</label>
+                                        <div class="col-md-9">
+                                            <div class="btn-group" data-toggle="buttons">
+                                                <label class="btn btn-default  col-md-6 ">
+                                                    <input type="radio" class="toggle"> Paper
+                                                </label>
+                                                <label class="btn btn-default active col-md-6">
+                                                    <input type="radio" class="toggle "> Electronic
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!-- Statement Hold-->
+                                    <div class="form-group form-horizontal">
+                                        <label class="col-md-3 control-label">Statement Hold</label>
+                                        <div class="col-md-9">
+                                            <label><input type="checkbox"></label>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!-- Statement Hold-->
+                                    <div class="form-group form-horizontal">
+                                        <label class="col-md-3 control-label">Active</label>
+                                        <div class="col-md-9">
+                                            <label><input type="checkbox"></label>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <!-- End of the second column-->
+                                </div>
+
+                                <!-- BEGIN SUBMIT BUTTON-->
+                                <div class="row submit-buttons">
+                                    <div class="row col-md-6">
+                                        <div class="col-md-3"></div>
+                                        <button type="button" class="btn cgreen  col-md-5">Save Changes<img src="/assets/img/submit-icon.png"></button>
+                                        <div class="col-md-4 cancel-button">
+                                            <span>Or</span> <span class="cancel">Cancel</span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- END DEMOGRAPHICS CONTENT TABS-->
+                            </form>
+                        </div>
+
+                        <div class="tab-pane fade" id="tab_2">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="bs-example">
+                                        <div class="side_header1">
+                                            <p>Insurance Profile</p>
+                                        </div>
+                                        <div class="row">
+                                            <ul class="list-unstyled tabbable">
+                                                <li><a href="#itab_1" data-toggle="tab">Self</a></li>
+                                                <li class="child">
+                                                    <ul>
+                                                        <li class="label1">Responsible Party</li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="#itab_1" data-toggle="tab">Medicare B</a></li>
+                                                <li class="child">
+                                                    <ul>
+                                                        <li class="label1">Responsible Party</li>
+                                                        <li class="label2">(P) MEDICARE B)</li>
+                                                        <li class="label3">Add new policy</li>
+                                                    </ul>
+                                                </li>
+                                                <li>Medicare B) Commerical</li>
+                                                <li class="child">
+                                                    <ul>
+                                                        <li class="label1">Responsible Party</li>
+                                                        <li class="label1">(P) MEDICARE B)</li>
+                                                        <li class="label1">(S) Commercial Insurance</li>
+                                                        <li class="label3">Add New Policy</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="row" style="margin-bottom: 15px;">
+                                            <button type="button" class="btn btn-success col-md-12" style="margin-bottom: 10px;">
+                                                New Insurance Profile
+                                                <img src="/assets/img/add-icon.png" style="margin-left: 10px; margin-top: -3px;" height="30px">
+                                            </button>
+                                            <button type="button" data-toggle="modal" data-target="#payModal" class="btn btn-success col-md-12">
+                                                New Self Pay Profile
+                                                <img src="/assets/img/add-icon.png" style="margin-left: 10px; margin-top: -3px;" height="30px">
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade active in" id="itab_0">
+                                            <form class="row demographics form-body" style="padding: 5px 20px;">
+                                                <p><strong class="text-success" style="font-size: 20px;">Active</strong> - <lable style="font-style: italic; color: #CCC;">last updated by: Tanny Wareent on 02/13/2014</label></p>
+                                                <h4>MEDICARE B (Primary Insurance)</h4>
+                                                <div class="row">
+                                                    <div class="col-md-7">
+                                                        <div class="form-group form-horizontal">
+                                                            <label class="col-md-5 control-label">Protype</label>
+                                                            <div class="col-md-7">
+                                                                <select class="form-control ">
+                                                                    <option>MEDICARE B</option>
+                                                                    <option>Arizona</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="form-group form-horizontal">
+                                                            <label class="col-md-5 control-label">Member Number</label>
+                                                            <div class="col-md-7">
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="form-group form-horizontal">
+                                                            <label class="col-md-5 control-label">Group Number</label>
+                                                            <div class="col-md-7">
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="form-group form-horizontal">
+                                                            <label class="col-md-5 control-label">Group Name</label>
+                                                            <div class="col-md-7">
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="form-group form-horizontal">
+                                                            <label class="col-md-5 control-label">Relative From</label>
+                                                            <div class="col-md-7">
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="form-group form-horizontal">
+                                                            <label class="col-md-5 control-label">Relative To</label>
+                                                            <div class="col-md-7">
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                <span>Payer</span>
+                                                                <a href="#" class="pull-right">Edit</a>
+                                                            </div>
+                                                            <div class="panel-body">
+                                                                <div class="row">
+                                                                    <label class="col-sm-4 control-label">Payer Name</label>
+                                                                    <div class="col-sm-8">
+                                                                        <p>Medicare - Director Rgsin</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <label class="col-sm-4 control-label">Payer Address</label>
+                                                                    <div class="col-sm-8">
+                                                                        <p>PO BOX 207</p>
+                                                                        <p>Indiana 34534 23423</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <label class="col-sm-4 control-label">Payer Phone</label>
+                                                                    <div class="col-sm-8">
+                                                                        <p>(67) 326-2542</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <h4>Primary Insurance</h4>
+                                                <div class="row">
+                                                    <div class="col-md-7">
+                                                        <div class="form-group form-horizontal">
+                                                            <label class="col-md-5 control-label">Paitent Relationship to Insert</label>
+                                                            <div class="col-md-7">
+                                                                <select class="form-control">
+                                                                    <option>MEDICARE B</option>
+                                                                    <option>Arizona</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row submit-buttons">
+                                                    <div class="row col-md-8">
+                                                        <div class="col-md-3"></div>
+                                                        <button type="button" class="btn cgreen  col-md-5">Save Changes<img src="/assets/img/submit-icon.png"></button>
+                                                        <div class="col-md-4 cancel-button">
+                                                            <span>Or</span> <span class="cancel">Cancel</span>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="itab_1">
+                                            <h5>MEDICARE B</h5>
+                                            <div class="panel panel-active">
+                                                <div class="panel-heading">Responsible Party (Self)</div>
+                                                <div class="panel-body">
+                                                    <div class="row detail">
+                                                        <div class="col-sm-3">Name</div>
+                                                        <div class="col-sm-3">NAAER WILSON</div>
+                                                        <div class="col-sm-3">Address Line1</div>
+                                                        <div class="col-sm-3">103 RichWood</div>
+                                                    </div>
+                                                    <div class="row detail">
+                                                        <div class="col-sm-3">Date of Birth</div>
+                                                        <div class="col-sm-3">12/12/2014</div>
+                                                        <div class="col-sm-3">Address Line2</div>
+                                                        <div class="col-sm-3"></div>
+                                                    </div>
+                                                    <div class="row detail">
+                                                        <div class="col-sm-3">Gendor</div>
+                                                        <div class="col-sm-3">Female</div>
+                                                        <div class="col-sm-3">City / State / Zip</div>
+                                                        <div class="col-sm-3">Ca, Texas, 23423-234</div>
+                                                    </div>
+                                                    <div class="row detail">
+                                                        <div class="col-sm-3">SSN</div>
+                                                        <div class="col-sm-3">1254-155-5952</div>
+                                                        <div class="col-sm-3">Primary Phone /Type</div>
+                                                        <div class="col-sm-3">(612)235-1515/Home</div>
+                                                    </div>
+                                                    <div class="row detail">
+                                                        <div class="col-sm-3">Email Address</div>
+                                                        <div class="col-sm-3">Jacel@mail.com</div>
+                                                        <div class="col-sm-3">Primary Phone /Type</div>
+                                                        <div class="col-sm-3">(612)235-1515/Mobile</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-normal">
+                                                <div class="panel-heading">MEDICARE B (Primary Insurance)</div>
+                                                <div class="panel-body">
+                                                    <div class="row detail">
+                                                        <div class="col-sm-3">Payer Name</div>
+                                                        <div class="col-sm-3">NAAER WILSON</div>
+                                                        <div class="col-sm-3">Address Line1</div>
+                                                        <div class="col-sm-3">103 RichWood</div>
+                                                    </div>
+                                                    <div class="row detail">
+                                                        <div class="col-sm-3">Member Number</div>
+                                                        <div class="col-sm-3">125358282</div>
+                                                        <div class="col-sm-3">Address Line2</div>
+                                                        <div class="col-sm-3"></div>
+                                                    </div>
+                                                    <div class="row detail">
+                                                        <div class="col-sm-3">Gendor</div>
+                                                        <div class="col-sm-3">Female</div>
+                                                        <div class="col-sm-3">City / State / Zip</div>
+                                                        <div class="col-sm-3">Ca, Texas, 23423-234</div>
+                                                    </div>
+                                                    <div class="row detail">
+                                                        <div class="col-sm-3">Policy Type</div>
+                                                        <div class="col-sm-3">MEDICARE B</div>
+                                                        <div class="col-sm-3">Primary Phone /Type</div>
+                                                        <div class="col-sm-3">(612)235-1515/Home</div>
+                                                    </div>
+                                                    <div class="row detail">
+                                                        <div class="col-sm-3">Group Name</div>
+                                                        <div class="col-sm-3"></div>
+                                                        <div class="col-sm-3">Co-Payment</div>
+                                                        <div class="col-sm-3">0.00</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-normal">
+                                                <div class="panel-heading">Policy Holder (Self)</div>
+                                                <div class="panel-body">
+                                                    <div class="row detail">
+                                                        <div class="col-sm-3">Name</div>
+                                                        <div class="col-sm-3">NAAER WILSON</div>
+                                                        <div class="col-sm-3">Address Line1</div>
+                                                        <div class="col-sm-3">103 RichWood</div>
+                                                    </div>
+                                                    <div class="row detail">
+                                                        <div class="col-sm-3">Date of Birth</div>
+                                                        <div class="col-sm-3">12/12/2014</div>
+                                                        <div class="col-sm-3">Address Line2</div>
+                                                        <div class="col-sm-3"></div>
+                                                    </div>
+                                                    <div class="row detail">
+                                                        <div class="col-sm-3">Gendor</div>
+                                                        <div class="col-sm-3">Female</div>
+                                                        <div class="col-sm-3">City / State / Zip</div>
+                                                        <div class="col-sm-3">Ca, Texas, 23423-234</div>
+                                                    </div>
+                                                    <div class="row detail">
+                                                        <div class="col-sm-3">SSN</div>
+                                                        <div class="col-sm-3">1254-155-5952</div>
+                                                        <div class="col-sm-3">Primary Phone /Type</div>
+                                                        <div class="col-sm-3">(612)235-1515/Home</div>
+                                                    </div>
+                                                    <div class="row detail">
+                                                        <div class="col-sm-3">Email Address</div>
+                                                        <div class="col-sm-3">Jacel@mail.com</div>
+                                                        <div class="col-sm-3">Primary Phone /Type</div>
+                                                        <div class="col-sm-3">(612)235-1515/Mobile</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section footer{
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="width: 900px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <i class="fa fa-times-circle"></i> Notes&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-file-o"></i> New Note
+                        <div class="pull-right">
+                            Save <i class="fa fa-angle-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span data-dismiss="modal" class="btnCancel">Cancel</span>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="inputSuccess2">
+                                <i class="fa fa-search"></i>
+                            </div>
+                            <div class="col-md-4">
+                                <select class="form-control" style="padding-left: 25px;">
+                                    <option value="">Default select</option>
+                                </select>
+                                <i class="fa fa-filter"></i>
+                            </div>
+                            <div class="col-md-2 pull-right">
+                                | 8 Results
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-8" style="padding-right: 0px;">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="active">
+                                            <th>Date <i class="fa fa-angle-down"></i></th>
+                                            <th>Created By <i class="fa fa-angle-down"></i></th>
+                                            <th>Details <i class="fa fa-angle-down"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="fred">
+                                            <td>11/12/2014</td>
+                                            <td>Tareey Adfa</td>
+                                            <td>AweraweRAWErawerawerwearawerawrwerwefgdfgdf</td>
+                                        </tr>
+                                        <tr class="fblue">
+                                            <td>11/12/2014</td>
+                                            <td>Tareey Adfa</td>
+                                            <td>AweraweRAWErawerawerwearawerawrwerwefgdfgdf</td>
+                                        </tr>
+                                        <tr>
+                                            <td>11/12/2014</td>
+                                            <td>Tareey Adfa</td>
+                                            <td>AweraweRAWErawerawerwearawerawrwerwefgdfgdf</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-4" style="padding-left: 0px;">
+                                <div class="bs-example">
+                                    <div id="edit1">
+                                        <p class="side_header">
+                                            <span class="fred"><i class="fa fa fa-exclamation"></i> IMPORTANT NOTICE</span>
+                                            <a href="#" class="pull-right" id="btn_edit">Edit</a>
+                                        </p>
+                                        <p class="side_content">
+                                            Confirmea fasdfadhfkladhsklfhadklsfhjklasdfjkasdfkasdfds
+                                        </p>
+                                        <p class="side_footer">
+                                            sdgsdfgdfgdfgdgdgdg 15/05/2014
+                                        </p>
+                                    </div>
+                                    <div id="edit2">
+                                        <div class="side_header">
+                                            <p style="color: #CCC;">Mark As</p>
+                                            <div class="btn-group" data-toggle="buttons" style="width: 100%;">
+                                                <label class="btn btn-default col-md-6 ">
+                                                    <input type="radio" class="toggle"> NORMAL
+                                                </label>
+                                                <label class="btn btn-default active col-md-6">
+                                                    <input type="radio" class="toggle "> IMPORTANT
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <p class="side_content">
+                                            Confirmea fasdfadhfkladhsklfhadklsfhjklasdfjkasdfkasdfds
+                                        </p>
+                                        <div class="side_footer">
+                                            <div class="btn-group" style="width: 100%;">
+                                                <button type="button" class="btn btn-success col-md-6">Save Changes</button>
+                                                <a href="#" class="cancel col-md-6" id="btn_cancel">Cancel</a>
+                                            </div>
+                                            sdgsdfgdfgdfgdgdgdg 15/05/2014
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="plModal" tabindex="-1" role="dialog" aria-labelledby="plModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="width: 900px;">
+                <div class="modal-content">
+                    <div class="modal-header darkblue">
+                        <i class="fa fa-times-circle"></i> Physician Lookup
+                        <div class="pull-right">
+                            <a href="#" class="active" id="lib">LIBRARY</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" id="fav">FAVORITE</a>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-inline" role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control search" id="inputSuccess2">
+                                <i class="fa fa-search"></i>
+                            </div>
+                            <div class="form-group pull-right">
+                                <label class="label1">Search With</label>
+                                <i class="fa fa-filter"></i>
+                                <select class="form-control">
+                                    <option value="">Texas</option>
+                                </select>
+                            </div>
+                        </form>
+
+                        <br />
+
+                        <div class="row" id="liblist">
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="active">
+                                            <th>Name <i class="fa fa-angle-down"></i></th>
+                                            <th>Organization <i class="fa fa-angle-down"></i></th>
+                                            <th>Speciality <i class="fa fa-angle-down"></i></th>
+                                            <th>Address <i class="fa fa-angle-down"></i></th>
+                                            <th>Phones <i class="fa fa-angle-down"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>blah blah blah</td>
+                                            <td>Yes</td>
+                                            <td>General Medicine</td>
+                                            <td>#124 GAEWR st <br> Huston, Texas 77743</td>
+                                            <td>Business(546)344-3453 <br> Fax(201)433-4345</td>
+                                        </tr>
+                                        <tr>
+                                            <td>blah blah blah</td>
+                                            <td>Yes</td>
+                                            <td>General Medicine</td>
+                                            <td>#124 GAEWR st <br> Huston, Texas 77743</td>
+                                            <td>Business(546)344-3453 <br> Fax(201)433-4345</td>
+                                        </tr>
+                                        <tr>
+                                            <td>blah blah blah</td>
+                                            <td>Yes</td>
+                                            <td>General Medicine</td>
+                                            <td>#124 GAEWR st <br> Huston, Texas 77743</td>
+                                            <td>Business(546)344-3453 <br> Fax(201)433-4345</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row" id="favlist" style="display: none;">
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="active">
+                                            <th>Name11 <i class="fa fa-angle-down"></i></th>
+                                            <th>Organization <i class="fa fa-angle-down"></i></th>
+                                            <th>Speciality <i class="fa fa-angle-down"></i></th>
+                                            <th>Address <i class="fa fa-angle-down"></i></th>
+                                            <th>Phones <i class="fa fa-angle-down"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>blah blah blah</td>
+                                            <td>Yes</td>
+                                            <td>General Medicine</td>
+                                            <td>#124 GAEWR st <br> Huston, Texas 77743</td>
+                                            <td>Business(546)344-3453 <br> Fax(201)433-4345</td>
+                                        </tr>
+                                        <tr>
+                                            <td>blah blah blah</td>
+                                            <td>Yes</td>
+                                            <td>General Medicine</td>
+                                            <td>#124 GAEWR st <br> Huston, Texas 77743</td>
+                                            <td>Business(546)344-3453 <br> Fax(201)433-4345</td>
+                                        </tr>
+                                        <tr>
+                                            <td>blah blah blah</td>
+                                            <td>Yes</td>
+                                            <td>General Medicine</td>
+                                            <td>#124 GAEWR st <br> Huston, Texas 77743</td>
+                                            <td>Business(546)344-3453 <br> Fax(201)433-4345</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="pull-left" style="color: #CCC;">
+                            0 Result Shown
+                        </div>
+                        <span data-dismiss="modal" class="btnCancel">Cancel</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="payModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="width: 900px;">
+                <div class="modal-content">
+                    <div class="modal-header darkblue">
+                        <i class="fa fa-times-circle"></i> Payer Lookup
+                        <div class="pull-right">
+                            <a href="#" class="active" id="plib">LIBRARY</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" id="pfav">FAVORITE</a>
+                        </div>
+                    </div>
+                    <div class="modal-body" id="pliblist">
+                        <form class="form-inline" role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control search" id="inputSuccess2">
+                                <i class="fa fa-search"></i>
+                            </div>
+                            &nbsp;&nbsp;Or&nbsp;&nbsp;
+                            <div class="form-group">
+                                <button type="button" id="btnNewPayer" class="btn btn-success">
+                                    Request New Payer
+                                    <img src="/assets/img/add-icon.png" style="margin-left: 10px; margin-top: -3px;" height="30px">
+                                </button>
+                            </div>
+                        </form>
+
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="active">
+                                            <th>Name <i class="fa fa-angle-down"></i></th>
+                                            <th>Address <i class="fa fa-angle-down"></i></th>
+                                            <th>Phones <i class="fa fa-angle-down"></i></th>
+                                            <th>Payer ID <i class="fa fa-angle-down"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>ADES Healthcare Options<br>Claim Division</td>
+                                            <td>#124 GAEWR st <br> Huston, Texas 77743</td>
+                                            <td>(546)344-3453</td>
+                                            <td>ENDEON3526</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ADES Healthcare Options<br>Claim Division</td>
+                                            <td>#124 GAEWR st <br> Huston, Texas 77743</td>
+                                            <td>(546)344-3453</td>
+                                            <td>ENDEON3526</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ADES Healthcare Options<br>Claim Division</td>
+                                            <td>#124 GAEWR st <br> Huston, Texas 77743</td>
+                                            <td>(546)344-3453</td>
+                                            <td>ENDEON3526</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-body" id="plibfrm" style="display: none;">
+                        <div class="row-fluid">
+                            <a href="#" id="backlink">
+                                <i class="fa fa-angle-left"></i>&nbsp;&nbsp;Back to Payer Lookup
+                            </a>
+                        </div>
+                        <form class="form-horizontal" role="form">
+                            <div class="row frm-title">
+                                <h4 class="col-sm-3 control-label">New Payer</h4>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2"></div>
+                                <label for="name" class="col-sm-2 control-label">Name</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="name" value="Jonatan Backery">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2"></div>
+                                <label for="addr1" class="col-sm-2 control-label">Address1</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="addr1" value="#43452 Brookly St.">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2"></div>
+                                <label for="addr2" class="col-sm-2 control-label">Address2</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="addr2">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2"></div>
+                                <label for="city" class="col-sm-2 control-label">City</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="city">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2"></div>
+                                <label class="col-sm-2 control-label">State/Zip</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" style="padding-left: 25px;">
+                                        <option value="">TX</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" id="zip">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2"></div>
+                                <label class="col-sm-2 control-label">Phone</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" id="phone" value="(454)234-3423">
+                                </div>
+                                <label class="col-sm-1 control-label">Ext</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" id="ext">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2"></div>
+                                <label for="fax" class="col-sm-2 control-label">Fax</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="fax">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2"></div>
+                                <label for="payerid" class="col-sm-2 control-label">PayerID</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="payerid">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-body" id="pfavlist" style="display:none;">
+                        <form class="form-inline" role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control search" id="inputSuccess2">
+                                <i class="fa fa-search"></i>
+                            </div>
+                        </form>
+
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="active">
+                                            <th>Name <i class="fa fa-angle-down"></i></th>
+                                            <th>Address <i class="fa fa-angle-down"></i></th>
+                                            <th>Phones <i class="fa fa-angle-down"></i></th>
+                                            <th>Payer ID <i class="fa fa-angle-down"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>ADES Healthcare Options<br>Claim Division</td>
+                                            <td>#124 GAEWR st <br> Huston, Texas 77743</td>
+                                            <td>(546)344-3453</td>
+                                            <td>ENDEON3526</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ADES Healthcare Options<br>Claim Division</td>
+                                            <td>#124 GAEWR st <br> Huston, Texas 77743</td>
+                                            <td>(546)344-3453</td>
+                                            <td>ENDEON3526</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ADES Healthcare Options<br>Claim Division</td>
+                                            <td>#124 GAEWR st <br> Huston, Texas 77743</td>
+                                            <td>(546)344-3453</td>
+                                            <td>ENDEON3526</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row" id="favlist" style="display: none;">
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="active">
+                                            <th>Name11 <i class="fa fa-angle-down"></i></th>
+                                            <th>Organization <i class="fa fa-angle-down"></i></th>
+                                            <th>Speciality <i class="fa fa-angle-down"></i></th>
+                                            <th>Address <i class="fa fa-angle-down"></i></th>
+                                            <th>Phones <i class="fa fa-angle-down"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>blah blah blah</td>
+                                            <td>Yes</td>
+                                            <td>General Medicine</td>
+                                            <td>#124 GAEWR st <br> Huston, Texas 77743</td>
+                                            <td>Business(546)344-3453 <br> Fax(201)433-4345</td>
+                                        </tr>
+                                        <tr>
+                                            <td>blah blah blah</td>
+                                            <td>Yes</td>
+                                            <td>General Medicine</td>
+                                            <td>#124 GAEWR st <br> Huston, Texas 77743</td>
+                                            <td>Business(546)344-3453 <br> Fax(201)433-4345</td>
+                                        </tr>
+                                        <tr>
+                                            <td>blah blah blah</td>
+                                            <td>Yes</td>
+                                            <td>General Medicine</td>
+                                            <td>#124 GAEWR st <br> Huston, Texas 77743</td>
+                                            <td>Business(546)344-3453 <br> Fax(201)433-4345</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="pull-left" style="color: #CCC;">
+                            0 Result Shown
+                        </div>
+                        <div class="pull-right" style="display: none;" id="submitfrm">
+                            <button type="button" class="btn cgreen">Save Changes<img src="/assets/img/submit-icon.png"></button> or
+                            <span class="btnCancel" data-dismiss="modal">Cancel</span>
+                        </div>
+                        <span class="btnCancel" data-dismiss="modal" id="btnCancel">Cancel</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+}
+@section scripts{
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#btn_edit").click(function () {
+                    $("#edit1").hide();
+                    $("#edit2").show('slide', { direction: 'left' }, 500);
+                });
+
+                $("#btn_cancel").click(function () {
+                    $("#edit2").hide();
+                    $("#edit1").show('slide', { direction: 'left' }, 500);
+                });
+
+                $("#lib").click(function () {
+                    if (!$(this).hasClass('active')) {
+                        $(this).addClass('active');
+                    }
+                    $('#fav').removeClass('active');
+
+                    $("#favlist").hide();
+                    $("#liblist").show(100);
+                });
+
+                $("#fav").click(function () {
+                    if (!$(this).hasClass('active')) {
+                        $(this).addClass('active');
+                    }
+                    $('#lib').removeClass('active');
+
+                    $("#liblist").hide();
+                    $("#favlist").show(100);
+                });
+
+                $("#plib").click(function () {
+                    if (!$(this).hasClass('active')) {
+                        $(this).addClass('active');
+                    }
+                    $('#pfav').removeClass('active');
+
+                    $("#pfavlist").hide();
+                    $("#pliblist").show(100);
+                });
+
+                $("#pfav").click(function () {
+                    if (!$(this).hasClass('active')) {
+                        $(this).addClass('active');
+                    }
+                    $('#plib').removeClass('active');
+
+                    $("#pliblist").hide();
+                    $("#pfavlist").show(100);
+                });
+
+                $("#btnNewPayer").click(function () {
+                    $("#submitfrm").show();
+                    $("#btnCancel").hide();
+                    $("#pliblist").hide();
+                    $("#plibfrm").show('slide', { direction: 'down' }, 500);
+                });
+
+                $("#backlink").live("click", function (e) {
+                    e.preventDefault();
+
+                    $("#submitfrm").hide();
+                    $("#btnCancel").show();
+                    $("#plibfrm").hide();
+                    $("#pliblist").show('slide', { direction: 'down' }, 500);
+                });
+            });
+        </script>
+
+}

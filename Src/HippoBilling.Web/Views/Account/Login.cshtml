@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Sign In";
+    Layout = "~/Views/Shared/_Layout.Account.cshtml";
+}
+
+<form class="form-auto" role="form" name="siginForm" id="login" method="post" ng-submit="siginForm.$valid && login()" ng-controller="accountController" novalidate>
+    <h5>--------------------------   Sign In   --------------------------</h5>
+
+    <div class="form-panel">
+        <!--Server message-->
+        <div class="alert alert-warning" role="alert" ng-show="ServerMessage.length !== 0">
+            <div ng-bind="ServerMessage"></div>
+        </div>
+
+        <div class="form-group" data-ng-class="{'has-error': (siginForm.email.$error.required || siginForm.email.$error.email) && (siginForm.$dirty || submited) }">
+            <i class="fa fa-user"></i>
+            <input type="email" name="email" class="form-control" placeholder="Input the Email..." ng-model="model.Email" required/>
+            <span class="help-block text-left" ng-show="siginForm.email.$error.required && !siginForm.$pristine">Email is required.</span>
+            <span class="help-block text-left" ng-show="siginForm.email.$error.email && !siginForm.$pristine">Email Address is wrong format.</span>
+        </div>
+        <div class="form-group" data-ng-class="{'has-error':(siginForm.password.$error.required || siginForm.password.$error.minlength) && !siginForm.password.$pristine}">
+            <i class="fa fa-unlock-alt"></i>
+            <input type="password" name="password" class="form-control" placeholder="Password" ng-minlength=6 maxlength=15 ng-model="model.PassWord" required />
+            <span ng-show="siginForm.password.$error.required && !siginForm.password.$pristine" class="help-block text-left">Password is required</span>
+            <span ng-show="siginForm.password.$error.minlength && !siginForm.password.$pristine" class="help-block text-left">Password require least 6 characters</span>
+        </div>
+    </div>
+    <button data-style="zoom-out" ng-loadingbutton ng-model="Loading" type="submit" class="btn btn-lg btn-success btn-block ladda-button" ng-disabled="siginForm.$invalid || Loading" ng-focus>Login</button>
+    <p>
+        <a href="@Url.Action("ForgotPassword", "Account")" class="forgot">Forgot password?</a>
+    </p>
+</form>

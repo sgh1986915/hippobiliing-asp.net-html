@@ -1,0 +1,6 @@
+﻿@model HippoBilling.Web.Models.Navigation.MenuItem
+<li @(Model.Active ? "class=active" : "")>
+    <a href="@Url.Action(Model.Action,Model.Controller,Model.RouteValues) ">
+        @Model.Title
+    </a>
+</li>

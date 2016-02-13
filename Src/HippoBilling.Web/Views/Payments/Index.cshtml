@@ -1,0 +1,353 @@
+﻿
+@{
+    ViewBag.Title = "Payment - New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="payment">
+    <div class="col-md-12 content">
+        <div class="row patient content-bar" id="general-bar">
+            <div class="col-md-3">
+                <span>New Payment - Aarrignton, Sara</span>
+            </div>
+            <div class="col-md-7">
+                <a href="#" data-toggle="modal" data-target="#noteModal"><i class="fa fa-bars"></i>View Notes</a>
+            </div>
+            <div class="col-md-1">
+                <span><i class="fa fa-save"></i> Save <i class="fa fa-angle-down"></i></span>
+            </div>
+            <div class="col-md-1">
+                <span class="cancel">Cancel</span>
+            </div>
+        </div>
+        <div class="row patient content-bar" id="apply-bar" style="display: none;">
+            <div class="col-md-3">
+                <span>New Payment - Aarrignton, Sara</span>
+            </div>
+            <div class="col-md-7">
+                <span class="col-md-6">
+                    <a href="#"><i class="fa fa-plus"></i>Add Superbill</a>
+                    <a href="#">Add Patient</a>
+                    <a href="#">Next Line</a>
+                </span>
+                <div class="custom-control col-md-4">
+                    <i class="fa fa-filter"></i>
+                    <select class="form-control">
+                        <option value="">Show Selected</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <span><i class="fa fa-save"></i> Save <i class="fa fa-angle-down"></i></span>
+            </div>
+            <div class="col-md-1">
+                <span class="cancel">Cancel</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 content-bar1">
+                <label class="col-md-2 general active">General</label>
+                <label class="col-md-5 apply">Apply</label>
+                <label class="col-md-3 post-date">Posted 11/14/2013</label>
+            </div>
+            <div class="col-md-4 content-bar1" style="display: none;" id="apply-amount">
+                <label class="col-md-3">Amount:</label>
+                <label class="col-md-3">$75.00</label>
+                <label class="col-md-3">Unapplied:</label>
+                <label class="col-md-3">$75.00</label>
+            </div>
+        </div>
+
+        <!-- General -->
+        <div class="row" id="generalView">
+            <div class="col-md-5">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Type</label>
+                        <div class="col-md-9">
+                            <div class="btn-group btn-blue" data-toggle="buttons">
+                                <label class="btn btn-default col-md-6 active">
+                                    <input type="radio" class="toggle"> Patient
+                                </label>
+                                <label class="btn btn-default col-md-6">
+                                    <input type="radio" class="toggle "> Insurance
+                                </label>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">
+                            Insurance
+                            <a href="#" data-toggle="modal" data-target="#plModal">
+                                <i class="fa fa-search-plus"></i>
+                            </a>
+                        </label>
+                        <div class="col-md-9 insurance">
+                            <input type="text" class="form-control" value="BC/BS of California">
+                            <i class="fa fa-times-circle"></i>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Check Date</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" value="10/10/2013">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Method</label>
+                        <div class="col-md-9">
+                            <select class="form-control ">
+                                <option>1 - Check</option>
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Reference #:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" value="12345678901">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Amount</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" value="$0.00">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button type="button" class="btn cgreen pull-right">Apply Now<i class="fa fa-chevron-circle-right"></i></button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-1 bar">
+            </div>
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-5 summary">
+                <h3>Summary</h3>
+                <div class="row">
+                    <label class="col-md-9 control-label">Total Amount:</label>
+                    <label class="col-md-3 control-label">$0.00</label>
+                </div>
+                <div class="row">
+                    <label class="col-md-9 control-label">Payment Applied to Charges:</label>
+                    <label class="col-md-3 control-label">$0.00</label>
+                </div>
+                <div class="row">
+                    <label class="col-md-9 control-label">Adjustments Related to Payment:</label>
+                    <label class="col-md-3 control-label">$0.00</label>
+                </div>
+                <div class="row">
+                    <label class="col-md-9 control-label">Unapplied Amount:</label>
+                    <label class="col-md-3 control-label">$0.00</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Apply -->
+        <div class="row" id="applyView" style="display: none;">
+            <div class="row payment-option">
+                <div class="btn-group btn-blue" data-toggle="buttons">
+                    <label class="btn btn-default col-md-6 active">
+                        <input type="radio" class="toggle"> Patient
+                    </label>
+                    <label class="btn btn-default col-md-6">
+                        <input type="radio" class="toggle "> Insurance
+                    </label>
+                </div>
+            </div>
+            <table class="table table-custom">
+                <thead>
+                    <tr>
+                        <th>ID <i class="fa fa-angle-down"></i></th>
+                        <th>Insurance <i class="fa fa-angle-down"></i></th>
+                        <th>?</th>
+                        <th>Save Date <i class="fa fa-angle-down"></i></th>
+                        <th>Description <i class="fa fa-angle-down"></i></th>
+                        <th>Mode <i class="fa fa-angle-down"></i></th>
+                        <th>Charges <i class="fa fa-angle-down"></i></th>
+                        <th>Balance <i class="fa fa-angle-down"></i></th>
+                        <th>Pat Resp <i class="fa fa-angle-down"></i></th>
+                        <th>This Payment <i class="fa fa-angle-down"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="3">59</td>
+                        <td rowspan="3">Insurance Company</td>
+                        <td class="active"><i class="fa fa-check"></i></td>
+                        <td>09/20/2013</td>
+                        <td>27096 - INJECTION PROC FOR SACROILICAN JOINT, ARTHUR</td>
+                        <td>Option 1</td>
+                        <td>$1570.00</td>
+                        <td>$1570.00</td>
+                        <td>$0.00</td>
+                        <td>$0.00</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-check"></i></td>
+                        <td>09/20/2013</td>
+                        <td>27096 - INJECTION PROC FOR SACROILICAN JOINT, ARTHUR</td>
+                        <td>Option 1</td>
+                        <td>$1570.00</td>
+                        <td>$1570.00</td>
+                        <td>$0.00</td>
+                        <td>$0.00</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-check"></i></td>
+                        <td>09/20/2013</td>
+                        <td>27096 - INJECTION PROC FOR SACROILICAN JOINT, ARTHUR</td>
+                        <td>Option 1</td>
+                        <td>$1570.00</td>
+                        <td>$1570.00</td>
+                        <td>$0.00</td>
+                        <td>$0.00</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br><br><br><br><br>
+            <div class="row detail-title">
+                <div class="col-md-7">
+                    <label class="col-md-2">Insurance</label>
+                    <label class="col-md-2">More Details</label>
+                </div>
+                <div class="col-md-5">
+                    <label class="col-md-4">Transaction</label>
+                    <label class="col-md-2">Amount</label>
+                    <label class="col-md-3">Pat Resp</label>
+                    <label class="col-md-3">Total Balance</label>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="row detail-content">
+                <div class="col-md-7">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Copay Due:</label>
+                        <div class="col-md-2"></div>
+                        <label class="col-md-2 control-label">$0.00</label>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Paid:</label>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" value="12498512345">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Status:</label>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-3">
+                            <select class="form-control">
+                                <option>Default</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <select class="form-control">
+                                <option>0 - Note</option>
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Note:</label>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label class="col-md-4">09/20/2006 Created <br> Service line created from ecounter #115</label>
+                        <label class="col-md-2">$1570.00</label>
+                        <label class="col-md-3">$1570.00</label>
+                        <label class="col-md-3">$1570.00</label>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4">09/20/2006 Transfer <br> Transfered $1570 to primary insurance BC/BS of Califonia</label>
+                        <label class="col-md-2"></label>
+                        <label class="col-md-3">$0.00</label>
+                        <label class="col-md-3">$1570.00</label>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4">10/02/05 Billed</label>
+                        <label class="col-md-2"></label>
+                        <label class="col-md-3">$0.00</label>
+                        <label class="col-md-3">$1570.00</label>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section footer{
+    <!-- Modal -->
+<div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="noteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 900px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fa fa-times-circle"></i> Aarrignton, Sarah - Notes &nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-pencil"></i> Edit
+                <div class="pull-right">
+                    Save <i class="fa fa-angle-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span data-dismiss="modal" class="btnCancel">Cancel</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <p>Sarah mentioned that is going to .... on ....</p>
+                <br><br><br><br><br><br>
+                <br><br><br><br><br><br>
+                <br><br><br><br><br><br>
+            </div>
+            <div class="modal-footer">
+                <p>Last Updated by Peter Koukounas on 02/04/2013</p>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+@section scripts{
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+        $(".apply").click(function () {
+            $(this).addClass('active');
+            $('.general').removeClass('active');
+            $('.post-date').hide();
+            $("#generalView").hide();
+            $("#general-bar").hide();
+            $('#apply-amount').show();
+            $('#apply-bar').show();
+            $("#applyView").show('slide', { direction: 'down' }, 100);
+        });
+
+        $(".general").click(function () {
+            $(this).addClass('active');
+            $('.apply').removeClass('active');
+            $('#apply-amount').hide();
+            $("#applyView").hide();
+            $('#apply-bar').hide();
+            $('.post-date').show();
+            $('#general-bar').show();
+            $("#generalView").show('slide', { direction: 'down' }, 100);
+        });
+
+    });
+</script>
+}

@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewBag.Title = "Supbills";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row addbutton">
+    <div class="col-md-12 account">
+        <button type="button" class="btn cgreen" onclick="window.location.href='/superbills/new'">New Superbill<img src="/assets/img/add-icon.png" style="margin-left: 10px;" /></button>
+    </div>
+</div>
+<!-- END ADD PATIENT BUTTON-->
+<!-- BEGIN TAB MENU-->
+<div class="tabs">
+    <div class="account">
+        <ul class="nav nav-tabs nav-justified">
+            <li>
+                <a href="#tab_1_1" data-toggle="tab">Billing Encounters</a>
+            </li>
+            <li class="">
+                <a href="#tab_1_1" data-toggle="tab"><img src="/assets/img/sidebar-search-close-light.png" />Patient - 1</a>
+            </li>
+            <li class="active">
+                <a href="#tab_1_1" data-toggle="tab"><img src="/assets/img/sidebar-search-close-light.png" />Madison, Korinok</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade active in" id="tab_1_1" style="border-bottom: 1px solid #b3b3b3;">
+                <div class="row panel-bar">
+                    <div class="col-md-2 border-bar">
+                        <h4>Superbill Information</h4>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control search" style="padding-left: 30px;">
+                        <i class="fa fa-search"></i>
+                    </div>
+                    <div class="col-md-5">
+                    </div>
+                    <label class="col-md-1">
+                        <i class="fa fa-print"></i>Print Claims
+                    </label>
+                    <label class="col-md-1">
+                        <i class="fa fa-location-arrow"></i>Action
+                    </label>
+                    <label class="col-md-1 result">8 Results</label>
+                </div>
+                <div class="row panel-bar" id="financial-detail-bar" style="display: none;">
+                    <div class="col-md-2 border-bar">
+                        <h4>View Change Detail</h4>
+                    </div>
+                    <div class="col-md-3" style="margin-top: 7px;">
+                        <a href="#" id="backlink">
+                            <i class="fa fa-angle-left"></i>&nbsp;&nbsp;Back to Financials
+                        </a>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="custom-control">
+                            <i class="fa fa-filter"></i>
+                            <select class="form-control">
+                                <option value="">All Dates</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="padding: 7px 0;">
+                        <span class="itemlink"><i class="fa fa-tasks"></i>Audit Log</span>
+                        <span class="itemlink"><i class="fa fa-print"></i>Print Superbil</span>
+                        <span class="itemlink"><i class="fa fa-rotate-left"></i>Resubmit</span>
+                    </div>
+                    <div class="col-md-1 result">
+                        <span class="fgrey">4 Results</span>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <!-- END TAB MENU-->
+            <!-- BEGIN CONTENT TAB ROW-->
+            <div class="row">
+                <!-- BEGIN SIDEBAR MENU-->
+                <div class="col-md-2 sidebar-content" id="superbill-sidebar">
+                    <ul class="ver-inline-menu tabbable margin-bottom-25">
+                        <li class="active">
+                            <a href="#">All (3)</a>
+                        </li>
+                        <li>
+                            <a href="#">Superbills on hold (3)</a>
+                        </li>
+                        <li>
+                            <a href="#">Eligibility Rejections (0)</a>
+                        </li>
+                        <li>
+                            <a href="#">Ready to submit electronic claims (3)</a>
+                        </li>
+                        <li>
+                            <a href="#">Ready to pring paper ckaims (3)</a>
+                        </li>
+                    </ul>
+                    <br><br><br><br><br>
+                </div>
+                <!-- END SIDEBAR MENU-->
+                <div class="col-md-10" id="superbill-list">
+                    <!-- BEGIN DEMOGRAPHICS INSURANCE TABS-->
+                    <table class="table table-custom">
+                        <thead>
+                            <tr class="active">
+                                <th>Patient Name <i class="fa fa-angle-down"></i></th>
+                                <th>Date of Service <i class="fa fa-angle-down"></i></th>
+                                <th>Insurance Profile <i class="fa fa-angle-down"></i></th>
+                                <th>Provider <i class="fa fa-angle-down"></i></th>
+                                <th>Location <i class="fa fa-angle-down"></i></th>
+                                <th>Charge Amount <i class="fa fa-angle-down"></i></th>
+                                <th>Status <i class="fa fa-angle-down"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Madison, Korinek</td>
+                                <td>11/12/2014</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>0.00</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Isabel, M. Saucedia</td>
+                                <td>11/12/2014</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>0.00</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>John Smith</td>
+                                <td>11/12/2014</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>0.00</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- END CONTENT TAB ROW-->
+                    <br><br><br><br><br>
+                    <br><br><br><br><br>
+                    <br><br><br><br><br>
+                </div>
+                <!-- END CONTENT -->
+            </div>
+            <!-- ENDTAB CONTENT -->
+        </div>
+        <!-- END ACCOUNT -->
+    </div>
+    <!-- END TABS -->
+</div>
+

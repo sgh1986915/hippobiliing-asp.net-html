@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CD563A28-AAC9-4B97-AF36-2BA536A6878F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HippoBilling.Domain</RootNamespace>
+    <AssemblyName>HippoBilling.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Accounts\HashedPassword.cs" />
+    <Compile Include="Accounts\UserPermission.cs" />
+    <Compile Include="Accounts\PasswordHasher.cs" />
+    <Compile Include="Accounts\PasswordRecovery.cs" />
+    <Compile Include="Accounts\PermissionModule.cs" />
+    <Compile Include="Accounts\Role.cs" />
+    <Compile Include="Accounts\User.cs" />
+    <Compile Include="Addresses\Address.cs" />
+    <Compile Include="Authorizations\Authorization.cs" />
+    <Compile Include="Patients\FavoritePhysician.cs" />
+    <Compile Include="Patients\NoteLevel.cs" />
+    <Compile Include="Patients\Patient.cs" />
+    <Compile Include="Patients\PatientNote.cs" />
+    <Compile Include="Patients\PatientStatus.cs" />
+    <Compile Include="Insurances\FavoritePayer.cs" />
+    <Compile Include="Insurances\Insurance.cs" />
+    <Compile Include="Insurances\Payer.cs" />
+    <Compile Include="Insurances\PolicyType.cs" />
+    <Compile Include="Insurances\Relationship.cs" />
+    <Compile Include="Patients\StatementMethod.cs" />
+    <Compile Include="Practices\Gender.cs" />
+    <Compile Include="Practices\Location.cs" />
+    <Compile Include="Practices\NPIRecord.cs" />
+    <Compile Include="Practices\Practice.cs" />
+    <Compile Include="Practices\PracticeUser.cs" />
+    <Compile Include="Practices\Provider.cs" />
+    <Compile Include="Practices\ServicePlace.cs" />
+    <Compile Include="Practices\Speciality.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Addresses\State.cs" />
+    <Compile Include="Resources\DomainEnumConverter.cs" />
+    <Compile Include="Resources\DomainResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DomainResource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\HippoBilling.Core\HippoBilling.Core.csproj">
+      <Project>{07a70496-d4c7-439a-b506-be768bc1150f}</Project>
+      <Name>HippoBilling.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\DomainResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DomainResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

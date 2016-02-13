@@ -1,0 +1,23 @@
+﻿<controls:MetroWindow x:Class="NpiImporter.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      Title="Importer" Height="427" Width="525" ResizeMode="NoResize">
+    <Grid>
+        <TextBox KeyDown="FilePath_KeyDown" PreviewMouseDown="FilePath_PreviewMouseDown" Name="FilePath"
+                 Style="{StaticResource OpenFileMetroTextBox}"
+                 controls:TextboxHelper.Watermark="Enter access file path"
+                 controls:TextboxHelper.ButtonCommand="{Binding BrowseFileCommand}"
+                 Width="450" Margin="40,39,29,330" />
+
+        <TextBox Name="ConnectionString"
+                 Text="Data Source=.;Initial Catalog=NPI;User ID=sa;Password=@H1pp0B1lling!" Height="50"
+                 TextWrapping="WrapWithOverflow" BorderThickness="1" Margin="40,89,29,260" Background="#F7F7F7" />
+
+        <Button Name="Import" Width="450" Height="50" Margin="40,123,29,149" Click="Button_Click">Import</Button>
+
+        <TextBox Margin="27,230,29,33" Name="ProgressInfo" TextWrapping="Wrap" IsReadOnly="True">
+            Progress info...
+        </TextBox>
+    </Grid>
+</controls:MetroWindow>

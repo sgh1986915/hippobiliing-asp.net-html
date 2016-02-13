@@ -1,0 +1,1230 @@
+/* here you can put your own css to customize and override the theme */
+.centeraltab .tab-content{
+	border: none;
+}
+
+#tab_2 >.row {
+	padding: 10px 0;
+}
+
+#tab_2 .bs-example .row {
+	margin: 15px 0px 0px;
+}
+
+#tab_2 .side_footer .btn {
+	padding: 5px;
+}
+
+.side_header1 {
+	border-bottom: 1px solid #CCC;
+	margin: -5px -10px;
+	text-align: center;
+}
+
+#tab_2 ul {
+	margin: 10px 0 20px;
+}
+
+#tab_2 ul li {
+	font-weight: bold;
+}
+
+#tab_2 li.child {
+	border-bottom: 1px solid #CCC;
+	margin-bottom: 20px;
+}
+
+#tab_2 .label1 {
+	color: #5bc0de;
+}
+
+#tab_2 .label2 {
+	background-color: #CCC;
+}
+
+#tab_2 .label3 {
+	font-style: italic;
+	color: #CCC;
+}
+
+#tab_2 h4 {
+	border-bottom: 1px solid #CCC;
+	padding-bottom: 10px;
+	font-weight: bold;
+}
+
+#tab_2 h4, h5 {
+	font-weight: bold !important;
+}
+
+#tab_2 .panel-body .control-label {
+	font-size: 10px;
+	color: #CCC;
+} 
+
+#tab_2 .panel-body p {
+	font-size: 10px;
+	margin-top: 2px;
+} 
+
+#tab_2 .panel {
+	margin-right: 15px;
+}
+
+#tab_2 .panel-active {
+	border: 1px solid #a94442;
+}
+
+#tab_2 .panel-normal {
+	border: none;
+}
+
+#tab_2 .panel-heading {
+	border: none;
+	border-bottom: 1px solid #CCC;
+	color: #CCC;
+	font-weight: bold;
+	background-color: transparent;
+}
+
+.panel .detail {
+	font-size: 12px;
+	margin: 3px 0;
+}
+
+.panel .detail div:nth-child(odd) {
+	color: #999;
+	font-weight: bold;
+}
+
+.modal .form-inline .search {
+	padding-left: 30px;
+}
+
+.modal .form-inline .fa-search {
+	top: 28px;
+}
+
+.modal .form-inline .fa-filter {
+	top: 28px;
+}
+
+.modal .form-inline .label1 {
+	font-style: italic;
+	color: #ccc;
+}
+
+.modal .form-inline select {
+	padding-left: 30px;
+}
+
+.darkblue .pull-right a {
+	text-decoration: none;
+	color: #CCC;
+}
+
+.darkblue .pull-right a.active {
+	color: #FFF;
+}
+
+#btnNewPayer {
+	padding: 4px 8px;
+}
+
+#plibfrm form {
+	margin: auto 80px;
+}
+
+#backlink {
+	text-decoration: none;
+	color: #000;
+	font-weight: bold;
+}
+
+#plibfrm .back-link .fa-angle-left {
+	margin: 0 10x;
+}
+
+#plibfrm .frm-title {
+	border-bottom: 1px solid #CCC;
+	margin-bottom: 20px;
+	padding: 10px 0;
+}
+
+#plibfrm .frm-title h4 {
+	font-weight: bold !important;
+}
+
+#plibfrm .form-group label {
+	text-align: left;
+}
+
+#payModal .cgreen {
+	padding: 3px 13px;
+	font-size: 14px;
+	margin-right: 10px;
+}
+
+#payModal .cgreen img {
+	width: 26px;
+}
+
+.btnCancel {
+	margin: auto 30px auto 10px;
+	cursor: pointer;
+}
+
+.fgrey {
+	color: #CCC;
+}
+
+.itemlink {
+	margin: auto 15px;
+	cursor: pointer;
+}
+
+.itemlink .fa {
+	margin-right: 10px;
+}
+
+select.form-control {
+	background: url('../img/select-collapse-icon.png') no-repeat;
+	background-position: center right;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	text-indent: 0.01px;
+	padding-right: 30px;
+}
+
+tr.info {
+	background-color: #d9edf7;
+}
+
+th {
+	font-weight: bold !important;
+}
+
+tr {
+	cursor: pointer;
+}
+
+.detail-panel {
+	border-right: 1px solid #CCC;
+	min-height: 120px;
+}
+
+.detail-panel:last-child {
+	border-right: none;
+}
+
+.detail-panel label {
+	font-size: 11px;
+}
+
+#financial-detail {
+	margin-top: 20px;
+}
+
+.panel-bar {
+	padding: 15px;
+}
+
+.panel-bar h4 {
+	color: #094874;
+	font-size: 20px;
+}
+
+.panel-bar .border-bar {
+	border-right: 1px solid #b3b3b3;
+}
+
+.fmodal .form-horizontal label {
+	font-size: 12px;
+	color: #ccc;
+}
+
+.fmodal table {
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+.fmodal table>thead>tr>th {
+	border-right: 1px solid #ccc;
+}
+
+.fmodal table>thead>tr>th:last-child {
+	border-right: none;
+}
+
+.fmodal .btn-group {
+	border: 1px solid black;
+	border-radius: -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.fmodal .btn-default:hover, 
+.fmodal .btn-default:focus, 
+.fmodal .btn-default:active, 
+.fmodal .btn-default.active {
+	color: white;
+	background-color: #29aae1;
+}
+
+.fmodal label.btn-default {
+	padding: 6px 30px;
+}
+
+#btnUpload > button:first-child {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+#btnUpload .dropdown-toggle > i {
+	font-size: 24px;
+}
+
+#btnUpload .dropdown-toggle {
+	border-left: 1px solid #fff;
+	padding-bottom: 7px;
+}
+
+/*****Recent Patient******/
+.recent-patient .sidebar h5 {
+	font-weight: bold !important;
+	margin: 10px 15px 20px;
+}
+
+.recent-patient .sidebar .list-group-item {
+	border: none;
+	color: #6A6A6A;
+	padding: 5px 15px;
+}
+
+.recent-patient .sidebar ul li.active {
+	color: #64C3E9;
+}
+
+.recent-patient .sidebar .list-group-item .fa {
+	border: none;
+	color: #CCC;
+}
+
+.recent-patient .sidebar ul li.active .fa {
+	color: #64C3E9;
+}
+
+.recent-patient .content {
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	padding: 15px 30px;
+}
+
+.content-bar {
+	border-bottom: 1px solid #E6E6E6;
+	padding-bottom: 15px;
+}
+
+.content-bar .search {
+	padding-left: 30px;
+	border-radius: 5px;
+}
+
+.content-bar .fa-search {
+	position: absolute;
+	top: 8px;
+	left: 26px;
+}
+
+.result {
+	padding: 8px 0px 8px 20px;
+	border-left: 1px solid #ccc;
+	color: #ccc;
+}
+
+.tr-border th {
+	border-right: 1px solid #ccc;
+}
+
+.tr-border th:last-child {
+	border-right: none;
+}
+
+/**********Settings**********/
+
+#settingModal .form-horizontal {
+	margin: 15px;
+}
+
+#settingModal h1 {
+	color: #094874;
+	margin: 10px 25px 20px;
+}
+
+#settingModal .form-group label {
+	text-align: left;
+	color: #808080;
+}
+
+#settingModal .tab-content {
+	border: none;
+}
+
+#settingModal .content-bar {
+	border: none;
+	padding-top: 15px;
+}
+
+#settingModal .content {
+	margin: 25px;
+	border: 1px solid #CCC;
+}
+
+tbody.no-border > tr > td {
+	border: none;
+}
+
+.content-bar label {
+	padding: 8px 20px;
+	color: #ccc;
+}
+
+.content-bar label .fa {
+	padding: 0 10px;
+}
+
+.content-bar .bar {
+	border-left: 1px solid #ccc;
+}
+
+#fee table>tbody>tr.used>td {
+	color: #000;
+}
+
+#fee table>tbody>tr.used>td:last-child {
+	color: #4cae4c;
+}
+
+table>tbody>tr.unused>td {
+	color: #b3b3b3;
+}
+
+#fee table>tbody>tr>td:first-child {
+	color: #5bc0de;
+}
+
+.fee-bar {
+	margin: 25px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	padding: 10px 0;
+}
+
+#feeAdd .btn-default {
+	border: 1px solid #46b8da;
+	color: #5bc0de;
+	min-width: 170px;
+}
+
+.backlink {
+	text-decoration: none;
+	color: #000;
+	font-weight: bold;
+}
+
+.fgreen {
+	color: #428D6B;
+}
+
+#users table>tbody>tr>td:first-child {
+	color: #5bc0de;
+}
+
+#privilege .update-notify {
+	color: #ccc;
+	font-style: italic;
+}
+
+#privilege h2 {
+	margin-top: 0px;
+}
+
+#privilege table>thead>tr>th {
+	text-align: center;
+}
+
+#privilege table>thead>tr>th:first-child {
+	text-align: left;
+}
+
+#privilege table>tbody>tr>td {
+	color: grey;
+	text-align: center;
+}
+
+#privilege table>tbody>tr>td:first-child {
+	text-align: left;
+}
+
+#privilege tr.main td:first-child {
+	font-weight: bold;
+	color: #000;
+}
+
+#privilege .fa-check {
+	color: #8cc63e;
+}
+
+#general h4 {
+	color: #2E5370;
+	font-weight: bold !important;
+	padding: 25px 15px;
+}
+
+/******login*******/
+.form-auto {
+	margin: 20px auto 40px;
+	width: 40%;
+}
+
+.form-auto p {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.form-panel {
+	padding: 20px 20px 5px;
+	border: 1px solid #ccc;
+	margin-bottom: 20px;
+	position: relative;
+}
+
+.container {
+	width: 50%;
+	text-align: center;
+	margin-top: 100px;
+}
+
+.form-auto .terms {
+	text-decoration: underline;
+	margin-top: 40px;
+}
+
+.forgot {
+	color: #ccc;
+	margin-top: 20px;
+	text-decoration: underline;
+}
+
+.form-panel .form-group {
+	position: relative;
+}
+
+.form-panel .form-control {
+	padding-left: 30px;
+}
+
+.form-panel .fa {
+	position: absolute;
+	top: 9px;
+	left: 10px;
+}
+
+/************home*************/
+.home {
+	padding: 50px;
+}
+
+.home .btn-default:hover, 
+.home .btn-default:focus, 
+.home .btn-default:active, 
+.home .btn-default.active, 
+.home .open .dropdown-toggle.btn-default {
+	color: white;
+	background-color: #ED1E79;
+}
+
+.home h1 {
+	color: #2F6485;
+}
+
+.home .row {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.search-box {
+	position: relative;
+}
+
+.search-box .form-control {
+	padding-left: 30px;
+}
+
+.search-box .fa {
+	position: absolute;
+	top: 8px;
+	left: 25px;
+}
+
+.home table > tbody > tr > td:nth-child(1) {
+	width: 30px;
+	padding-right: 15px;
+}
+
+.home table > tbody > tr > td:nth-child(2) {
+	font-weight: bold;
+	padding-top: 10px;
+}
+
+.home table > tbody > tr > td:nth-child(3) {
+	color: #808080;
+	padding-top: 10px;
+}
+
+.home table > tbody > tr > td:nth-child(4) {
+	color: #ccc;
+	padding-top: 10px;
+}
+
+.home table > tbody > tr > td .fa {
+	font-size: 24px;
+	color: #808080;
+}
+
+.home .active .form-control {
+	border: none;
+	border-bottom: 1px solid #ED1E79;
+}
+
+.home .active .fa {
+	color: #ED1E79;
+	font-weight: bold;
+}
+
+.home table > tbody > tr.actived > td .fa {
+	color: #ED1E79;
+	font-weight: bold;
+}
+
+#seting-nav ul.dropdown-menu {
+	min-width: 400px;
+}
+
+#seting-nav ul li:first-child {
+	background-color: #F15A25;
+	color: #FFF;
+	padding: 0px;
+}
+
+#seting-nav ul li:first-child img {
+	margin: 0px 10px 5px;
+}
+
+#seting-nav ul li:first-child .title {
+	margin: 0px 40px;
+	font-size: 18px;
+}
+
+#seting-nav ul li:first-child .count {
+	margin: 0px;
+}
+
+#seting-nav ul li {
+	padding: 10px 10px 0px;
+}
+
+#seting-nav ul li a {
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 15px;
+	font-weight: bold;
+}
+
+#seting-nav ul.new li a {
+	color: #64C3E9;
+}
+
+#seting-nav ul li:last-child a {
+	border-bottom: none;
+}
+
+#seting-nav ul li a .fa {
+	font-weight: bold;
+	font-size: 20px;
+}
+
+/********Payments*********/
+#payment .content-bar1 {
+	padding: 10px 20px 8px;
+	border-bottom: 1px solid #C8C8C8;
+}
+
+#payment .content-bar1 .post-date {
+	font-style: italic;
+	color: #ccc;
+}
+
+#payment .content {
+	border: 1px solid #ccc;
+	padding: 15px 30px;
+}
+
+#payment .form-horizontal {
+	margin: 30px 20px;
+}
+
+#payment .form-horizontal .form-group .control-label {
+	text-align: left;
+}
+
+#payment .summary h3 {
+	color: #2F6485;
+}
+
+#payment .summary .row {
+	padding-top: 11px;
+	padding-bottom: 11px;
+}
+
+#payment .bar {
+	height: 175px;
+	border-right: 1px solid #C8C8C8;
+	margin-top: 65px;
+}
+
+#payment .btn .fa-chevron-circle-right {
+	font-size: 20px;
+	margin-left: 10px;
+	position: relative;
+	top: 1px;
+}
+
+#payment .insurance .form-control {
+	padding-right: 30px;
+}
+
+#payment .insurance .fa {
+	position: absolute;
+	top: 8px;
+	left: 92%;
+	color: #CCC;
+}
+
+#payment .general, 
+#payment .apply {
+	text-decoration: none;
+	color: #000;
+	cursor: pointer;
+}
+
+#payment .payment-option {
+	margin: 20px 60px;
+}
+
+#payment .content-bar1 .active {
+	font-weight: bold;
+}
+
+#applyView .fa-check {
+	color: #ddd;
+}
+
+#applyView .active .fa-check {
+	color: #8cc63e;
+}
+
+#applyView .detail-title {
+	padding: 10px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ddd;
+}
+
+#applyView .detail-content {
+	margin-top: 20px;
+}
+
+#applyView .detail-title > div:first-child {
+	color: grey;
+}
+
+#applyView .detail-content > div:first-child {
+	color: grey;
+}
+
+#applyView .detail-title div:nth-child(2) {
+	color: #000;
+}
+
+#applyView .detail-title div:nth-child(2) label {
+	font-weight: bold;
+}
+
+#applyView .detail-content > div:last-child {
+	color: #000;
+}
+
+#apply-amount label {
+	color: #8f8279;
+}
+
+#noteModal .modal-footer p {
+	text-align: left;
+	color: #ccc;
+	font-style: italic;
+}
+
+#apply-bar a {
+	color: #000;
+	text-decoration: none;
+}
+
+#apply-bar .custom-control {
+	margin-top: -7px;
+	border-left: none;
+}
+
+#apply-bar span a {
+	border-right: 1px solid #CCC;
+	padding-right: 20px;
+	padding-left: 20px;
+}
+
+#apply-bar span a:first-child {
+	margin-left: -30px;
+}
+
+#apply-bar span a:last-child {
+	border-right: none;
+}
+
+/**********Superbill************/
+#superbill-sidebar .ver-inline-menu li {
+	border-bottom: 1px solid #e2e2e2;
+}
+
+#superbill-sidebar .ver-inline-menu li a {
+	color: grey;
+	font-size: 13px;
+	padding: 15px 0px 15px 3px;
+}
+
+#superbill-sidebar .ver-inline-menu li.active a {
+	color: #000;
+	font-weight: bold;
+}
+
+
+/************Superbill Pages*****************/
+
+#frm-superbill .form-horizontal .control-label {
+	padding-bottom: 15px;
+	color: #808080;
+	font-size : 14px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+#frm-superbill .fa-search-plus{
+	padding-left: 5px;font-size:14px;
+}
+
+#frm-superbill  .form-control{
+	font-size: 16px;
+	font-weight: normal;
+	color: black;
+	background-color: #ffffff;
+	border: 1px solid #ccc;
+	border-radius: -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#frm-superbill select {
+	background: url('../img/select-collapse-icon.png')  no-repeat;
+	background-position: center right;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+	text-indent: 0.01px;
+	text-overflow: "";
+}
+
+#frm-superbill .form-horizontal .control-label:first-child {
+	text-align: left;
+}
+
+#frm-superbill select.form-control {
+    padding-top: 2px;   
+}
+
+#frm-superbill label.btn.btn-default {
+    font-size: 16px;
+}
+
+#frm-superbill .btn-group {
+	border: 1px solid black;
+	border-radius: -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#frm-superbill .btn-default:hover, 
+#frm-superbill .btn-default:focus, 
+#frm-superbill .btn-default:active, 
+#frm-superbill .btn-default.active, 
+#frm-superbill .open .dropdown-toggle.btn-default {
+	color: white;
+  	background-color: #29aae1;
+}
+
+#frm-superbill .btn-default {
+  	padding: 6px 35px;
+}
+
+.superbill-content .new-bar {
+	border-top: 1px solid #e8e8e8;
+	border-bottom: 1px solid #ccc;
+	margin: 20px 15px 0 15px;
+	padding: 10px 20px;
+}
+
+.superbill-content label {
+	cursor: pointer;
+}
+
+.superbill-content .new-bar .active {
+	color: black;
+	font-weight: bold;
+}
+
+#mod:hover {
+	background-color: #C89E9F;
+}
+
+#warningModal .modal-header {
+	background-color: #C2272B;
+}
+
+#warningModal .modify-post {
+	text-align: right;
+	margin-top: 9px;
+}
+
+#warningModal .modify-post span {
+	padding: 0 15px;
+}
+
+#warningModal .modify-post span:first-child {
+	font-weight: bold;
+}
+
+/**********Authorization***********/
+#new-auth .action-bar > div:first-child {
+	padding-left: 0px;
+	border-right: 1px solid #ccc;
+}
+
+#new-auth .action-bar > div:last-child {
+	border-left: 1px solid #ccc;
+}
+
+#new-auth .form-body .row {
+	padding-top: 30px;
+	padding-bottom: 20px;
+}
+
+#new-auth .form-body .row:first-child {
+	padding-top: 0px;
+	border-bottom: 1px solid #ccc;
+}
+
+#new-auth .form-body .row:nth-child(2) {
+	border-bottom: 1px solid #ccc;	
+}
+
+#new-auth .form-body .row:last-child {
+	padding: none;
+}
+
+#new-auth .fa-arrow-circle-o-down{
+	font-size: 22px;
+	padding-left: 10px;
+}
+
+#btnSaveChange {
+	margin-right: 10px;
+}
+
+#new-auth .cancel {
+	padding-left: 10px;
+}
+
+/*************New Authorization Dialog***************/
+.edit-panel {
+	border: 1px solid #ccc;
+	padding: 15px 10px;
+}
+
+.edit-panel .side_header {
+	padding: 5px 5px 10px;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 10px;
+}
+
+.edit-panel .side_footer p {
+	font-style: italic;
+	color: #ccc;
+	margin-bottom: 0px;
+	font-size: 11px;
+}
+
+.edit-panel .btn-group .active {
+	background-color: red;
+}
+
+.edit-panel .side_content .btn-group {
+	padding-bottom: 10px;
+	padding-top: 10px;
+	border-top: 1px solid #ccc;
+	width: 100%;
+}
+
+.edit-panel .side_content .cancel {
+	line-height: 33px;
+	text-decoration: none;
+	color: #000;
+}
+
+.tr-danger .exclamation {
+	line-height: 10px;
+}
+
+.exclamation {
+	font-size: 30px;
+}
+
+.side_content p {
+	font-size: 17px;
+}
+
+
+/*************common*************/
+.btn-blue {
+	border: 1px solid black;
+	border-radius: -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.btn-blue .btn-default:hover, 
+.btn-blue .btn-default:focus, 
+.btn-blue .btn-default:active, 
+.btn-blue .btn-default.active {
+	color: white;
+	background-color: #29aae1;
+}
+
+.btn-blue label.btn-default {
+	padding: 6px 30px;
+}
+
+.modal-header {
+	background-color: #285e8e;
+	color: #FFF;
+}
+
+.table-custom>thead>tr {
+	border-top: 1px solid #ddd;
+	background-color: #f2f2f2;
+}
+
+.table-custom>thead>tr>th {
+	border-right: 1px solid #ddd;
+}
+
+.table-custom>thead>tr>th:last-child {
+	border-right: none;
+}
+
+.table-custom>tbody>tr>td {
+	border: none;
+}
+
+.table-custom .fa-check {
+	color: #ddd;
+}
+
+.table-custom .active .fa-check {
+	color: #8cc63e;
+}
+
+.custom-control {
+	border: none;
+}
+
+.custom-control select {
+	padding-left: 30px;
+}
+
+.custom-control .fa {
+	position: absolute;
+	margin-left: 10px;
+	top: 10px;
+}
+
+.panel-bar label {
+	padding-top: 8px;
+}
+
+.panel-bar label .fa {
+	margin-right: 5px;
+}
+
+.fa-search, .fa-filter {
+	position: absolute;
+	top: 10px;
+	margin-left: 10px;
+}
+
+tr.sum {
+	border-top: 1px solid #ccc;
+}
+
+.search-control .form-control {
+	padding-left: 30px;
+}
+
+.search-control .fa {
+	position: absolute;
+	top: 8px;
+	margin-left: 10px;
+}
+
+.select-control {
+	border: none;
+	position: relative;
+}
+
+.select-control select {
+	padding-left: 30px;
+}
+
+.select-control .fa {
+	position: absolute;
+	margin-left: 10px;
+	top: 10px;
+}
+
+.default-control > label {
+	padding-right: 0px;
+	text-align: right;
+	padding-top: 7px;
+	color: #ccc;
+	font-style: italic;
+}
+
+.btn-brown {
+	background-color: #64060A;
+	color: #fff;
+}
+
+.btn-brown:hover, .btn-brown:focus, .btn-brown:active, .btn-brown.active {
+	color: #fff;
+	background-color: #560A0A;
+}
+
+.default-content {
+	border: 1px solid #ccc;
+	padding: 20px 10px;
+}
+
+.default-content .content-bar {
+	padding: 0px;
+	padding-bottom: 15px;
+	border: none;
+}
+
+.default-content .content-bar h3 {
+	margin: 0px;
+	color: #094874;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 22px;
+	line-height: 35px;
+}
+
+.default-content .content-bar div {
+	padding: 9px 0px 8px 20px;
+}
+
+.default-content .content-bar .select-control {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.default-content .content-bar > div:first-child {
+	border-right: 1px solid #ccc;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.default-content .content-bar > div:last-child {
+	border-left: 1px solid #ccc;
+}
+
+.default-content .action-bar {
+	border-top: 1px solid #e8e8e8;
+	border-bottom: 1px solid #ccc;
+	padding: 10px 20px;
+}
+
+.default-content .action-bar .active {
+	color: black;
+	font-weight: bold;
+}
+
+.default-content .action-bar a {
+	text-decoration: none;
+	margin-top: 7px;
+}
+
+.default-content .action-bar label {
+	margin-top: 7px;
+}
+
+.default-content .form-body .control-label {
+	text-align: left;
+	color: grey;
+}
+
+.default-content .btn-blue .btn-default {
+	padding: 6px 60px;
+}
+
+.tr-danger {
+	color: red;
+}
+
+.tr-info {
+	color: #29aae1;
+}
+
+.button-group .btn {
+	margin-right: 10px;
+	padding: 10px 20px;
+}
+
+.button-group .cancel {
+	margin-left: 10px;
+	padding: 0px;
+}
+
+.bg-warning {
+	background-color: #f0ad4e;
+}
+
+.bg-danger {
+	background-color: #d43f3a;
+}
+
+.bg-success {
+	background-color: #4cae4c;
+}

@@ -1,0 +1,267 @@
+﻿@model HippoBilling.Web.Models.Settings.SettingOptionsViewModel
+<h1>General</h1>
+<form class="form-horizontal row" role="form" name="practiceForm" novalidate>
+    <div class="col-md-6">
+        <div data-ng-class="{'form-group':true, 'has-error': practiceForm.name.$invalid }">
+            <label class="col-md-4 control-label">Name:</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" data-ng-required="true" name="name" data-ng-model="tab.Name">
+                <span data-ng-show="practiceForm.name.$error.required" class="help-block">The name is required.</span>
+
+            </div>
+        </div>
+        <div data-ng-class="{'form-group':true, 'has-error': practiceForm.taxId.$invalid}">
+            <label class="col-md-4 control-label">Tax ID:</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" name="taxId" data-ng-required="true" data-ng-pattern="/^[0-9]{9}$/" data-ng-model="practice.TaxId">
+                <span data-ng-show="practiceForm.taxId.$error.required" class="help-block">The tax ID is required.</span>
+                <span data-ng-show="practiceForm.taxId.$error.pattern" class="help-block">The tax ID must be 9 numbers.</span>
+
+            </div>
+        </div>
+        <div data-ng-class="{'form-group':true, 'has-error': practiceForm.npi.$invalid}">
+            <label class="col-md-4 control-label">NPI:</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" name="npi" data-ng-pattern="/^[0-9]{10}$/" data-ng-model="practice.NPI" data-ng-required="true">
+                <span data-ng-show="practiceForm.npi.$error.required" class="help-block">The NPI is required.</span>
+                <span data-ng-show="practiceForm.npi.$error.pattern" class="help-block">The NPI must be 10 numbers.</span>
+
+
+            </div>
+        </div>
+        <div data-ng-class="{'form-group':true, 'has-error': practiceForm.speciality.$invalid}">
+            <label class="col-md-4 control-label">Speciality:</label>
+            <div class="col-md-8">
+                <select class="form-control selectpicker" data-size="30" data-ng-select-change  data-ng-model="practice.Speciality" data-live-search="true" name="speciality" data-ng-required="true">
+                   <option value=""></option>
+                     @foreach (var speciality in Model.SpecialityOptions)
+                    {
+                        <option value="@speciality.Value">@speciality.Text</option>
+                    }
+                </select>
+                <span data-ng-show="practiceForm.speciality.$error.required" class="help-block">The Speciality is required.</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div data-ng-class="{'form-group':true, 'has-error': practiceForm.phoneNo.$invalid}">
+            <label class="col-md-3 control-label">Phone No:</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" data-ng-model="practice.PhoneNo" data-ng-required="true" name="phoneNo" data-ng-pattern="/^([0-9]{10})|([0-9]{3}-[0-9]{3}-[0-9]{4})$/" data-ng-change="phoneNoChange(practice.PhoneNo)" placeholder="xxx-xxx-xxxx">
+                <span data-ng-show="practiceForm.phoneNo.$error.required" class="help-block">The Phone No is required.</span>
+                <span data-ng-show="practiceForm.phoneNo.$error.pattern" class="help-block">The Phone No must be 10 numbers with the format xxxxxxxxxx or xxx-xxx-xxxx.</span>
+
+            </div>
+         
+        </div>
+        <div data-ng-class="{'form-group':true, 'has-error': practiceForm.faxNo.$invalid}">
+            <label class="col-md-3 control-label">Fax No:</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" data-ng-model="practice.FaxNo" name="faxNo" data-ng-required="true" value="123-123-1234" data-ng-pattern="/^([0-9]{10})|([0-9]{3}-[0-9]{3}-[0-9]{4})$/" placeholder="xxx-xxx-xxxx">
+                <span data-ng-show="practiceForm.faxNo.$error.required" class="help-block">The Fax No is required.</span>
+                <span data-ng-show="practiceForm.faxNo.$error.pattern" class="help-block">The Fax No must be 10 numbers with the format xxxxxxxxxx or xxx-xxx-xxxx.</span>
+
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Status:</label>
+            <div class="col-md-9">
+                <select class="form-control selectpicker" data-ng-select-change data-ng-model="practice.Active">
+                    <option value="true">Active</option>
+                    <option value="false">Inactive</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <h4>Mailing Location</h4>
+    <div class="col-md-6">
+        <div data-ng-class="{'form-group':true, 'has-error': practiceForm.mailingAddr1.$invalid}">
+            <label class="col-md-4 control-label">Address Line 1:</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" data-ng-model="practice.MailingAddress1" name="mailingAddr1" data-ng-required="true">
+                <span data-ng-show="practiceForm.mailingAddr1.$error.required" class="help-block">The address1 is  required.</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Address Line 2:</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" data-ng-model="practice.MailingAddress2">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div data-ng-class="{'form-group':true, 'has-error': practiceForm.mailingCity.$invalid}">
+            <label class="col-md-3 control-label">City:</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" data-ng-model="practice.MailingCity" name="mailingCity" data-ng-required="true">
+                <span data-ng-show="practiceForm.mailingCity.$error.required" class="help-block">The city is  required.</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">State/Zip:</label>
+            <div data-ng-class="{'col-md-5':true, 'has-error': practiceForm.mailingState.$invalid}">
+                <select class="form-control selectpicker" data-size="20" data-ng-select-change data-ng-model="practice.MailingState" name="mailingState" data-ng-required="true">
+                   <option value=""></option>
+                    @foreach (var state in Model.StateOptions)
+                    {
+                        <option value="@state.Value">@state.Text</option>
+                    }
+                </select>
+                <span data-ng-show="practiceForm.mailingState.$error.required" class="help-block">The state is required.</span>
+
+            </div>
+            <div data-ng-class="{'col-md-4':true, 'has-error': practiceForm.mailingZip.$invalid}">
+                <input type="text" class="form-control" data-ng-model="practice.MailingZipCode" name="mailingZip" data-ng-pattern="/^([0-9]{9})|([0-9]{5}-[0-9]{4})$/" data-ng-required="true" placeholder="xxxxx-xxxx">
+                <span data-ng-show="practiceForm.mailingZip.$error.required" class="help-block">Zip is required.</span>
+                <span data-ng-show="practiceForm.mailingZip.$error.pattern" class="help-block">Zip must be 9 numbers with the format xxxxxxxxx or xxxxx-xxxx.</span>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <h4>Billing Location</h4>
+    <div class="col-md-9">
+        <div class="btn-group" data-toggle="buttons">
+            <label data-ng-click="switchBillingAddr(1)" data-ng-class="{true: 'btn btn-default col-md-6 active', false: 'btn btn-default col-md-6'}[practice.BillingAddrSameAsMailingAddr]">
+                <input type="radio" class="toggle"> Same As Mailing Address
+            </label>
+            <label data-ng-click="switchBillingAddr(0)" data-ng-class="{false: 'btn btn-default col-md-6 active', true: 'btn btn-default col-md-6'}[practice.BillingAddrSameAsMailingAddr]">
+                <input type="radio" class="toggle "> Use Different Address
+            </label>
+        </div>
+
+    </div>
+
+    <div class="col-md-6" data-ng-show="!practice.BillingAddrSameAsMailingAddr" style="margin-top:25px;">
+        <div data-ng-class="{'form-group':true, 'has-error': practiceForm.billingAddr1.$invalid}">
+            <label class="col-md-4 control-label">Address Line 1:</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" data-ng-model="practice.BillingAddress1" data-ng-required="!practice.BillingAddrSameAsMailingAddr" name="billingAddr1">
+                <span data-ng-show="practiceForm.billingAddr1.$error.required " class="help-block">The address1 is required.</span>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Address Line 2:</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" data-ng-model="practice.BillingAddress2">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6" data-ng-show="!practice.BillingAddrSameAsMailingAddr" style="margin-top:25px;">
+
+        <div data-ng-class="{'form-group':true, 'has-error': practiceForm.billingCity.$invalid}">
+            <label class="col-md-3 control-label">City:</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" data-ng-model="practice.BillingCity" name="billingCity" data-ng-required="!practice.BillingAddrSameAsMailingAddr">
+                <span data-ng-show="practiceForm.billingCity.$error.required" class="help-block">The city is  required.</span>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-3 control-label">State/Zip:</label>
+            <div data-ng-class="{'col-md-5':true, 'has-error': practiceForm.billingState.$invalid}">
+
+                <select class="form-control selectpicker" data-ng-select-change data-ng-model="practice.BillingState" name="billingState" data-ng-required="!practice.BillingAddrSameAsMailingAddr">
+                <option value=""></option>                   
+                @foreach (var state in Model.StateOptions)
+                    {
+                        <option value="@state.Value">@state.Text</option>
+                    }
+                </select>
+                <span data-ng-show="practiceForm.billingState.$error.required" class="help-block">The State is required.</span>
+
+            </div>
+
+
+            <div data-ng-class="{'col-md-4':true, 'has-error': practiceForm.billingZip.$invalid}">
+                <input type="text" class="form-control" data-ng-model="practice.BillingZipCode" name="billingZip" data-ng-pattern="/^([0-9]{9})|([0-9]{5}-[0-9]{4})$/" data-ng-required="!practice.BillingAddrSameAsMailingAddr" placeholder="xxxxx-xxxx">
+                <span data-ng-show="practiceForm.billingZip.$error.required" class="help-block">Zip is required.</span>
+                <span data-ng-show="practiceForm.billingZip.$error.pattern" class="help-block">Zip must be 8 numbers with the format xxxxxxxxx or xxxxx-xxxx.</span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <h4>Pay to Location</h4>
+    <div class="col-md-9">
+        <div class="btn-group" data-toggle="buttons">
+            <label data-ng-click="switchPaymentAddr(1)" data-ng-class="{true: 'btn btn-default col-md-6 active', false: 'btn btn-default col-md-6'}[practice.PaymentAddrSameAsMailingAddr]">
+                <input type="radio" class="toggle"> Same As Mailing Address
+            </label>
+            <label data-ng-click="switchPaymentAddr(0)" data-ng-class="{false: 'btn btn-default col-md-6 active', true: 'btn btn-default col-md-6'}[practice.PaymentAddrSameAsMailingAddr]">
+                <input type="radio" class="toggle "> Use Different Address
+            </label>
+        </div>
+
+    </div>
+
+    <div class="col-md-6" data-ng-show="!practice.PaymentAddrSameAsMailingAddr" style="margin-top:25px;">
+
+        <div data-ng-class="{'form-group':true, 'has-error': practiceForm.paymentAddr1.$invalid}">
+            <label class="col-md-4 control-label">Address Line 1:</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" data-ng-model="practice.PaymentAddress1" data-ng-required="!practice.PaymentAddrSameAsMailingAddr" name="paymentAddr1">
+                <span data-ng-show="practiceForm.paymentAddr1.$error.required" class="help-block">The address1 is required.</span>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Address Line 2:</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" data-ng-model="practice.PaymentAddress2">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6" data-ng-show="!practice.PaymentAddrSameAsMailingAddr" style="margin-top:25px;">
+
+        <div data-ng-class="{'form-group':true, 'has-error': practiceForm.paymentCity.$invalid}">
+            <label class="col-md-3 control-label">City:</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" data-ng-model="practice.PaymentCity" name="paymentCity" data-ng-required="!practice.PaymentAddrSameAsMailingAddr">
+                <span data-ng-show="practiceForm.paymentCity.$error.required&&!practice.PaymentAddrSameAsMailingAddr" class="help-block">The city is  required.</span>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-3 control-label">State/Zip:</label>
+            <div data-ng-class="{'col-md-5':true, 'has-error': practiceForm.paymentState.$invalid}">
+                <select class="form-control selectpicker" data-ng-model="practice.PaymentState" name="paymentState" data-ng-required="!practice.PaymentAddrSameAsMailingAddr" >
+                <option value=""></option>                  
+                 @foreach (var state in Model.StateOptions)
+                    {
+                        <option value="@state.Value">@state.Text</option>
+                    }
+                </select>
+                <span data-ng-show="practiceForm.paymentState.$error.required" class="help-block">The State is required.</span>
+
+            </div>
+
+
+            <div data-ng-class="{'col-md-4':true, 'has-error': practiceForm.paymentZip.$invalid}">
+                <input type="text" class="form-control" data-ng-model="practice.PaymentZipCode" name="paymentZip" data-ng-pattern="/^([0-9]{9})|([0-9]{5}-[0-9]{4})$/" data-ng-required="!practice.PaymentAddrSameAsMailingAddr" placeholder="xxxx-xxxx">
+                <span data-ng-show="practiceForm.paymentZip.$error.required" class="help-block">Zip is required.</span>
+                <span data-ng-show="practiceForm.paymentZip.$error.pattern" class="help-block">Zip must be 9 numbers with the format xxxxxxxxx or xxxxx-xxxx.</span>
+
+            </div>
+           
+        </div>
+
+
+    </div>
+    
+
+    <div class="clearfix"></div>
+    <div class="alert alert-success col-md-12" data-ng-show="commandResult.Success" style="margin-bottom: 0px; margin-top: 15px;">Saved successfully.</div>
+    <div class="alert alert-danger has-error col-md-12" data-ng-show="commandResult.Success===false" style="margin-bottom: 0px; margin-top: 15px;">
+        <span class="help-block" data-ng-repeat="e in commandResult.Errors">{{e.Error}}</span>
+    </div>
+    <div class="col-md-8 col-md-offset-4" style="margin-top: 30px;">
+        <button type="button" class="btn cgreen" data-ng-click="save()" data-ng-disabled="practiceForm.$invalid">Save Changes<img src="@Url.Content("~/assets/img/submit-icon.png")"></button> or
+        <span class="btnCancel" data-dismiss="modal">Cancel</span>
+    </div>
+</form>

@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<!-- 
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.0.3
+Version: 1.5.5
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+<meta charset="utf-8"/>
+<title>Superbill New</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="" name="description"/>
+<meta content="" name="author"/>
+<meta name="MobileOptimized" content="320">
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<link href="../assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="../assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+<!-- END GLOBAL MANDATORY STYLES -->
+<!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
+<link href="../assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
+<link href="../assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
+<link href="../assets/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
+<link href="../assets/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
+<link href="../assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"/>
+<!-- END PAGE LEVEL PLUGIN STYLES -->
+<!-- BEGIN THEME STYLES -->
+<link href="../assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
+<link href="../assets/css/style.css" rel="stylesheet" type="text/css"/>
+<link href="../assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+<link href="../assets/css/plugins.css" rel="stylesheet" type="text/css"/>
+<link href="../assets/css/pages/tasks.css" rel="stylesheet" type="text/css"/>
+<link href="../assets/css/themes/blue.css" rel="stylesheet" type="text/css" id="style_color"/>
+<link href="../assets/css/custom.css" rel="stylesheet" type="text/css"/>
+
+<!-- END THEME STYLES -->
+<link rel="shortcut icon" href="favicon.ico"/>
+
+<style type="text/css">
+</style>
+
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="page-header-fixed page-full-width">
+<!-- BEGIN HEADER -->
+<div class="header navbar navbar-inverse navbar-fixed-top">
+	<!-- BEGIN TOP NAVIGATION BAR -->
+	<div class="header-inner">
+		<!-- BEGIN LOGO -->
+		<a class="navbar-brand" href="#">
+			<img src="../assets/img/hippocratic-solutions-logo.png" alt="Hippocratic Solutions Logo" class="img-responsive"/>
+		</a>
+		<!-- END LOGO -->
+		<!-- BEGIN HORIZANTAL MENU -->
+		<div class="hor-menu hidden-sm hidden-xs">
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="index.html"><i class="fa fa-group"></i> Patients </a>
+				</li>
+				<li>
+					<a href="index.html">Authorizations</a>
+				</li>
+				<li class="active">
+					<a href="index.html">Superbills</a>
+				</li>
+				<li>
+					<a href="index.html">Emdeon</a>
+				</li>
+				<li>
+					<a href="index.html">Payments</a>
+				</li>
+				<li>
+					<a href="index.html">Collections</a>
+				</li>
+				<li>
+					<a href="index.html">Reports</a>
+				</li>
+			</ul>
+		</div>
+		<!-- END HORIZANTAL MENU -->
+		<!-- BEGIN RESPONSIVE MENU TOGGLER -->
+		<a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<img src="../assets/img/menu-toggler.png" alt=""/>
+		</a>
+		<!-- END RESPONSIVE MENU TOGGLER -->
+		<!-- BEGIN TOP NAVIGATION MENU -->
+		<ul class="nav navbar-nav pull-right profile">
+			<li><i class="fa fa-cog settings"></i></li>
+			<!-- BEGIN USER LOGIN DROPDOWN -->
+			<li class="dropdown user">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+				<span class="username">
+					Bob Nilson
+				</span>
+				<i class="fa fa-angle-down"></i>
+				<div class="img-circular"></div>
+				</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="extra_profile.html"><i class="fa fa-user"></i> My Profile</a>
+					</li>
+					<li>
+						<a href="page_calendar.html"><i class="fa fa-calendar"></i> My Calendar</a>
+					</li>
+					<li>
+						<a href="inbox.html"><i class="fa fa-envelope"></i> My Inbox
+						<span class="badge badge-danger">
+							3
+						</span>
+						</a>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-tasks"></i> My Tasks
+						<span class="badge badge-success">
+							7
+						</span>
+						</a>
+					</li>
+					<li class="divider">
+					</li>
+					<li>
+						<a href="javascript:;" id="trigger_fullscreen"><i class="fa fa-move"></i> Full Screen</a>
+					</li>
+					<li>
+						<a href="extra_lock.html"><i class="fa fa-lock"></i> Lock Screen</a>
+					</li>
+					<li>
+						<a href="login.html"><i class="fa fa-key"></i> Log Out</a>
+					</li>
+				</ul>
+			</li>
+			<!-- END USER LOGIN DROPDOWN -->
+		</ul>
+		<!-- END TOP NAVIGATION MENU -->
+	</div>
+	<!-- END TOP NAVIGATION BAR -->
+</div>
+<!-- END HEADER -->
+<div class="clearfix">
+</div>
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+	<!-- BEGIN EMPTY PAGE SIDEBAR -->
+	<div class="page-sidebar navbar-collapse collapse">
+		<ul class="page-sidebar-menu visible-sm visible-xs">			
+			<li>
+				<a href="index.html">Patients </a>
+			</li>
+			<li>
+				<a href="index.html">Authorizations</a>
+			</li>
+			<li>
+				<a href="index.html">Superbills</a>
+			</li>
+			<li>
+				<a href="index.html">Emdeon</a>
+			</li>
+			<li class="active">
+				<a href="index.html">Payments</a>
+			</li>
+			<li>
+				<a href="index.html">Collections</a>
+			</li>
+			<li>
+				<a href="index.html">Reports</a>
+			</li>
+		</ul>
+	</div>
+	<!-- END EMPTY PAGE SIDEBAR -->
+	<!-- END SIDEBAR -->
+	<!-- BEGIN CONTENT -->
+	<div class="page-content-wrapper">
+		<div class="page-content menu2">
+			<!-- BEGIN PAGE HEADER-->
+			<div class="row">
+				<div class="col-md-12 account">
+					<!-- BEGIN BUTTONS TAGS FOR ACCOUNTS-->
+					<div class="hidden-sm hidden-xs">
+						<button class="btn default" ><img src="../assets/img/account-icon.png"/>ACCOUNT - 1
+						</button><button class="btn default"><img src="../assets/img/account-icon.png"/>ACCOUNT - 2
+						</button><button class="btn default active"><img src="../assets/img/account-icon.png"/>ACCOUNT - 3
+						</button><button class="btn default"><img src="../assets/img/account-icon.png" />ACCOUNT - 4
+						</button><button class="btn default"><img src="../assets/img/account-icon.png" />ACCOUNT - 5
+						</button><button class="btn default"><img src="../assets/img/account-icon.png" />ACCOUNT - 6
+						</button><button class="btn default"><img src="../assets/img/account-icon.png" />ACCOUNT - 7</button>
+					</div>
+					<!-- END BUTTONS TAGS FOR ACCOUNTS-->
+					<!-- BEGIN RESPONSIVE BUTTONS DROP DOWN FOR ACCOUNTS -->
+					<div class="btn-group visible-xs visible-sm">
+						<button type="button" class="btn default active responsive">ACCOUNT - 3</button>
+						<button type="button" class="btn default dropdown-toggle active responsive" data-toggle="dropdown"><i class="fa fa-angle-down"></i></button>
+						<ul class="dropdown-menu" role="menu">
+							<li>
+								<a href="#">ACCOUNT - 1</a>
+							</li>
+							<li>
+								<a href="#">ACCOUNT - 2</a>
+							</li>
+							<li>
+								<a href="#">ACCOUNT - 3</a>
+							</li>
+							<li>
+								<a href="#">ACCOUNT - 4</a>
+							</li>
+							<li>
+								<a href="#">ACCOUNT - 5</a>
+							</li>
+							<li>
+								<a href="#">ACCOUNT - 6</a>
+							</li>
+							<li>
+								<a href="#">ACCOUNT - 7</a>
+							</li>
+						</ul>
+					</div>
+					<!-- END RESPONSIVE BUTTONS DROP DOWN FOR ACCOUNTS -->
+				</div>
+			</div>
+			<!-- END PAGE HEADER-->
+			
+			<div class="clearfix">
+			</div>
+			
+			<div class="page-content">
+				<div class="row addbutton">
+				</div>
+				<!-- BEGIN TAB MENU-->
+				<div class="tabs">
+					<div class="account">
+						<ul class="nav nav-tabs nav-justified">
+							<li>
+								<a href="#tab_1_1" data-toggle="tab">Billing Encounters</a>
+							</li>
+							<li class="">
+								<a href="#tab_1_1" data-toggle="tab"><img src="../assets/img/sidebar-search-close-light.png"/>Patient - 1</a>
+							</li>
+							<li class="active">
+								<a href="#tab_1_1" data-toggle="tab"><img src="../assets/img/sidebar-search-close-light.png"/>Madison, Korinek</a>
+							</li>
+						</ul>
+						<div class="tab-content superbill-content">
+							<div class="tab-pane fade active in" id="tab_1_1" style="border-bottom: 1px solid #b3b3b3;">
+								<!--general-->
+								<div class="row patient" id="general-bar">
+									<div class="col-md-3">
+										<span>Madison, Korinek - Acct# 15578455</span>
+									</div>
+									
+									<div class="col-md-6">
+										<a href="#" data-toggle="modal" data-target="#noteModal"><i class="fa fa-bars"></i>View Notes</a>
+									</div>
+									
+									<div class="col-md-1">
+										<i class="fa fa-flag"></i>Hold Superbill
+									</div>	
+									
+									<div class="col-md-1" style="border-left: 1px solid #b3b3b3; height: 34px;">
+										<span><i class="fa fa-arrow-circle-o-up"></i>Post Superbill</span>
+									</div>
+									<div class="col-md-1">
+										<span class="cancel">Cancel</span>
+									</div>
+								</div>
+								<!--log-->
+								<div class="row patient" id="log-bar" style="display: none;">
+									<div class="col-md-3">
+										<span>Madison, Korinek - Acct# 15578455</span>
+									</div>
+									
+									<span class="col-md-3 search-control">
+										<input type="text" class="form-control">
+										<i class="fa fa-search"></i>
+									</span>
+
+									<span class="col-md-2 select-control">
+										<i class="fa fa-filter"></i>
+										<select class="form-control">
+								        	<option value="">All Dates</option>
+								        </select>
+								  	</span>
+
+									<div class="col-md-1">
+										<i class="fa fa-print"></i>Print Log
+									</div>	
+									
+									<div class="col-md-1">
+										<span><i class="fa fa-sign-in"></i>Export Log</span>
+									</div>
+									<div class="col-md-1 result">
+										<span>8 Results</span>
+									</div>
+								</div>
+							</div>
+							
+							<div class="clearfix"></div>
+							
+							<div class="row">
+								<div class="col-md-12">
+									<div class="row new-bar">
+										<label class="col-md-1 general active">General</label>
+										<label class="col-md-1 log">Log</label>
+									</div>
+								</div>
+
+								<!-- general -->
+								<div class="col-md-12" id="generalView">
+									<form class="row form-body" id="frm-superbill">
+										<!-- Begin of the first column-->
+										<div class="col-md-6">
+											<div class="form-group form-horizontal">
+												<label class="col-md-3 control-label">Patient
+													<a href="#" data-toggle="modal" data-target="#plModal">
+														<i class="fa fa-search-plus"></i></a>
+												</label>
+												<div class="col-md-9">
+													<input type="text" class="form-control">
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="form-group form-horizontal">
+												<label class="col-md-3 control-label">Insurance Profile:</label>
+												<div class="col-md-9">
+													<select class="form-control ">
+														<option>0018-20-6745</option>
+													</select>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="form-group form-horizontal">
+												<label class="col-md-3 control-label">Provider:</label>
+												<div class="col-md-9">
+													<select class="form-control ">
+														<option>0018-20-6745</option>
+													</select>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="form-group form-horizontal">
+												<label class="col-md-3 control-label">Location:</label>
+												<div class="col-md-9">
+													<input type="text" class="form-control" value="#150 5th St.Each">
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="form-group form-horizontal">
+												<label class="col-md-3 control-label">Referring Physician
+													<a href="#" data-toggle="modal" data-target="#plModal">
+														<i class="fa fa-search-plus"></i></a>
+												</label>
+												<div class="col-md-9">
+													<input type="text" class="form-control">
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="form-group form-horizontal">
+												<label class="col-md-3 control-label">Copay Method:</label>
+												<div class="col-md-4">
+													<select class="form-control ">
+														<option>Check</option>
+													</select>
+												</div>
+												<label class="col-md-2 control-label">Check#:</label>
+												<div class="col-md-3">
+													<input type="text" class="form-control" value="1123842316">
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="form-group form-horizontal">
+												<label class="col-md-3 control-label">Payment Amount:</label>
+												<div class="col-md-9">
+													<input type="text" class="form-control" value="$0.00">
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="form-group form-horizontal">
+												<label class="col-md-3 control-label" style="color: #094874; font-weight: bold;">Procedures</label>
+												<div class="col-md-9">
+													<button type="button" class="btn btn-info  col-md-5" ><i class="fa fa-retweet"></i> Repeat Last Superbill</button>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+										</div>
+										<!-- End of the first column-->
+									
+										<!-- Begin of the second column-->
+										<div class="col-md-6">
+											<div class="form-group form-horizontal">
+												<label class="col-md-3 control-label">Date Last Seen:</label>
+												<div class="col-md-9">
+													<input type="text" class="form-control">
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="form-group form-horizontal">
+												<label class="col-md-3 control-label">Hospitalization Start Date:</label>
+												<div class="col-md-3">
+													<input type="text" class="form-control" value="12/12/2014">
+												</div>
+												<label class="col-md-3 control-label">End Date:</label>
+												<div class="col-md-3">
+													<input type="text" class="form-control" value="12/12/2014">
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="form-group form-horizontal">
+												<label class="col-md-3 control-label">Treatment Date:</label>
+												<div class="col-md-3">
+													<input type="text" class="form-control" value="12/12/2014">
+												</div>
+												<label class="col-md-3 control-label">Injury Date:</label>
+												<div class="col-md-3">
+													<input type="text" class="form-control" value="12/12/2014">
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="form-group form-horizontal">
+												<label class="col-md-3 control-label">Initial Treatment Date:</label>
+												<div class="col-md-9">
+													<input type="text" class="form-control">
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="form-group form-horizontal">
+												<label class="col-md-3 control-label">Accident Type:</label>
+												<div class="col-md-9">
+													<select class="form-control ">
+														<option></option>
+													</select>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="form-group form-horizontal">
+												<label class="col-md-3 control-label">Additional Claim Info:</label>
+												<div class="col-md-9">
+													<input type="text" class="form-control">
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="form-group form-horizontal">
+												<label class="col-md-3 control-label">Emergency Indicator:</label>
+												<div class="col-md-9">
+													<label><input type="checkbox"></label>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+										<!-- End of the second column-->
+										</div>
+									</form>
+
+									<table class="table table-custom">
+			      						<thead>
+			        						<tr class="active">
+			          							<th>From</th>
+			          							<th>Procedure</th>
+			          							<th>Units</th>
+			          							<th>Mod 1</th>
+			          							<th>Mod 2</th>
+			          							<th>Mod 3</th>
+			          							<th>Mod 4</th>
+			          							<th>Diag 1</th>
+			          							<th>Diag 2</th>
+			          							<th>Diag 3</th>
+			          							<th>Diag 4</th>
+			          							<th>Apply Payment</th>
+			          							<th>Unit Changes</th>
+			          							<th>Total Change</th>
+			          							<th>Pat Resp</th>
+			        						</tr>
+			      						</thead>
+			      						<tbody>
+			        						<tr>
+			        							<td>&nbsp;</td>
+			          							<td></td>
+			          							<td></td>
+			          							<td></td>
+			          							<td data-toggle="modal" data-target="#warningModal" id="mod">
+			          							</td>
+			          							<td></td>
+			          							<td></td>
+			          							<td></td>
+			          							<td></td>
+			          							<td></td>
+			          							<td></td>
+			          							<td></td>
+			          							<td></td>
+			          							<td></td>
+			          							<td></td>
+			          						</tr>
+			          						<tr class="sum">
+			        							<td>Total:0</td>
+			          							<td></td>
+			          							<td>0.00</td>
+			          							<td></td>
+			          							<td></td>
+			          							<td></td>
+			          							<td></td>
+			          							<td></td>
+			          							<td></td>
+			          							<td></td>
+			          							<td></td>
+			          							<td>0.00</td>
+			          							<td></td>
+			          							<td>0.00</td>
+			          							<td>0.00</td>
+			          						</tr>
+			      						</tbody>
+			    					</table>
+			    					<br/><br/><br/><br/><br/>
+								</div>
+
+								<!-- log -->
+								<div class="col-md-12" id="logView" style="display: none;">
+									<br/><br/><br/>
+									<div class="col-md-12">
+										<table class="table">
+											<thead>
+				        						<tr>
+				          							<th>Date</th>
+				          							<th>Changes</th>
+				          							<th>Description</th>
+				          							<th>Modified By</th>
+				        						</tr>
+				      						</thead>
+				      						<tbody>
+				        						<tr>
+				        							<td>&nbsp;</td>
+				          							<td></td>
+				          							<td></td>
+				          							<td></td>
+				          						</tr>
+				          						<tr>
+				        							<td>12/12/2014</td>
+				          							<td>AdjustPayments</td>
+				          							<td>Payment has been adjusted due to error with insurance company</td>
+				          							<td>Peter Koukounas</td>
+				          						</tr>
+				          						<tr>
+				        							<td>&nbsp;</td>
+				          							<td></td>
+				          							<td></td>
+				          							<td></td>
+				          						</tr>
+				          						<tr>
+				        							<td>&nbsp;</td>
+				          							<td></td>
+				          							<td></td>
+				          							<td></td>
+				          						</tr>
+				          						<tr>
+				        							<td>&nbsp;</td>
+				          							<td></td>
+				          							<td></td>
+				          							<td></td>
+				          						</tr>
+				          						<tr>
+				        							<td>&nbsp;</td>
+				          							<td></td>
+				          							<td></td>
+				          							<td></td>
+				          						</tr>
+				          						<tr>
+				        							<td>&nbsp;</td>
+				          							<td></td>
+				          							<td></td>
+				          							<td></td>
+				          						</tr>
+				          						<tr>
+				        							<td>&nbsp;</td>
+				          							<td></td>
+				          							<td></td>
+				          							<td></td>
+				          						</tr>
+				          						<tr>
+				        							<td>&nbsp;</td>
+				          							<td></td>
+				          							<td></td>
+				          							<td></td>
+				          						</tr>
+				          						<tr>
+				        							<td>&nbsp;</td>
+				          							<td></td>
+				          							<td></td>
+				          							<td></td>
+				          						</tr>
+				      						</tbody>
+				    					</table>
+				    					<br/><br/><br/><br/><br/>
+				    				</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				<!-- END TABS -->
+				</div>
+			<!-- END PAGE CONTENT -->
+			</div>
+		<!-- END PAGE CONTENT -->
+		</div>
+	<!-- END PAGE CONTENT WRAPPER-->
+	</div>
+<!-- END PAGE CONTAINER-->
+</div>
+
+
+<!-- BEGIN FOOTER -->
+<div style="background-color: white;">
+<div class="footer">
+	<div class="footer-inner">
+		 @2014 Hippocrat Solutions LLC. All rights reserved.
+	</div>
+</div>
+</div>
+<!-- END FOOTER -->
+
+<!-- Modal -->
+<div class="modal fade" id="plModal" tabindex="-1" role="dialog" aria-labelledby="plModalLabel" aria-hidden="true">
+	<div class="modal-dialog" style="width: 1000px;">
+    	<div class="modal-content">
+      		<div class="modal-header darkblue">
+    			<i class="fa fa-times-circle"></i> Physician Lookup
+        		<div class="pull-right">
+        			<a href="#" class="active" id="plib">LIBRARY</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" id="pfav">FAVORITE</a>
+        		</div>
+      		</div>
+	      	<div class="modal-body">
+	      		<div class="row">
+  					<div class="col-md-12">
+						<div class="col-md-3">
+							<div class="search-control">
+								<input type="text" class="form-control">
+								<i class="fa fa-search"></i>
+							</div>
+					  	</div>
+					  	<div class="col-md-5 default-control pull-right">
+					  		<label class="col-md-4">Search within</label>
+					  		<div class="select-control col-md-8">
+								<i class="fa fa-filter"></i>
+								<select class="form-control">
+						        	<option value="">Texas</option>
+						        </select>
+						  	</div>
+					  	</div>
+					</div>
+				</div>
+
+				<br/>
+
+				<div class="row">
+  					<div class="col-md-12">
+    					<table class="table table-custom">
+      						<thead>
+        						<tr class="active">
+          							<th>Name <i class="fa fa-angle-down"></i></th>
+          							<th>Organization <i class="fa fa-angle-down"></i></th>
+          							<th>Speciality <i class="fa fa-angle-down"></i></th>
+          							<th>Address <i class="fa fa-angle-down"></i></th>
+          							<th>Phones <i class="fa fa-angle-down"></i></th>
+        						</tr>
+      						</thead>
+      						<tbody>
+        						<tr>
+          							<td>Dr. Andrea S. Smith<br>19325647877</td>
+          							<td>Yes</td>
+          							<td>General Medicine</td>
+          							<td>#124 Parkway St. <br> Huston, Texas 77743</td>
+          							<td>Business(546)344-3453 <br> Fax(281)980-1418</td>
+          						</tr>
+          						<tr>
+          							<td>Dr. Andrea S. Smith<br>19325647877</td>
+          							<td>Yes</td>
+          							<td>General Medicine</td>
+          							<td>#124 Parkway St. <br> Huston, Texas 77743</td>
+          							<td>Business(546)344-3453 <br> Fax(281)980-1418</td>
+          						</tr>
+          						<tr>
+          							<td>Dr. Andrea S. Smith<br>19325647877</td>
+          							<td>Yes</td>
+          							<td>General Medicine</td>
+          							<td>#124 Parkway St. <br> Huston, Texas 77743</td>
+          							<td>Business(546)344-3453 <br> Fax(281)980-1418</td>
+          						</tr>
+          						<tr>
+          							<td>Dr. Andrea S. Smith<br>19325647877</td>
+          							<td>Yes</td>
+          							<td>General Medicine</td>
+          							<td>#124 Parkway St. <br> Huston, Texas 77743</td>
+          							<td>Business(546)344-3453 <br> Fax(281)980-1418</td>
+          						</tr>
+      						</tbody>
+    					</table>
+  					</div>
+				</div>
+	      	</div>
+	      	<div class="modal-footer">
+        		<div class="pull-left" style="color: #CCC;">
+        			0 Result Shown
+        		</div>
+        		<div class="pull-right" style="display: none;" id="submitfrm">
+	        		<button type="button" class="btn cgreen">Save Changes<img src="../assets/img/submit-icon.png"></button> or 
+	        		<span class="btnCancel" data-dismiss="modal">Cancel</span>
+	        	</div>
+	        	<span class="btnCancel" data-dismiss="modal" id="btnCancel">Cancel</span>
+	      	</div>
+    	</div>
+  	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="noteModalLabel" aria-hidden="true">
+	<div class="modal-dialog" style="width: 900px;">
+    	<div class="modal-content">
+      		<div class="modal-header">
+    			<i class="fa fa-times-circle"></i> Madison Korienek - Notes &nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-pencil"></i> Edit
+        		<div class="pull-right">
+        			Save <i class="fa fa-angle-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span data-dismiss="modal" class="btnCancel">Cancel</span>
+        		</div>
+      		</div>
+	      	<div class="modal-body">
+	      		<p>Sarah mentioned that is going to .... on ....</p>
+	      		<br><br><br><br><br><br>
+	      		<br><br><br><br><br><br>
+	      		<br><br><br><br><br><br>
+	      	</div>
+	      	<div class="modal-footer">
+	      		<p>Last Updated by Peter Koukounas on 02/04/2013</p>
+	      	</div>
+    	</div>
+  	</div>
+</div>
+
+<div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModalLabel" aria-hidden="true">
+	<div class="modal-dialog" style="width: 600px;">
+    	<div class="modal-content">
+      		<div class="modal-header">
+    			<i class="fa fa-times-circle"></i> WARNING
+      		</div>
+	      	<div class="modal-body">
+	      		<p>Mod2 must be corresponding to X ...</p>
+	      		<br>
+	      		<p>What would you like to do?</p>
+	      		<br>
+	      		<div class="row">
+	      			<div class="col-md-4 modify-post">
+	      				<span>Modify Post</span>
+	      				<span>or</span>
+	      			</div>
+	      			<div class="col-md-8">
+	      				<button type="button" class="btn btn-brown  col-md-5" >Override Code</button>
+	      			</div>
+	      		</div>
+	      		
+	      	</div>
+	      	<div class="modal-footer">
+	      	</div>
+    	</div>
+  	</div>
+</div>
+
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="../assets/plugins/respond.min.js"></script>
+<script src="../assets/plugins/excanvas.min.js"></script> 
+<![endif]-->
+<script src="../assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script src="../assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+<script src="../assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script src="../assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="../assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="../assets/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+<script src="../assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	$( document ).ready(function() {
+
+		$( ".log" ).click(function() {
+			$(this).addClass('active');
+			$('.general').removeClass('active');
+			$("#general-bar").hide();
+			$("#generalView").hide();
+			$("#log-bar").show();
+			$("#logView").show('slide', {direction: 'down'}, 100);
+		});
+
+		$( ".general" ).click(function() {
+			$(this).addClass('active');
+			$('.log').removeClass('active');
+			$("#logView").hide();
+			$("#log-bar").hide();
+			$("#general-bar").show();
+			$("#generalView").show('slide', {direction: 'down'}, 100);
+		});
+		
+	});
+</script>
+<!-- END CORE PLUGINS -->
+<!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>

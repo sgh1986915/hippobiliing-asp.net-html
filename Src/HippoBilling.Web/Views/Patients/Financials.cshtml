@@ -1,0 +1,583 @@
+﻿
+@{
+    ViewBag.Title = "Patient - Financials";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="tabs">
+    <div class="account">
+        <ul class="nav nav-tabs nav-justified">
+            <li>
+                <a href="#tab_1_1" data-toggle="tab">View Patients</a>
+            </li>
+            <li class="">
+                <a href="#tab_1_1" data-toggle="tab"><img src="/assets/img/sidebar-search-close-light.png" />Patient - 1</a>
+            </li>
+            <li class="active">
+                <a href="#tab_1_1" data-toggle="tab"><img src="/assets/img/sidebar-search-close-light.png" />Aarington, Sara</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade active in" id="tab_1_1" style="border-bottom: 1px solid #b3b3b3;">
+                <div class="row panel-bar" id="financial-list-bar">
+                    <div class="col-md-2 border-bar">
+                        <h4>Financial Information</h4>
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-2">
+                        <div class="custom-control">
+                            <i class="fa fa-filter"></i>
+                            <select class="form-control">
+                                <option value="">All Dates</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group form-horizontal">
+                            <label class="col-md-3 control-label">Show from</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" value="09/10/12">
+                            </div>
+                            <label class="col-md-1 control-label">Until</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" value="09/10/12">
+                            </div>
+                        </div>
+                    </div>
+                    <label class="col-md-1 result">8 Results</label>
+                </div>
+                <div class="row panel-bar" id="financial-detail-bar" style="display: none;">
+                    <div class="col-md-2 border-bar">
+                        <h4>View Change Detail</h4>
+                    </div>
+                    <div class="col-md-3" style="margin-top: 7px;">
+                        <a href="#" id="backlink">
+                            <i class="fa fa-angle-left"></i>&nbsp;&nbsp;Back to Financials
+                        </a>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="custom-control">
+                            <i class="fa fa-filter"></i>
+                            <select class="form-control">
+                                <option value="">All Dates</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="padding: 7px 0;">
+                        <span class="itemlink"><i class="fa fa-tasks"></i>Audit Log</span>
+                        <span class="itemlink"><i class="fa fa-print"></i>Print Superbil</span>
+                        <span class="itemlink"><i class="fa fa-rotate-left"></i>Resubmit</span>
+                    </div>
+                    <div class="col-md-1 result">
+                        <span class="fgrey">4 Results</span>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <!-- END TAB MENU-->
+            <!-- BEGIN CONTENT TAB ROW-->
+            <div class="row">
+                <!-- BEGIN SIDEBAR MENU-->
+                <div class="col-md-2 sidebar-content ">
+                    <ul class="ver-inline-menu tabbable margin-bottom-25">
+                        <li>
+                            <a href="facesheet">Facesheet<i class="fa fa-angle-right pull-right"></i></a>
+                            <span class="after">
+                            </span>
+                        </li>
+                        <li class="active">
+                            <a href="#">Financials<i class="fa fa-angle-right pull-right"></i></a>
+                        </li>
+                        <li>
+                            <a href="superbills">Superbills<i class="fa fa-angle-right pull-right"></i></a>
+                        </li>
+                        <li>
+                            <a href="documents">Documents<i class="fa fa-angle-right pull-right"></i></a>
+                        </li>
+                        <li>
+                            <a href="statements">Statements<i class="fa fa-angle-right pull-right"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END SIDEBAR MENU-->
+                <div class="col-md-10">
+                    <!-- BEGIN DEMOGRAPHICS INSURANCE TABS-->
+                    <div id="financial-list">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr class="active">
+                                    <th>Date <i class="fa fa-angle-down"></i></th>
+                                    <th>Description <i class="fa fa-angle-down"></i></th>
+                                    <th>Responsibility <i class="fa fa-angle-down"></i></th>
+                                    <th>Billed <i class="fa fa-angle-down"></i></th>
+                                    <th>Receipts <i class="fa fa-angle-down"></i></th>
+                                    <th>Adjustments <i class="fa fa-angle-down"></i></th>
+                                    <th>Balance <i class="fa fa-angle-down"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="info">
+                                    <td>11/12/2014</td>
+                                    <td>This is a description of the information</td>
+                                    <td>Primary</td>
+                                    <td>$1235.35</td>
+                                    <td>0.00</td>
+                                    <td></td>
+                                    <td>0.00</td>
+                                </tr>
+                                <tr>
+                                    <td>11/12/2014</td>
+                                    <td>This is a description of the information</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>31.30</td>
+                                    <td>0.00</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>11/12/2014</td>
+                                    <td>This is a description of the information</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>0.00</td>
+                                    <td>152.00</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>11/12/2014</td>
+                                    <td>This is a description of the information</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>0.00</td>
+                                    <td>0.00</td>
+                                    <td></td>
+                                </tr>
+                                <tr class="info">
+                                    <td>11/12/2014</td>
+                                    <td>This is a description of the information</td>
+                                    <td>Secondary</td>
+                                    <td>$985.35</td>
+                                    <td>0.00</td>
+                                    <td></td>
+                                    <td>0.00</td>
+                                </tr>
+                                <tr>
+                                    <td>11/12/2014</td>
+                                    <td>This is a description of the information</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>0.00</td>
+                                    <td>0.00</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="financial-detail" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-4 detail-panel">
+                                <div class="row">
+                                    <label class="col-md-5 fgrey">Produce</label>
+                                    <label class="col-md-7">GSM10, MSC DGER MCR, CONR MCM</label>
+                                </div>
+                                <div class="row">
+                                    <label class="col-md-5 fgrey">Diagnoss/Modifier</label>
+                                    <label class="col-md-7">707, 15, 250, 135, 9, v34, 12</label>
+                                </div>
+                                <div class="row">
+                                    <label class="col-md-5 fgrey">Provider</label>
+                                    <label class="col-md-7">DR, American, MDS, DOM</label>
+                                </div>
+                                <div class="row">
+                                    <label class="col-md-5 fgrey">Location</label>
+                                    <label class="col-md-7">VICTORIA OFFICE</label>
+                                </div>
+                                <div class="row">
+                                    <label class="col-md-5 fgrey">Status</label>
+                                    <label class="col-md-7">Closed</label>
+                                </div>
+                                <div class="row">
+                                    <label class="col-md-5 fgrey">/Entered By</label>
+                                    <label class="col-md-7">Dearah L Olive on 04/10/2014</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 detail-panel">
+                                <div class="row">
+                                    <label class="col-md-5 fgrey">Introduce Profile</label>
+                                    <label class="col-md-7">MEDICARE B/Memcached</label>
+                                </div>
+                                <div class="row">
+                                    <label class="col-md-5 fgrey">Refreshing Physican</label>
+                                    <label class="col-md-7">DR SENJEV ASETEW</label>
+                                </div>
+                                <div class="row">
+                                    <label class="col-md-5 fgrey">Authorization</label>
+                                    <label class="col-md-7"></label>
+                                </div>
+                                <div class="row">
+                                    <label class="col-md-5 fgrey">Date of Service</label>
+                                    <label class="col-md-7">04/24/2013</label>
+                                </div>
+                                <div class="row">
+                                    <label class="col-md-5 fgrey">Posting Date</label>
+                                    <label class="col-md-7">04/24/2013</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 detail-panel">
+                                <div class="row">
+                                    <label class="col-md-5 fgrey">Units</label>
+                                    <label class="col-md-7">1</label>
+                                </div>
+                                <div class="row">
+                                    <label class="col-md-5 fgrey">Amounts</label>
+                                    <label class="col-md-7">100.54</label>
+                                </div>
+                                <div class="row">
+                                    <label class="col-md-5 fgrey">Payments</label>
+                                    <label class="col-md-7">37.45</label>
+                                </div>
+                                <div class="row">
+                                    <label class="col-md-5 fgrey">Adjustments</label>
+                                    <label class="col-md-7">36.09</label>
+                                </div>
+                                <div class="row">
+                                    <label class="col-md-5 fgrey">Balance</label>
+                                    <label class="col-md-7">(0.76)</label>
+                                </div>
+                                <div class="row">
+                                    <label class="col-md-5 fgrey">Responsibility</label>
+                                    <label class="col-md-7">Secondary</label>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="col-md-4 pull-right" style="margin: 20px;">
+                            <span class="itemlink" data-toggle="modal" data-target="#crModal"><i class="fa fa-random"></i>Change Responsibility</span>
+                            <span class="itemlink" data-toggle="modal" data-target="#bpModal"><i class="fa fa-inbox"></i>Bill Paitent</span>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr class="active">
+                                    <th>Effective Date <i class="fa fa-angle-down"></i></th>
+                                    <th>Type <i class="fa fa-angle-down"></i></th>
+                                    <th>Description <i class="fa fa-angle-down"></i></th>
+                                    <th>Approved <i class="fa fa-angle-down"></i></th>
+                                    <th>Co-Insur <i class="fa fa-angle-down"></i></th>
+                                    <th>Co-pay <i class="fa fa-angle-down"></i></th>
+                                    <th>Withhold <i class="fa fa-angle-down"></i></th>
+                                    <th>Paid <i class="fa fa-angle-down"></i></th>
+                                    <th>Adjusted <i class="fa fa-angle-down"></i></th>
+                                    <th>Entered By <i class="fa fa-angle-down"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>11/12/2014</td>
+                                    <td>Submit</td>
+                                    <td>This is comment...</td>
+                                    <td>10.00</td>
+                                    <td>0.00</td>
+                                    <td>0.00</td>
+                                    <td>0.00</td>
+                                    <td>0.00</td>
+                                    <td>0.00</td>
+                                    <td>Peter Koukounas</td>
+                                </tr>
+                                <tr>
+                                    <td>11/12/2014</td>
+                                    <td>Payment/Adjustment</td>
+                                    <td>This is comment...</td>
+                                    <td>0.00</td>
+                                    <td>0.00</td>
+                                    <td>0.00</td>
+                                    <td>0.00</td>
+                                    <td>0.00</td>
+                                    <td>0.00</td>
+                                    <td>Peter Koukounas</td>
+                                </tr>
+                                <tr>
+                                    <td>11/12/2014</td>
+                                    <td>Payment/Adjustment</td>
+                                    <td>This is comment...</td>
+                                    <td>0.00</td>
+                                    <td>0.00</td>
+                                    <td>0.00</td>
+                                    <td>0.00</td>
+                                    <td>0.00</td>
+                                    <td>0.00</td>
+                                    <td>Peter Koukounas</td>
+                                </tr>
+                                <tr>
+                                    <td>11/12/2014</td>
+                                    <td>Submit</td>
+                                    <td>This is comment...</td>
+                                    <td>10.00</td>
+                                    <td>0.00</td>
+                                    <td>0.00</td>
+                                    <td>0.00</td>
+                                    <td>0.00</td>
+                                    <td>0.00</td>
+                                    <td>Peter Koukounas</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- END CONTENT TAB ROW-->
+                </div>
+                <!-- END CONTENT -->
+            </div>
+            <!-- ENDTAB CONTENT -->
+        </div>
+        <!-- END ACCOUNT -->
+    </div>
+    <!-- END TABS -->
+</div>
+
+
+@section footer{
+    <div class="modal fade fmodal" id="crModal" tabindex="-1" role="dialog" aria-labelledby="crModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="min-width: 1000px;">
+        <div class="modal-content">
+            <div class="modal-header darkblue">
+                <i class="fa fa-times-circle"></i> Change Responsibility and Create a Claim
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Current Payer Name</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" value="MEDICARE PART B TEXAS">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Move Responsibility to</label>
+                        <div class="col-sm-5">
+                            <select class="form-control">
+                                <option value="">MEDICARE PART B TEXAS (02/04/2013)</option>
+                            </select>
+                        </div>
+                        <label class="col-sm-2 control-label">Select</label>
+                        <span class="col-sm-2 control-label">ALL DONE</span>
+                    </div>
+                </form>
+
+                <br />
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                                <tr class="active">
+                                    <th></th>
+                                    <th>DOS <i class="fa fa-angle-down"></i></th>
+                                    <th>Procedure <i class="fa fa-angle-down"></i></th>
+                                    <th>Description <i class="fa fa-angle-down"></i></th>
+                                    <th>Diagnosic <i class="fa fa-angle-down"></i></th>
+                                    <th>Responsibility <i class="fa fa-angle-down"></i></th>
+                                    <th>Amount <i class="fa fa-angle-down"></i></th>
+                                    <th>Balance <i class="fa fa-angle-down"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>03/12/2013</td>
+                                    <td>AWER</td>
+                                    <td></td>
+                                    <td>707.15</td>
+                                    <td>Secondary</td>
+                                    <td>105.23</td>
+                                    <td>(0.76)</td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-1 pull-right control-label">(0.70)</label>
+                    <label class="col-sm-1 pull-right control-label">105.54</label>
+                </div>
+                <div class="row">
+                    <div class="col-md-10 fgrey" style="margin-bottom: 10px;">
+                        How would you like the claime to be develeried?
+                    </div>
+                    <div class="col-md-10">
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-default col-md-6 ">
+                                <input type="radio" class="toggle"> Paper
+                            </label>
+                            <label class="btn btn-default active col-md-6">
+                                <input type="radio" class="toggle "> Electronic
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="pull-left" style="color: #CCC;">
+                    0 Result Shown
+                </div>
+                <div class="pull-right" id="submitfrm">
+                    <button type="button" class="btn cgreen">Save Changes<img src="/assets/img/submit-icon.png"></button> or
+                    <span class="btnCancel" data-dismiss="modal">Cancel</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="modal fade fmodal" id="bpModal" tabindex="-1" role="dialog" aria-labelledby="bpModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="min-width: 1000px;">
+        <div class="modal-content">
+            <div class="modal-header darkblue">
+                <i class="fa fa-times-circle"></i> Change Responsibility and Create a Claim
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Current Payer Name</label>
+                        <span class="col-sm-5 control-label">MEDICARE PART B TEXAS</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Move Responsibility to</label>
+                        <span class="col-sm-5 control-label">MEDICARE PART B TEXAS (02/04/2013)</span>
+
+                        <label class="col-sm-2 control-label">Select</label>
+                        <span class="col-sm-2 control-label">ALL DONE</span>
+                    </div>
+                </form>
+
+                <br />
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                                <tr class="active">
+                                    <th></th>
+                                    <th>DOS <i class="fa fa-angle-down"></i></th>
+                                    <th>Procedure <i class="fa fa-angle-down"></i></th>
+                                    <th>Description <i class="fa fa-angle-down"></i></th>
+                                    <th>Diagnosic <i class="fa fa-angle-down"></i></th>
+                                    <th>Responsibility <i class="fa fa-angle-down"></i></th>
+                                    <th>Amount <i class="fa fa-angle-down"></i></th>
+                                    <th>Balance <i class="fa fa-angle-down"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>03/12/2013</td>
+                                    <td>AWER</td>
+                                    <td></td>
+                                    <td>707.15</td>
+                                    <td>Secondary</td>
+                                    <td>105.23</td>
+                                    <td>(0.76)</td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-1 pull-right control-label">(0.70)</label>
+                    <label class="col-sm-1 pull-right control-label">105.54</label>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="pull-left" style="color: #CCC;">
+                    0 Result Shown
+                </div>
+                <div class="pull-right" id="submitfrm">
+                    <button type="button" class="btn cgreen">Bill Paitent<img src="/assets/img/submit-icon.png"></button> or
+                    <span class="btnCancel" data-dismiss="modal">Cancel</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+@section scripts{
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $("#financial-list tr").click(function () {
+            $("#financial-list").hide();
+            $("#financial-list-bar").hide();
+            $("#financial-detail-bar").show();
+            $("#financial-detail").show('slide', { direction: 'down' }, 100);
+        });
+
+        $("#backlink").click(function () {
+            $("#financial-detail-bar").hide();
+            $("#financial-detail").hide();
+            $("#financial-list-bar").show();
+            $("#financial-list").show('slide', { direction: 'down' }, 100);
+        });
+    });
+</script>
+}

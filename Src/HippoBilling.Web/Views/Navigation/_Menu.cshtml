@@ -1,0 +1,7 @@
+﻿@model IEnumerable<HippoBilling.Web.Models.Navigation.MenuItem>
+<ul class="nav navbar-nav">
+    @foreach (var item in Model)
+    {
+        @Html.Partial(item.Template, item)
+    }
+</ul>

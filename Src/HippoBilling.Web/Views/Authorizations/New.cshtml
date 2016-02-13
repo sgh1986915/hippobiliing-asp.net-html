@@ -1,0 +1,529 @@
+@model HippoBilling.Web.Models.Authorizations.AuthorizationOptionsViewModel
+@{
+    ViewBag.Title = "Authorization - New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-12 default-content" id="new-auth" data-ng-controller="authorizationActionController">
+    <div class="col-md-12 content-bar">
+        <div class="col-md-3">
+            <h3>Authorization Form - @Model.CurrentPractice.Name</h3>
+        </div>
+        <div class="col-md-7">
+            <a href="#" data-toggle="modal" data-target="#noteModal"><i class="fa fa-bars"></i> View Notes</a>
+        </div>
+        <div class="col-md-1">
+            <span><i class="fa fa-print"></i> Print Form</span>
+        </div>
+        <div class="col-md-1">
+            <span class="cancel">Cancel</span>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <form class="form-body" name="authForm" novalidate>
+
+            <div class="row action-bar">
+                <div class="col-md-3">
+                    <label class="col-md-6">TAX ID: @Model.CurrentPractice.TaxId</label>
+                    <label class="col-md-6 fgrey">Group NPI: @Model.CurrentPractice.NPI</label>
+                </div>
+                <div class="col-md-3">
+                    <label class="col-md-5 control-label">Provider Name:</label>
+                    <div class="col-md-7" data-ng-class="{'has-error':authForm.provider.$invalid}">
+                        <select class="form-control" id="selProvider" name="provider" data-ng-required="true" data-ng-model="authorization.ProviderId">
+                            <option></option>
+                            @foreach (var item in Model.ProviderOptions)
+                            {
+                                <option value="@item.Value">@item.Text</option>
+                            }
+                        </select>
+                        <span class="help-block" data-ng-show="authForm.provider.$error.required">The Provider is required.</span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <label class="col-md-2 fgrey" id="lblNPI">Individual NPI: </label>
+                <div class="col-md-3">
+                    <label class="col-md-4 control-label">Location:</label>
+                    <div class="col-md-8" data-ng-class="{'has-error':authForm.location.$invalid}">
+                        <select class="form-control" name="location" data-ng-required="true" data-ng-model="authorization.LocationId">
+                            <option></option>
+                            @foreach (var item in Model.LocationOptions)
+                            {
+                                <option value="@item.Value">@item.Text</option>
+                            }
+                        </select>
+                        <span class="help-block" data-ng-show="authForm.location.$error.required">The Location is required.</span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">
+                            Patient
+                            <a href="#" data-toggle="modal" data-target="#patientModal">
+                                <i class="fa fa-search-plus"></i>
+                            </a>
+                        </label>
+                        <div class="col-md-9" data-ng-class="{'has-error':authForm.patientName.$invalid}">
+                            <input type="text" class="form-control" name="patientName" data-ng-required="true" data-ng-model="authorization.PatientName" readonly="readonly" />
+                            <input type="hidden" data-ng-model="PatientId" />
+                            <span class="help-block" data-ng-show="authForm.patientName.$error.required">The Patient is required.</span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">#1 Insurance Profile:</label>
+                        <div class="col-md-9">
+                            <select class="form-control ">
+                                <option>0018-20-6745</option>
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">#2 Insurance Profile:</label>
+                        <div class="col-md-9">
+                            <select class="form-control ">
+                                <option>0018-20-6745</option>
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">CPT/HCPCS:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" data-ng-model="authorization.CPT">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">Date of Birth:</label>
+                        <div class="col-md-9" data-ng-class="{'has-error':authForm.dob.$invalid}">
+                            <input type="text" class="form-control datepicker" data-ng-date name="dob" data-ng-required="true" data-ng-model="authorization.DateOfBirth">
+                            <span class="help-block" data-ng-show="authForm.dob.$error.required">The Date of Birth is required.</span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">Policy Num:</label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" value="14567891237981">
+                        </div>
+                        <label class="col-md-3 control-label">Group:</label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" value="14567891237981">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">DX:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" data-ng-model="authorization.DX">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">#1 Insurance Procedure Covered</label>
+                        <div class="col-md-9">
+                            <div class="btn-group btn-blue" data-toggle="buttons">
+                                <label class="btn btn-default col-md-6">
+                                    <input type="radio" class="toggle"> Yes
+                                </label>
+                                <label class="btn btn-default col-md-6 active">
+                                    <input type="radio" class="toggle "> No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">Deductible:</label>
+                        <div class="col-md-9">
+                            <div class="btn-group btn-blue" data-toggle="buttons">
+                                <label class="btn btn-default col-md-6">
+                                    <input type="radio" class="toggle"> Yes
+                                </label>
+                                <label class="btn btn-default col-md-6 active">
+                                    <input type="radio" class="toggle "> No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">Coinsurance:</label>
+                        <div class="col-md-9">
+                            <div class="btn-group btn-blue" data-toggle="buttons">
+                                <label class="btn btn-default col-md-6">
+                                    <input type="radio" class="toggle"> Yes
+                                </label>
+                                <label class="btn btn-default col-md-6 active">
+                                    <input type="radio" class="toggle "> No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">Authorization:</label>
+                        <div class="col-md-9">
+                            <div class="btn-group btn-blue" data-toggle="buttons">
+                                <label class="btn btn-default col-md-6">
+                                    <input type="radio" class="toggle"> Yes
+                                </label>
+                                <label class="btn btn-default col-md-6 active">
+                                    <input type="radio" class="toggle "> No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">Amount:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" value="$500.00">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">Remaining:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" value="$200.00">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">Percentage:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" value="14567891237961">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">Authorization:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" value="132456789125">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">#1 Insurance Procedure Covered</label>
+                        <div class="col-md-9">
+                            <div class="btn-group btn-blue" data-toggle="buttons">
+                                <label class="btn btn-default col-md-6">
+                                    <input type="radio" class="toggle"> Yes
+                                </label>
+                                <label class="btn btn-default col-md-6 active">
+                                    <input type="radio" class="toggle "> No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">Deductible:</label>
+                        <div class="col-md-9">
+                            <div class="btn-group btn-blue" data-toggle="buttons">
+                                <label class="btn btn-default col-md-6">
+                                    <input type="radio" class="toggle"> Yes
+                                </label>
+                                <label class="btn btn-default col-md-6 active">
+                                    <input type="radio" class="toggle "> No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">Coinsurance:</label>
+                        <div class="col-md-9">
+                            <div class="btn-group btn-blue" data-toggle="buttons">
+                                <label class="btn btn-default col-md-6">
+                                    <input type="radio" class="toggle"> Yes
+                                </label>
+                                <label class="btn btn-default col-md-6 active">
+                                    <input type="radio" class="toggle "> No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">Authorization:</label>
+                        <div class="col-md-9">
+                            <div class="btn-group btn-blue" data-toggle="buttons">
+                                <label class="btn btn-default col-md-6">
+                                    <input type="radio" class="toggle"> Yes
+                                </label>
+                                <label class="btn btn-default col-md-6 active">
+                                    <input type="radio" class="toggle "> No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">Amount:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" value="$500.00">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">Remaining:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" value="$200.00">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">Percentage:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" value="14567891237961">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-3 control-label">Authorization:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" value="132456789125">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="row" style="text-align: center;">
+                <button type="button" class="btn btn-primary">Mark as Completed</button>
+                <br><br>
+                <button type="button" class="btn cgreen" id="btnSaveChange" data-ng-click="save()">Save Changes<i class="fa fa-arrow-circle-o-down"></i></button> or <label class="cancel">Cancel</label>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="modal fade" id="patientModal" tabindex="-1" role="dialog" aria-labelledby="patientModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 950px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <i class="fa fa-times-circle"></i> Patients
+                    <div class="pull-right">
+                        <span data-dismiss="modal" class="btnCancel">Cancel</span>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr class="active tr-border">
+                                    <th>ID <i class="fa fa-angle-down"></i></th>
+                                    <th>Name <i class="fa fa-angle-down"></i></th>
+                                    <th>DOB <i class="fa fa-angle-down"></i></th>
+                                    <th>Last Visit <i class="fa fa-angle-down"></i></th>
+                                    <th>Patient Balance <i class="fa fa-angle-down"></i></th>
+                                    <th>Insurance Balance <i class="fa fa-angle-down"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="m in patients" data-ng-click="selectPatient(m)">
+                                    <td>{{m.PatientNo}}</td>
+                                    <td>{{m.Name}}</td>
+                                    <td>{{m.DateOfBirth}}</td>
+                                    <td>{{m.LastVisitDate}}</td>
+                                    <td>${{m.PatientBalance}}</td>
+                                    <td>${{m.InsuranceBalance}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="clearfix"></div>
+@section footer{
+<div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="noteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 950px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fa fa-times-circle"></i> Notes&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-file-o"></i> New Note
+                <div class="pull-right">
+                    Save <i class="fa fa-angle-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span data-dismiss="modal" class="btnCancel">Cancel</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <span class="col-md-4 search-control">
+                        <input type="text" class="form-control">
+                        <i class="fa fa-search"></i>
+                    </span>
+                    <span class="col-md-3 select-control">
+                        <i class="fa fa-filter"></i>
+                        <select class="form-control">
+                            <option value="">All Notes</option>
+                        </select>
+                    </span>
+                    <label class="col-md-2 pull-right result">
+                        8 Results
+                    </label>
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <div class="col-md-8" style="padding-right: 0px;">
+                        <table class="table table-custom">
+                            <thead>
+                                <tr class="active">
+                                    <th>Date <i class="fa fa-angle-down"></i></th>
+                                    <th>Created By <i class="fa fa-angle-down"></i></th>
+                                    <th>Details <i class="fa fa-angle-down"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="tr-danger">
+                                    <td><span class="exclamation">!</span>&nbsp;06/10/2013</td>
+                                    <td>Tanmy Marshal</td>
+                                    <td>Confrimed with practice to adjust off any 2ndary balance duo.</td>
+                                </tr>
+                                <tr class="tr-info">
+                                    <td>06/10/2013</td>
+                                    <td>Lerl Wiech</td>
+                                    <td>Confrimed with practice to adjust off any 2ndary balance duo.</td>
+                                </tr>
+                                <tr>
+                                    <td>06/10/2013</td>
+                                    <td>David Bares</td>
+                                    <td>Confrimed with practice to adjust off any 2ndary balance duo.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="edit-panel">
+                            <div id="edit1">
+                                <div class="side_header">
+                                    <span style="color: red;"><span class="exclamation">!</span> IMPORTANT NOTICE</span>
+                                    <a href="#" class="pull-right" id="btn_edit" style="line-height: 50px;">Edit</a>
+                                </div>
+                                <div class="side_content">
+                                    <p>Confirmed with practice to adjust off any 2ndary balance due.</p>
+                                    <br><br><br><br>
+                                    <br><br><br><br>
+                                    <br><br><br><br>
+                                    <br><br><br><br>
+                                </div>
+                                <div class="side_footer">
+                                    <p>Last chagned by Inaey Eearweawe 15/05/2014</p>
+                                </div>
+                            </div>
+                            <div id="edit2" style="display: none;">
+                                <div class="side_header">
+                                    <p style="color: #CCC;">Mark note as</p>
+                                    <div class="btn-group" data-toggle="buttons" style="width: 100%;">
+                                        <label class="btn btn-default col-md-6 ">
+                                            <input type="radio" class="toggle"> NORMAL
+                                        </label>
+                                        <label class="btn btn-default active col-md-6">
+                                            <input type="radio" class="toggle "> IMPORTANT
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="side_content">
+                                    <p>Confirmed with practice to adjust off any 2ndary balance due.</p>
+                                    <br><br><br><br>
+                                    <br><br><br><br>
+                                    <br><br><br><br>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-success col-md-6">Save Changes</button>
+                                        <a href="#" class="cancel col-md-6" id="btn_cancel">Cancel</a>
+                                    </div>
+                                </div>
+                                <div class="side_footer">
+                                    <p>Last chagned by Inaey Eearweawe 15/05/2014</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+}
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var date = new Date();
+
+            $(".datepicker").datepicker({
+                autoclose: true,
+                startDate: date.getMonth() + "/" + date.getDate() + "/" + (date.getFullYear() - 120),
+                endDate: new Date()
+            });
+
+            $("#btn_edit").click(function () {
+                $("#edit1").hide();
+                $("#edit2").show('slide', { direction: 'left' }, 500);
+            });
+
+            $("#btn_cancel").click(function () {
+                $("#edit2").hide();
+                $("#edit1").show('slide', { direction: 'left' }, 500);
+            });
+
+            $("#selProvider").change(function () {
+                var id = $(this).val();
+
+                $.ajax({
+                    url: '@Url.Action("GetProviderNPI")',
+                    data: { id: id },
+                    success: function (result) {
+                        $('#lblNPI').text('Individual NPI: ' + result);
+                    }
+                });
+            });
+
+        });
+    </script>
+
+    <script src="@Url.Content("~/scripts/app/services/authorizationService.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/scripts/app/controllers/authorizations/authorizationActionController.js")" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js")" type="text/javascript"></script>
+}

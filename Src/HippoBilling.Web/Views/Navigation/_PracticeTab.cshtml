@@ -1,0 +1,19 @@
+﻿<div class="col-md-12 account" data-ng-show="practices.length>1 ||(practices.length==1 && practices[0].IsNew)" data-ng-controller="practiceTabController" data-ng-init="initTabs(@Model)">
+    <div class="hidden-sm hidden-xs">
+        <span data-ng-cloak ng-class="{'btn default practice-tab':true,'active':p.Active,'hidden':false}" title="{{p.Name}}" data-ng-click="switchTab(p)" data-ng-repeat="p in practices">
+            <img src="/assets/img/account-icon.png" data-ng-click="removeTab(p,$index)" alt="Remove" />{{p.Name}}
+        </span>
+    </div>
+    <div class="btn-group visible-xs visible-sm" data-ng-show="practices.length>0">
+        <button type="button" class="btn default active responsive">{{tab.Name}}</button>
+        <button type="button" class="btn default dropdown-toggle active responsive" data-toggle="dropdown"><i class="fa fa-angle-down"></i></button>
+        <ul class="dropdown-menu" role="menu">
+
+            <li data-ng-repeat="p in practices">
+                <a href="{{p.Url}}">{{p.Name}}</a>
+            </li>
+
+        </ul>
+    </div>
+
+</div>

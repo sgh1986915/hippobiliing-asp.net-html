@@ -1,0 +1,7 @@
+﻿@model IEnumerable<HippoBilling.Web.Models.Navigation.MenuItem>
+<ul class="page-sidebar-menu visible-sm visible-xs">
+    @foreach (var item in Model)
+    {
+        @Html.Partial(item.Template, item)
+    }
+</ul>

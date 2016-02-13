@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Authorizations";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row addbutton">
+    <div class="col-md-12 account">
+        <a href="@Url.Action("new", new { practice = @Model })" class="btn cgreen">New Authorization Request<img src="/assets/img/add-icon.png" style="margin-left: 10px;" height="40px" /></a>
+    </div>
+</div>
+
+<br />
+
+<div class="col-md-12 default-content" data-ng-controller="authorizationController">
+    <div class="col-md-12 content-bar">
+        <div class="col-md-2">
+            <h3>Authorization</h3>
+        </div>
+        <div class="col-md-1 result pull-right">
+            <span class="fgrey">3 Results</span>
+        </div>
+    </div>
+    <div class="col-md-12 action-bar">
+        <a href="#" class="col-md-1 pending">Pending</a>
+        <a href="#" class="col-md-1 completed active">Completed</a>
+    </div>
+    <div class="col-md-12" id="pendingView" style="display: none;">
+        <table class="table table-custom">
+            <thead>
+                <tr>
+                    <th>Name <i class="fa fa-angle-down"></i></th>
+                    <th>Insurance <i class="fa fa-angle-down"></i></th>
+                    <th>Submitted Date <i class="fa fa-angle-down"></i></th>
+                    <th>Completed Date <i class="fa fa-angle-down"></i></th>
+                    <th>Provider Name <i class="fa fa-angle-down"></i></th>
+                    <th>Location <i class="fa fa-angle-down"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="p in authorizations" data-ng-click="select(p)" ng-class="{ td_practive_disabled : !p.ClickAble}">
+                    <td>{{p.Patient}}</td>
+                    <td>{{p.Insurance}}</td>
+                    <td>{{p.SubmittedDate}}</td>
+                    <td>{{p.CompletedDate}}</td>
+                    <td>{{p.Provider}}</td>
+                    <td>{{p.Location}}</td>
+                </tr>
+                <tr data-ng-show="authorizations.length==0&&!loading">
+                    <td colspan="6">No records.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-12" id="completedView">
+        <table class="table table-custom">
+            <thead>
+                <tr>
+                    <th>Name <i class="fa fa-angle-down"></i></th>
+                    <th>Insurance <i class="fa fa-angle-down"></i></th>
+                    <th>Submitted Date <i class="fa fa-angle-down"></i></th>
+                    <th>Completed Date <i class="fa fa-angle-down"></i></th>
+                    <th>Provider Name <i class="fa fa-angle-down"></i></th>
+                    <th>Location <i class="fa fa-angle-down"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="p in authorizations" data-ng-click="select(p)" ng-class="{ td_practive_disabled : !p.ClickAble}">
+                    <td>{{p.Patient}}</td>
+                    <td>{{p.Insurance}}</td>
+                    <td>{{p.SubmittedDate}}</td>
+                    <td>{{p.CompletedDate}}</td>
+                    <td>{{p.Provider}}</td>
+                    <td>{{p.Location}}</td>
+                </tr>
+                <tr data-ng-show="authorizations.length==0&&!loading">
+                    <td colspan="6">No records.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script src="@Url.Content("~/scripts/app/services/authorizationService.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/scripts/app/controllers/authorizations/authorizationController.js")" type="text/javascript"></script>
+}

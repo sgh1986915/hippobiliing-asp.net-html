@@ -1,0 +1,204 @@
+﻿@model HippoBilling.Web.Models.Settings.SettingOptionsViewModel
+<div id="providerList">
+    <h1>Providers</h1>
+    <div class="row fee-bar">
+        <div class="col-md-2">
+            Billing Providers
+        </div>
+    </div>
+    <div class="row content">
+        <div class="col-md-12 content-bar">
+            <div class="col-md-4">
+                <button type="button" class="btn cgreen" id="btnAddProvider" data-ng-click="create()">Add New Billing Provider<img src="@Url.Content("~/assets/img/add-icon.png")"></button>
+            </div>
+            <div class="col-md-7 pull-right">
+                <div class="col-md-9">
+                    <input type="text" class="form-control search" data-ng-model="keyword" placeholder="Search by any field info shown below...">
+                    <i class="fa fa-search"></i>
+                </div>
+                <label class="bar col-md-3">{{providers.length}} Results</label>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="active tr-border">
+                        <th>Name <i class="fa fa-angle-down"></i></th>
+                        <th>NPI <i class="fa fa-angle-down"></i></th>
+                        <th>Active <i class="fa fa-angle-down"></i></th>
+                        <th>Speciality <i class="fa fa-angle-down"></i></th>
+                    </tr>
+                </thead>
+                <tbody class="no-border">
+                    <tr data-ng-class="{'unused':!p.Active}" data-ng-click="edit(p,$index)" data-ng-repeat="p in providers">
+                        <td>{{p.FullName}}</td>
+                        <td>{{p.IndividualNPI}}</td>
+                        <td data-ng-class="{'fgreen':p.Active}">{{p.ActiveString}}</td>
+                        <td>{{p.SpecialityString}}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Providers Add -->
+<div id="providerAdd" style="display: none;">
+    <h1>Add New Billing Provider</h1>
+    <div class="row fee-bar">
+        <div class="col-md-2">
+            <a href="#" class="backlink" data-ng-click="back()">
+                <i class="fa fa-angle-left"></i>&nbsp;&nbsp;Back
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a href="#" data-toggle="modal" data-target="#npiModal">
+                <i class="fa fa-eye"></i>&nbsp;&nbsp;NPI Lookup
+            </a>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="alert alert-success" data-ng-show="commandResult.Success">Saved successfully.</div>
+        <div class="alert alert-danger has-error" data-ng-show="commandResult.Success===false" style="margin-bottom: 0px;">
+            <span class="help-block" data-ng-repeat="e in commandResult.Errors">{{e.Error}}</span>
+        </div>
+        <form class="form-horizontal row" role="form" name="providerForm" novalidate>
+            <div data-ng-class="{'form-group':true, 'has-error': providerForm.fullName.$invalid}">
+                <label class="col-md-2 control-label">Full Name:</label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" placeholder="Thomas Smith" data-ng-required="true" name="fullName" data-ng-model="selectedProvider.FullName">
+                    <span data-ng-show="providerForm.fullName.$error.required" class="help-block">The Full Name is required.</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">User:</label>
+                <div class="col-md-5">
+                    <select class="form-control selectpicker" data-ng-model="selectedProvider.UserId" data-ng-select-change data-ng-options="u.Id as u.Name +' ('+u.Email+')' for u in availableUsers ">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+            <div data-ng-class="{'form-group':true, 'has-error': providerForm.npi.$invalid}">
+                <label class="col-md-2 control-label">Individual NPI:</label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" placeholder="1998255002" name="npi" data-ng-pattern="/^[0-9]{10}$/" data-ng-required="true" data-ng-model="selectedProvider.IndividualNPI">
+                    <span data-ng-show="providerForm.npi.$error.required" class="help-block">The NPI is required.</span>
+                    <span data-ng-show="providerForm.npi.$error.pattern" class="help-block">The NPI must be 10 numbers.</span>
+
+                </div>
+            </div>
+            <!--add license number-->
+            <div data-ng-class="{'form-group':true, 'has-error': providerForm.licenseNum.$invalid}">
+                <label class="col-md-2 control-label">License Number:</label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" name="licenseNum"  data-ng-required="true" data-ng-model="selectedProvider.LicenseNumber">
+                    <span data-ng-show="providerForm.licenseNum.$error.required" class="help-block">The License Number is required.</span>
+                  
+                </div>
+            </div>
+            <!--removed SSN-->
+
+
+            <div data-ng-class="{'form-group':true, 'has-error': providerForm.speciality.$invalid}">
+                <label class="col-md-2 control-label">Speciality:</label>
+                <div class="col-md-5">
+                    <select class="form-control selectpicker" data-live-search="true" data-ng-model="selectedProvider.Speciality" data-live-search="true" data-ng-select-change data-ng-required="true" name="speciality">
+                        <option></option>
+                        @foreach (var speciality in Model.SpecialityOptions)
+                        {
+                            <option value="@speciality.Value">@speciality.Text</option>
+                        }
+                    </select>
+                    <span data-ng-show="providerForm.speciality.$error.required" class="help-block">The Speciality is required.</span>
+                </div>
+            </div>
+            <div data-ng-class="{'form-group':true, 'has-error': providerForm.degree.$invalid}">
+                <label class="col-md-2 control-label">Degree</label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" name="degree" data-ng-required="true" data-ng-model="selectedProvider.Degree">
+                    <span data-ng-show="providerForm.degree.$error.required" class="help-block">The Degree is required.</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Gender</label>
+                <div class="col-md-5">
+                    <select class="form-control selectpicker" data-ng-select-change data-ng-model="selectedProvider.Gender">
+                        <option value="0">Male</option>
+                        <option value="1">Female</option>
+                    </select>
+                </div>
+            </div>
+            <br /><br />
+            <div data-ng-class="{'form-group':true, 'has-error': providerForm.address1.$invalid}">
+                <label class="col-md-2 control-label">Address 1:</label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" placeholder="#123 4th SL" data-ng-required="true" name="address1" data-ng-model="selectedProvider.Address1">
+                    <span data-ng-show="providerForm.address1.$error.required" class="help-block">The Address is required.</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Address 2:</label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" data-ng-model="selectedProvider.Address2">
+                </div>
+            </div>
+            <div data-ng-class="{'form-group':true, 'has-error': providerForm.city.$invalid}">
+                <label class="col-md-2 control-label">City:</label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" value="Florida" data-ng-required="true" name="city" data-ng-model="selectedProvider.City">
+                    <span data-ng-show="providerForm.city.$error.required" class="help-block">The City is required.</span>
+
+                </div>
+            </div>
+            <div data-ng-class="{'form-group':true, 'has-error': providerForm.state.$invalid}">
+                <label class="col-md-2 control-label">State:</label>
+                <div class="col-md-5">
+                    <select class="form-control selectpicker" data-ng-select-change data-ng-model="selectedProvider.State" data-ng-required="true" name="state">
+                       <option></option>
+                          @foreach (var state in Model.StateOptions)
+                        {
+                            <option value="@state.Value">@state.Text</option>
+                        }
+
+                    </select>
+                    <span data-ng-show="providerForm.state.$error.required" class="help-block">The State is required.</span>
+
+                </div>
+            </div>
+            <div data-ng-class="{'form-group':true, 'has-error': providerForm.zipCode.$invalid}">
+                <label class="col-md-2 control-label">Zip code:</label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" placeholder="xxxxx-xxxx" name="zipCode" data-ng-pattern="/^([0-9]{9})|([0-9]{5}-[0-9]{4})$/" data-ng-required="true" data-ng-model="selectedProvider.ZipCode">
+                    <span data-ng-show="providerForm.zipCode.$error.required" class="help-block">The Zip Code is required.</span>
+                    <span data-ng-show="providerForm.zipCode.$error.pattern" class="help-block">The Zip Code must be 9 numbers with the format xxxxxxxxx or xxxxx-xxxx.</span>
+
+                </div>
+            </div>
+            <div data-ng-class="{'form-group':true, 'has-error': providerForm.phone.$invalid}">
+                <label class="col-md-2 control-label">Phone:</label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" placeholder="xxx-xxx-xxxx" name="phone" data-ng-pattern="/^([0-9]{10})|([0-9]{3}-[0-9]{3}-[0-9]{4})$/" data-ng-required="true" data-ng-model="selectedProvider.Phone">
+                    <span data-ng-show="providerForm.phone.$error.required" class="help-block">The Phone is required.</span>
+                    <span data-ng-show="providerForm.phone.$error.pattern" class="help-block">The Phone must be 10 numbers with the format xxxxxxxxxx or xxx-xxx-xxxx.</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Signature on File:</label>
+                <div class="col-md-5">
+                    <label><input type="checkbox" data-ng-model="selectedProvider.SignatureOnFile"></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Active:</label>
+                <div class="col-md-5">
+                    <label><input type="checkbox" data-ng-model="selectedProvider.Active"></label>
+                </div>
+            </div>
+            <div class="col-md-10 col-md-offset-2">
+                <button type="button" class="btn cgreen" data-ng-click="save()" data-ng-disabled="providerForm.$invalid">Save Changes<img src="@Url.Content("~/assets/img/submit-icon.png")"></button> or
+                <span class="btnCancel cancelProvider" data-ng-click="back()">Cancel</span>
+            </div>
+        </form>
+    </div>
+</div>
+

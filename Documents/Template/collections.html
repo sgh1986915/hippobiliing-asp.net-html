@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<!-- 
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.0.3
+Version: 1.5.5
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+<meta charset="utf-8"/>
+<title>Collections</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="" name="description"/>
+<meta content="" name="author"/>
+<meta name="MobileOptimized" content="320">
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+<!-- END GLOBAL MANDATORY STYLES -->
+<!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
+<link href="assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
+<link href="assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
+<link href="assets/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
+<link href="assets/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
+<link href="assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"/>
+<!-- END PAGE LEVEL PLUGIN STYLES -->
+<!-- BEGIN THEME STYLES -->
+<link href="assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
+<link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
+<link href="assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+<link href="assets/css/plugins.css" rel="stylesheet" type="text/css"/>
+<link href="assets/css/pages/tasks.css" rel="stylesheet" type="text/css"/>
+<link href="assets/css/themes/blue.css" rel="stylesheet" type="text/css" id="style_color"/>
+<link href="assets/css/custom.css" rel="stylesheet" type="text/css"/>
+
+<!-- END THEME STYLES -->
+<link rel="shortcut icon" href="favicon.ico"/>
+
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="page-header-fixed page-full-width">
+<!-- BEGIN HEADER -->
+<div class="header navbar navbar-inverse navbar-fixed-top">
+	<!-- BEGIN TOP NAVIGATION BAR -->
+	<div class="header-inner">
+		<!-- BEGIN LOGO -->
+		<a class="navbar-brand" href="#">
+		<img src="assets/img/hippocratic-solutions-logo.png" alt="Hippocratic Solutions Logo" class="img-responsive"/>
+		</a>
+		<!-- END LOGO -->
+		<!-- BEGIN HORIZANTAL MENU -->
+		<div class="hor-menu hidden-sm hidden-xs">
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="index.html"><i class="fa fa-group"></i> Patients </a>
+				</li>
+				<li>
+					<a href="index.html">Authorizations</a>
+				</li>
+				<li>
+					<a href="index.html">Superbills</a>
+				</li>
+				<li>
+					<a href="index.html">Emdeon</a>
+				</li>
+				<li>
+					<a href="index.html">Payments</a>
+				</li>
+				<li class="active">
+					<a href="index.html">Collections</a>
+				</li>
+				<li>
+					<a href="index.html">Reports</a>
+				</li>
+			</ul>
+		</div>
+		<!-- END HORIZANTAL MENU -->
+
+		<!-- BEGIN TOP NAVIGATION MENU -->
+		<ul class="nav navbar-nav pull-right profile">
+			<li><i class="fa fa-cog settings"></i></li>
+			<!-- BEGIN USER LOGIN DROPDOWN -->
+			<li class="dropdown user">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+				<span class="username">
+					Bob Nilson
+				</span>
+				<i class="fa fa-angle-down"></i>
+				<div class="img-circular"></div>
+				</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="extra_profile.html"><i class="fa fa-user"></i> My Profile</a>
+					</li>
+					<li>
+						<a href="page_calendar.html"><i class="fa fa-calendar"></i> My Calendar</a>
+					</li>
+					<li>
+						<a href="inbox.html"><i class="fa fa-envelope"></i> My Inbox
+						<span class="badge badge-danger">
+							3
+						</span>
+						</a>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-tasks"></i> My Tasks
+						<span class="badge badge-success">
+							7
+						</span>
+						</a>
+					</li>
+					<li class="divider">
+					</li>
+					<li>
+						<a href="javascript:;" id="trigger_fullscreen"><i class="fa fa-move"></i> Full Screen</a>
+					</li>
+					<li>
+						<a href="extra_lock.html"><i class="fa fa-lock"></i> Lock Screen</a>
+					</li>
+					<li>
+						<a href="login.html"><i class="fa fa-key"></i> Log Out</a>
+					</li>
+				</ul>
+			</li>
+			<!-- END USER LOGIN DROPDOWN -->
+		</ul>
+		<!-- END TOP NAVIGATION MENU -->
+	</div>
+	<!-- END TOP NAVIGATION BAR -->
+</div>
+<!-- END HEADER -->
+<div class="clearfix">
+</div>
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+	<!-- BEGIN EMPTY PAGE SIDEBAR -->
+	<div class="page-sidebar navbar-collapse collapse">
+		<ul class="page-sidebar-menu visible-sm visible-xs">
+			<li>
+				<a href="index.html">Patients </a>
+			</li>
+			<li>
+				<a href="index.html">Authorizations</a>
+			</li>
+			<li>
+				<a href="index.html">Superbills</a>
+			</li>
+			<li>
+				<a href="index.html">Emdeon</a>
+			</li>
+			<li>
+				<a href="index.html">Payments</a>
+			</li>
+			<li class="active">
+				<a href="index.html">Collections</a>
+			</li>
+			<li>
+				<a href="index.html">Reports</a>
+			</li>
+		</ul>
+	</div>
+	<!-- END EMPTY PAGE SIDEBAR -->
+	<!-- END SIDEBAR -->
+	<!-- BEGIN CONTENT -->
+	<div class="page-content-wrapper">
+		<div class="page-content menu2">
+			
+			<!-- BEGIN PAGE HEADER-->
+			<div class="row">
+				<div class="col-md-12 account">
+					<!-- BEGIN BUTTONS TAGS FOR ACCOUNTS-->
+					<div class="hidden-sm hidden-xs">
+						<button class="btn default" ><img src="assets/img/account-icon.png"/>ACCOUNT - 1
+						</button><button class="btn default"><img src="assets/img/account-icon.png"/>ACCOUNT - 2
+						</button><button class="btn default active"><img src="assets/img/account-icon.png"/>ACCOUNT - 3
+						</button><button class="btn default"><img src="assets/img/account-icon.png" />ACCOUNT - 4
+						</button><button class="btn default"><img src="assets/img/account-icon.png" />ACCOUNT - 5
+						</button><button class="btn default"><img src="assets/img/account-icon.png" />ACCOUNT - 6
+						</button><button class="btn default"><img src="assets/img/account-icon.png" />ACCOUNT - 7</button>
+					</div>
+					<!-- END BUTTONS TAGS FOR ACCOUNTS-->
+					<!-- BEGIN RESPONSIVE BUTTONS DROP DOWN FOR ACCOUNTS -->
+					<div class="btn-group visible-xs visible-sm">
+						<button type="button" class="btn default active responsive">ACCOUNT - 3</button>
+						<button type="button" class="btn default dropdown-toggle active responsive" data-toggle="dropdown"><i class="fa fa-angle-down"></i></button>
+						<ul class="dropdown-menu" role="menu">
+							<li>
+								<a href="#">ACCOUNT - 1</a>
+							</li>
+							<li>
+								<a href="#">ACCOUNT - 2</a>
+							</li>
+							<li>
+								<a href="#">ACCOUNT - 3</a>
+							</li>
+							<li>
+								<a href="#">ACCOUNT - 4</a>
+							</li>
+							<li>
+								<a href="#">ACCOUNT - 5</a>
+							</li>
+							<li>
+								<a href="#">ACCOUNT - 6</a>
+							</li>
+							<li>
+								<a href="#">ACCOUNT - 7</a>
+							</li>
+						</ul>
+					</div>
+					<!-- END RESPONSIVE BUTTONS DROP DOWN FOR ACCOUNTS -->
+				</div>
+			</div>
+			<!-- END PAGE HEADER-->
+			
+			<div class="clearfix">
+			</div>
+			
+			<div class="page-content">
+				<div class="row addbutton">
+				</div>
+				<!-- BEGIN TAB MENU-->
+				<div class="tabs">
+					<div class="account">
+						<ul class="nav nav-tabs nav-justified">
+							<li>
+								<a href="#tab_1_1" data-toggle="tab">Collections Listings</a>
+							</li>
+							<li>
+								<a href="#tab_1_1" data-toggle="tab"><img src="assets/img/sidebar-search-close-light.png"/>Patient - 1</a>
+							</li>
+							<li class="active">
+								<a href="#tab_1_1" data-toggle="tab"><img src="assets/img/sidebar-search-close-light.png"/>Madison, Korinok</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane fade active in" id="tab_1_1">
+								<div class="col-md-12 default-content" style="border: none;">
+									<div class="col-md-12 content-bar">
+										<div class="col-md-2">
+											<h3>Collections Listings</h3>
+										</div>
+										<span class="col-md-2 select-control">
+											<i class="fa fa-filter"></i>
+											<select class="form-control">
+									        	<option value="">All Providers</option>
+									        </select>
+									  	</span>
+									  	<span class="col-md-2 select-control">
+											<select class="form-control">
+									        	<option value="">All Locations</option>
+									        </select>
+									  	</span>
+									  	<div class="col-md-5">
+									  		<a href="#" class="col-md-4" data-toggle="modal" data-target="#sendModal"><i class="fa fa-legal"></i> Sent to Collections</a>
+									  		<a href="#" class="col-md-4" data-toggle="modal" data-target="#resendModal"><i class="fa fa-inbox"></i> Resend Statement</a>
+									  		<a href="#" class="col-md-4" data-toggle="modal" data-target="#writeModal"><i class="fa fa-check-circle"></i> Write-off Balance</a>
+									  	</div>
+									  	<div class="col-md-1 result pull-right">
+											<span>8 Results</span>
+										</div>
+									</div>
+									<div class="col-md-12" id="completedView">
+										<table class="table table-custom">
+				      						<thead>
+				        						<tr>
+				        							<th>?</th>
+				          							<th>Patient Name <i class="fa fa-angle-down"></i></th>
+				          							<th>Insurance Profile <i class="fa fa-angle-down"></i></th>
+				          							<th width="18%">Provider <i class="fa fa-angle-down"></i></th>
+				          							<th width="22%">Location <i class="fa fa-angle-down"></i></th>
+				          							<th>Balance <i class="fa fa-angle-down"></i></th>
+				          							<th width="15%"># of Statements sent <i class="fa fa-angle-down"></i></th>
+				        						</tr>
+				      						</thead>
+				      						<tbody>
+				        						<tr>
+				        							<td class="active"><i class="fa fa-check"></i></td>
+				        							<td>Madison, Korinek</td>
+				        							<td></td>
+				        							<td></td>
+				        							<td></td>
+				        							<td>$0.00</td>
+				        							<td>1</td>
+				          						</tr>
+				          						<tr>
+				        							<td><i class="fa fa-check"></i></td>
+				        							<td>Madison, Korinek</td>
+				        							<td></td>
+				        							<td></td>
+				        							<td></td>
+				        							<td>$0.00</td>
+				        							<td>2</td>
+				          						</tr>
+				          						<tr>
+				        							<td><i class="fa fa-check"></i></td>
+				        							<td>Madison, Korinek</td>
+				        							<td></td>
+				        							<td></td>
+				        							<td></td>
+				        							<td>$0.00</td>
+				        							<td>4</td>
+				          						</tr>
+				      						</tbody>
+				    					</table>
+				    					<br><br><br><br><br>
+				    					<br><br><br><br><br>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+					</div>
+				<!-- END TABS -->
+				</div>
+			<!-- END PAGE CONTENT -->
+			</div>
+		<!-- END PAGE CONTENT -->
+		</div>
+	<!-- END PAGE CONTENT WRAPPER-->
+	</div>
+<!-- END PAGE CONTAINER-->
+</div>
+<!-- BEGIN FOOTER -->
+<div style="background-color: white;">
+	<div class="footer">
+		<div class="footer-inner">
+			 @2014 Hippocrat Solutions LLC. All rights reserved.
+		</div>
+	</div>
+</div>
+<!-- END FOOTER -->
+
+<!-- Resend Statement Modal -->
+<div class="modal fade" id="resendModal" tabindex="-1" role="dialog" aria-labelledby="resendModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+    	<div class="modal-content">
+      		<div class="modal-header bg-warning">
+    			<i class="fa fa-times-circle"></i> Resend Statement
+      		</div>
+	      	<div class="modal-body">
+	      		<p>You have decided to resend a statement to the marked patient</p>
+	      		<p>Please confirm or deny your choice below</p>
+	      		<h5>What would  you like to do?</h5>
+	      		<br>
+	      		<div class="button-group">
+	      			<button type="button" class="btn btn-warning"> Confirm </button> or <span class="cancel">Cancel</span>
+	      		</div>
+	      		<br><br>
+	      	</div>
+	      	<div class="modal-footer">
+	      		
+	      	</div>
+    	</div>
+  	</div>
+</div>
+
+<!-- Send to Collections Modal -->
+<div class="modal fade" id="sendModal" tabindex="-1" role="dialog" aria-labelledby="sendModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+    	<div class="modal-content">
+      		<div class="modal-header bg-danger">
+    			<i class="fa fa-times-circle"></i> Send to Collections
+      		</div>
+	      	<div class="modal-body">
+	      		<p>You have decided to send this patient's account to collections</p>
+	      		<p>Please confirm or deny your choice below</p>
+	      		<h5>What would  you like to do?</h5>
+	      		<br>
+	      		<div class="button-group">
+	      			<button type="button" class="btn btn-danger"> Confirm </button> or <span class="cancel">Cancel</span>
+	      		</div>
+	      		<br><br>
+	      	</div>
+	      	<div class="modal-footer">
+	      		
+	      	</div>
+    	</div>
+  	</div>
+</div>
+
+<!-- Write off Balance Modal -->
+<div class="modal fade" id="writeModal" tabindex="-1" role="dialog" aria-labelledby="writeModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+    	<div class="modal-content">
+      		<div class="modal-header bg-success">
+    			<i class="fa fa-times-circle"></i> Write-off Balance
+      		</div>
+	      	<div class="modal-body">
+	      		<p>You have decided to write-off the balance on the patient's account</p>
+	      		<p>Please confirm or deny your choice below</p>
+	      		<h5>What would  you like to do?</h5>
+	      		<br>
+	      		<div class="button-group">
+	      			<button type="button" class="btn btn-success"> Confirm </button> or <span class="cancel">Cancel</span>
+	      		</div>
+	      		<br><br>
+	      	</div>
+	      	<div class="modal-footer">
+	      		
+	      	</div>
+    	</div>
+  	</div>
+</div>
+
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="assets/plugins/respond.min.js"></script>
+<script src="assets/plugins/excanvas.min.js"></script> 
+<![endif]-->
+<script src="assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script src="assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+<script src="assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	$( document ).ready(function() {
+		
+		$( "#superbill-list tr" ).click(function() {
+			document.location.href = "new.html";
+		});
+
+	});
+</script>
+<!-- END CORE PLUGINS -->
+<!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>
